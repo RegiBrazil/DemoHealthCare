@@ -1,0 +1,306 @@
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612          Date 01/23/2020  Time 04:55:27   Page     1             
+0Invocation parameters:
+  NOCOMPILE,adata,exit(adexit(fttfdbkw))
+0Options in effect:
+    ADATA                                                                                                                            
+    QUOTE                                                                                                                            
+    ARITH(COMPAT)                                                                                                                    
+    BINARY(NATIVE)                                                                                                                   
+    CALLINT(SYSTEM,NODESCRIPTOR)                                                                                                     
+    CHAR(NATIVE)                                                                                                                     
+  NOCICS                                                                                                                             
+    COLLSEQ(BINARY)                                                                                                                  
+  NOCOMPILE                                                                                                                          
+  NOCOPYRIGHT                                                                                                                        
+  NOCURRENCY                                                                                                                         
+  NODIAGTRUNC                                                                                                                        
+    DIVIDE(NATIVE)                                                                                                                   
+  NODYNAM                                                                                                                            
+    ENTRYINT(SYSTEM)                                                                                                                 
+    EXIT(NOINEXIT,NOPRTEXIT,NOLIBEXIT,ADEXIT(FTTFDBKW),NOMSGEXIT)                                                                    
+    FLAG(I,I)                                                                                                                        
+  NOFLAGSTD                                                                                                                          
+    FLOAT(NATIVE)                                                                                                                    
+    LINECOUNT(60)                                                                                                                    
+  NOLIST                                                                                                                             
+    LSTFILE(LOCALE)                                                                                                                  
+  NOMAP                                                                                                                              
+  NOMDECK                                                                                                                            
+    NCOLLSEQ(BINARY)                                                                                                                 
+    NSYMBOL(NATIONAL)                                                                                                                
+  NONUMBER                                                                                                                           
+    OPTIMIZE(0)                                                                                                                      
+    PGMNAME(LONGUPPER)                                                                                                               
+    PROBE                                                                                                                            
+    QUALIFY(COMPAT)                                                                                                                  
+  NORULES                                                                                                                            
+  NOSERVICE                                                                                                                          
+    SEPOBJ                                                                                                                           
+    SEQUENCE                                                                                                                         
+  NOSOSI                                                                                                                             
+    SOURCE                                                                                                                           
+    SPACE(1)                                                                                                                         
+  NOSQL                                                                                                                              
+    SRCFORMAT(COMPAT)                                                                                                                
+  NOSSRANGE                                                                                                                          
+  NOSUPPRESS                                                                                                                         
+    TERM                                                                                                                             
+  NOTEST                                                                                                                             
+  NOTHREAD                                                                                                                           
+    TRUNC(STD)                                                                                                                       
+  NOVBREF                                                                                                                            
+  NOWSCLEAR                                                                                                                          
+    XREF(FULL)                                                                                                                       
+    ZWB                                                                                                                              
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZERRS  Date 01/23/2020  Time 04:55:27   Page     2             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000001               ******************************************************************        |                                  
+   000002               *                                                                *        |                                  
+   000003               * By default queue name of HCAZERRS is used                      *        |                                  
+   000004               *                                                                *        |                                  
+   000005               *                                                                *        |                                  
+   000006               *                                                                *        |                                  
+   000007               ******************************************************************        |                                  
+   000008                IDENTIFICATION DIVISION.                                                 |                                  
+   000009                PROGRAM-ID. HCAZERRS.                                                    |                                  
+   000010                ENVIRONMENT DIVISION.                                                    |                                  
+   000011                CONFIGURATION SECTION.                                                   |                                  
+   000012               *                                                                         |                                  
+   000013                DATA DIVISION.                                                           |                                  
+   000014                WORKING-STORAGE SECTION.                                                 |                                  
+   000015                                                                                         |                                  
+   000016                01  WS-FLAG                   PIC X.                                     |                                  
+   000017                01  WS-RESP                   PIC S9(8) COMP.                            |                                  
+   000018                01  WS-STARTCODE              PIC XX Value spaces.                       |IMP                               
+   000019                01  WS-INVOKEPROG             PIC X(8) Value spaces.                     |IMP                               
+   000020                01  WS-PRINSYSID              PIC XXXX Value spaces.                     |IMP                               
+   000021                01  WS-RECV.                                                             |                                  
+   000022                  03 WS-RECV-TRANID           PIC X(5).                                  |                                  
+   000023                  03 WS-RECV-DATA             PIC X(74).                                 |                                  
+   000024                01  WS-RECV-LEN               PIC S9(4) COMP Value 80.                   |                                  
+   000025                                                                                         |                                  
+   000026                01  WRITE-MSG.                                                           |                                  
+   000027                  03 WRITE-MSG-SYSID          PIC X(4).                                  |                                  
+   000028                  03 FILLER-X                 PIC X Value SPACES.                        |IMP                               
+   000029                  03 WRITE-MSG-MSG            PIC X(90).                                 |                                  
+   000030                01  FILLER REDEFINES WRITE-MSG.                                          |26                                
+   000031                  03 FILLER                   PIC X(5).                                  |                                  
+   000032                  03 FILLER                   PIC X(7).                                  |                                  
+   000033                  03 WRITE-MSG-REST           PIC X(83).                                 |                                  
+   000034                01  STSQ.                                                                |                                  
+   000035                  03  STSQ-NAME                 PIC X(8).                                |                                  
+   000036                01  FILLER REDEFINES STSQ.                                               |34                                
+   000037                  03 FILLER                   PIC X(4).                                  |                                  
+   000038                  03 STSQ-EXT                 PIC X(4).                                  |                                  
+   000039                                                                                         |                                  
+   000040                01 TEMPO                      PIC X(90) VALUE SPACES.                    |IMP                               
+   000041                77 STDQ-NAME                  PIC X(4)  VALUE 'CSMT'.                    |                                  
+   000042                                                                                         |                                  
+   000043               *****************************************************************         |                                  
+   000044               *    L I N K A G E     S E C T I O N                                      |                                  
+   000045               *****************************************************************         |                                  
+   000046                LINKAGE SECTION.                                                         |                                  
+   000047                01  DFHCOMMAREA.                                                         |                                  
+                                                                                                  |                                  
+ ==000047==> IGYSC2025-W "DFHCOMMAREA" or one of its subordinates was referenced, but             |                                  
+                         "DFHCOMMAREA" was a "LINKAGE SECTION" item that did not have             |                                  
+                         addressability.  This reference will not be resolved successfully at     |                                  
+                         execution.                                                               |                                  
+                                                                                                  |                                  
+   000048                  02  COMMA-DATA              PIC X(90).                                 |                                  
+   000049                                                                                         |                                  
+   000050               *----------------------------------------------------------------*        |                                  
+   000051               *****************************************************************         |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZERRS  Date 01/23/2020  Time 04:55:27   Page     3             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000052                PROCEDURE DIVISION.                                                      |                                  
+   000053                                                                                         |                                  
+   000054               *---------------------------------------------------------------*         |                                  
+   000055                MAINLINE SECTION.                                                        |                                  
+   000056                                                                                         |                                  
+   000057                    MOVE SPACES TO WRITE-MSG.                                            |IMP 26                            
+   000058                    MOVE SPACES TO WS-RECV.                                              |IMP 21                            
+   000059                                                                                         |                                  
+   000060                    EXEC CICS ASSIGN SYSID(WRITE-MSG-SYSID)                              |                                  
+                                                                                                  |                                  
+ ==000060==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000061                         RESP(WS-RESP)                                                   |                                  
+   000062                    END-EXEC.                                                            |                                  
+   000063                                                                                         |                                  
+   000064                    EXEC CICS ASSIGN STARTCODE(WS-STARTCODE)                             |                                  
+                                                                                                  |                                  
+ ==000064==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000065                         RESP(WS-RESP)                                                   |                                  
+   000066                    END-EXEC.                                                            |                                  
+   000067                                                                                         |                                  
+   000068                    EXEC CICS ASSIGN PRINSYSID(WS-PRINSYSID)                             |                                  
+                                                                                                  |                                  
+ ==000068==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000069                         RESP(WS-RESP)                                                   |                                  
+   000070                    END-EXEC.                                                            |                                  
+   000071                                                                                         |                                  
+   000072                    EXEC CICS ASSIGN INVOKINGPROG(WS-INVOKEPROG)                         |                                  
+                                                                                                  |                                  
+ ==000072==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000073                         RESP(WS-RESP)                                                   |                                  
+   000074                    END-EXEC.                                                            |                                  
+   000075                    IF WS-INVOKEPROG NOT = SPACES                                        |19 IMP                            
+   000076      1                MOVE 'C' To WS-FLAG                                               |16                                
+   000077      1                MOVE COMMA-DATA  TO WRITE-MSG-MSG                                 |48 29                             
+   000078      1                MOVE EIBCALEN    TO WS-RECV-LEN                                   |UND 24                            
+                                                                                                  |                                  
+ ==000078==> IGYPS2121-S "EIBCALEN" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000079                    ELSE                                                                 |                                  
+   000080      1                EXEC CICS RECEIVE INTO(WS-RECV)                                   |                                  
+                                                                                                  |                                  
+ ==000080==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000081      1                    LENGTH(WS-RECV-LEN)                                           |                                  
+   000082      1                    RESP(WS-RESP)                                                 |                                  
+   000083      1                END-EXEC                                                          |                                  
+   000084      1                MOVE 'R' To WS-FLAG                                               |16                                
+   000085      1                MOVE WS-RECV-DATA  TO WRITE-MSG-MSG                               |23 29                             
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZERRS  Date 01/23/2020  Time 04:55:27   Page     4             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000086      1                SUBTRACT 5 FROM WS-RECV-LEN                                       |24                                
+   000087                    END-IF.                                                              |                                  
+   000088                                                                                         |                                  
+   000089                    MOVE 'HCAZERRS' TO STSQ-NAME.                                        |35                                
+   000090               *    IF WRITE-MSG-MSG(1:2) = 'Q=' THEN                                    |                                  
+   000091               *       MOVE WRITE-MSG-MSG(3:4) TO STSQ-EXT                               |                                  
+   000092               *       MOVE WRITE-MSG-REST TO TEMPO                                      |                                  
+   000093               *       MOVE TEMPO          TO WRITE-MSG-MSG                              |                                  
+   000094               *       SUBTRACT 7 FROM WS-RECV-LEN                                       |                                  
+   000095               *    END-IF.                                                              |                                  
+   000096               *                                                                         |                                  
+   000097                    ADD 5 TO WS-RECV-LEN.                                                |24                                
+   000098                                                                                         |                                  
+   000099               * Write output message to TDQ CSMT                                        |                                  
+   000100               *                                                                         |                                  
+   000101                    EXEC CICS WRITEQ TD QUEUE(STDQ-NAME)                                 |                                  
+                                                                                                  |                                  
+ ==000101==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000102                              FROM(WRITE-MSG)                                            |                                  
+   000103                              RESP(WS-RESP)                                              |                                  
+   000104                              LENGTH(WS-RECV-LEN)                                        |                                  
+   000105                                                                                         |                                  
+   000106                    END-EXEC.                                                            |                                  
+   000107                                                                                         |                                  
+   000108               * Write output message to Genapp TSQ                                      |                                  
+   000109               * If no space is available then the task will not wait for                |                                  
+   000110               *  storage to become available but will ignore the request...             |                                  
+   000111               *                                                                         |                                  
+   000112                    EXEC CICS WRITEQ TS QUEUE(STSQ-NAME)                                 |                                  
+                                                                                                  |                                  
+ ==000112==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000113                              FROM(WRITE-MSG)                                            |                                  
+   000114                              RESP(WS-RESP)                                              |                                  
+   000115                              NOSUSPEND                                                  |                                  
+   000116                              LENGTH(WS-RECV-LEN)                                        |                                  
+   000117                                                                                         |                                  
+   000118                    END-EXEC.                                                            |                                  
+   000119                                                                                         |                                  
+   000120                    If WS-FLAG = 'R' Then                                                |16                                
+   000121      1               EXEC CICS SEND TEXT FROM(FILLER-X)                                 |                                  
+                                                                                                  |                                  
+ ==000121==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000122      1                WAIT                                                              |                                  
+   000123      1                ERASE                                                             |                                  
+   000124      1                LENGTH(1)                                                         |                                  
+   000125      1                FREEKB                                                            |                                  
+   000126      1               END-EXEC.                                                          |                                  
+   000127                                                                                         |                                  
+   000128                    EXEC CICS RETURN                                                     |                                  
+                                                                                                  |                                  
+ ==000128==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZERRS  Date 01/23/2020  Time 04:55:27   Page     5             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0                        not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000129                    END-EXEC.                                                            |                                  
+   000130                                                                                         |                                  
+   000131                A-EXIT.                                                                  |                                  
+   000132                    EXIT.                                                                |                                  
+   000133                    GOBACK.                                                              |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZERRS  Date 01/23/2020  Time 04:55:27   Page     6             
+0An "M" preceding a data-name reference indicates that the data-name is modified by this reference.
+  
+  Defined   Cross-reference of data names   References                                                                               
+  
+       48   COMMA-DATA . . . . . . . . . .  77                                                                                                                                                   
+       47   DFHCOMMAREA                                                                                                                                                                          
+       28   FILLER-X                                                                                                                                                                             
+       41   STDQ-NAME                                                                                                                                                                            
+       34   STSQ . . . . . . . . . . . . .  36                                                                                                                                                   
+       38   STSQ-EXT                                                                                                                                                                             
+       35   STSQ-NAME. . . . . . . . . . .  M89                                                                                                                                                  
+       40   TEMPO                                                                                                                                                                                
+       26   WRITE-MSG. . . . . . . . . . .  30 M57                                                                                                                                               
+       29   WRITE-MSG-MSG. . . . . . . . .  M77 M85                                                                                                                                              
+       33   WRITE-MSG-REST                                                                                                                                                                       
+       27   WRITE-MSG-SYSID                                                                                                                                                                      
+       16   WS-FLAG. . . . . . . . . . . .  M76 M84 120                                                                                                                                          
+       19   WS-INVOKEPROG. . . . . . . . .  75                                                                                                                                                   
+       20   WS-PRINSYSID                                                                                                                                                                         
+       21   WS-RECV. . . . . . . . . . . .  M58                                                                                                                                                  
+       23   WS-RECV-DATA . . . . . . . . .  85                                                                                                                                                   
+       24   WS-RECV-LEN. . . . . . . . . .  M78 M86 M97                                                                                                                                          
+       22   WS-RECV-TRANID                                                                                                                                                                       
+       17   WS-RESP                                                                                                                                                                              
+       18   WS-STARTCODE                                                                                                                                                                         
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZERRS  Date 01/23/2020  Time 04:55:27   Page     7             
+0Context usage is indicated by the letter preceding a procedure-name reference.
+ These letters and their meanings are:
+     A = ALTER (procedure-name)
+     D = GO TO (procedure-name) DEPENDING ON
+     E = End of range of (PERFORM) through (procedure-name)
+     G = GO TO (procedure-name)
+     P = PERFORM (procedure-name)
+     T = (ALTER) TO PROCEED TO (procedure-name)
+     U = USE FOR DEBUGGING (procedure-name)
+  
+  Defined   Cross-reference of procedures   References                                                                               
+  
+      131   A-EXIT                                                                                                                                                                               
+       55   MAINLINE                                                                                                                                                                             
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZERRS  Date 01/23/2020  Time 04:55:27   Page     8             
+0 Defined   Cross-reference of programs     References                                                                               
+  
+        9   HCAZERRS                                                                                                                                                                             
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZERRS  Date 01/23/2020  Time 04:55:27   Page     9             
+0LineID  Message code  Message text
+                                                                                                                                     
+     47  IGYSC2025-W   "DFHCOMMAREA" or one of its subordinates was referenced, but "DFHCOMMAREA" was a "LINKAGE SECTION" item that  
+                       did not have addressability.  This reference will not be resolved successfully at execution.                  
+                                                                                                                                     
+     60  IGYPS0228-S   An "EXEC CICS" statement was found, but the "CICS" compiler option was not in effect.  The statement was      
+                       discarded.                                                                                                    
+                                                                                                                                     
+                       Same message on line:     64     68     72     80    101    112    121    128                                 
+                                                                                                                                     
+     78  IGYPS2121-S   "EIBCALEN" was not defined as a data-name.  The statement was discarded.                                      
+-Messages    Total    Informational    Warning    Error    Severe    Terminating
+0Printed:      11                          1                  10            
+-* Statistics for COBOL program HCAZERRS:
+ *    Source records = 133
+ *    Data Division statements = 21
+ *    Procedure Division statements = 23
+0Locale = en_US.IBM-437
+0End of compilation 1,  program HCAZERRS,  highest severity: Severe.
+0Return code 12

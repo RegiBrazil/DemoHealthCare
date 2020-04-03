@@ -1,0 +1,830 @@
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612          Date 01/23/2020  Time 04:55:36   Page     1             
+0Invocation parameters:
+  NOCOMPILE,adata,exit(adexit(fttfdbkw))
+0Options in effect:
+    ADATA                                                                                                                            
+    QUOTE                                                                                                                            
+    ARITH(COMPAT)                                                                                                                    
+    BINARY(NATIVE)                                                                                                                   
+    CALLINT(SYSTEM,NODESCRIPTOR)                                                                                                     
+    CHAR(NATIVE)                                                                                                                     
+  NOCICS                                                                                                                             
+    COLLSEQ(BINARY)                                                                                                                  
+  NOCOMPILE                                                                                                                          
+  NOCOPYRIGHT                                                                                                                        
+  NOCURRENCY                                                                                                                         
+  NODIAGTRUNC                                                                                                                        
+    DIVIDE(NATIVE)                                                                                                                   
+  NODYNAM                                                                                                                            
+    ENTRYINT(SYSTEM)                                                                                                                 
+    EXIT(NOINEXIT,NOPRTEXIT,NOLIBEXIT,ADEXIT(FTTFDBKW),NOMSGEXIT)                                                                    
+    FLAG(I,I)                                                                                                                        
+  NOFLAGSTD                                                                                                                          
+    FLOAT(NATIVE)                                                                                                                    
+    LINECOUNT(60)                                                                                                                    
+  NOLIST                                                                                                                             
+    LSTFILE(LOCALE)                                                                                                                  
+  NOMAP                                                                                                                              
+  NOMDECK                                                                                                                            
+    NCOLLSEQ(BINARY)                                                                                                                 
+    NSYMBOL(NATIONAL)                                                                                                                
+  NONUMBER                                                                                                                           
+    OPTIMIZE(0)                                                                                                                      
+    PGMNAME(LONGUPPER)                                                                                                               
+    PROBE                                                                                                                            
+    QUALIFY(COMPAT)                                                                                                                  
+  NORULES                                                                                                                            
+  NOSERVICE                                                                                                                          
+    SEPOBJ                                                                                                                           
+    SEQUENCE                                                                                                                         
+  NOSOSI                                                                                                                             
+    SOURCE                                                                                                                           
+    SPACE(1)                                                                                                                         
+  NOSQL                                                                                                                              
+    SRCFORMAT(COMPAT)                                                                                                                
+  NOSSRANGE                                                                                                                          
+  NOSUPPRESS                                                                                                                         
+    TERM                                                                                                                             
+  NOTEST                                                                                                                             
+  NOTHREAD                                                                                                                           
+    TRUNC(STD)                                                                                                                       
+  NOVBREF                                                                                                                            
+  NOWSCLEAR                                                                                                                          
+    XREF(FULL)                                                                                                                       
+    ZWB                                                                                                                              
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612          Date 01/23/2020  Time 04:55:36   Page     2             
+0LineID  Message code  Library phase message text
+                                                                                                                                     
+     39  IGYLI0049-S   The "COPY" library ".\HCMAPS" was not found.  Skipped to the period terminating the "COPY" statement.         
+                                                                                                                                     
+     41  IGYLI0049-S   The "COPY" library ".\HCCMAREA" was not found.  Skipped to the period terminating the "COPY" statement.       
+-Messages    Total    Informational    Warning    Error    Severe    Terminating
+0Printed:       2                                              2            
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page     3             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000001               ******************************************************************        |                                  
+   000002               *                                                                *        |                                  
+   000003               * LICENSED MATERIALS - PROPERTY OF IBM                           *        |                                  
+   000004               *                                                                *        |                                  
+   000005               * "RESTRICTED MATERIALS OF IBM"                                  *        |                                  
+   000006               *                                                                *        |                                  
+   000007               * CB12                                                           *        |                                  
+   000008               *                                                                *        |                                  
+   000009               * (C) COPYRIGHT IBM CORP. 2011, 2014 ALL RIGHTS RESERVED         *        |                                  
+   000010               *                                                                *        |                                  
+   000011               * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,      *        |                                  
+   000012               * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE                   *        |                                  
+   000013               * CONTRACT WITH IBM CORPORATION                                  *        |                                  
+   000014               *                                                                *        |                                  
+   000015               *                                                                *        |                                  
+   000016               *                    Patient Visit menu                          *        |                                  
+   000017               *                                                                *        |                                  
+   000018               * Menu for Patient transactions                                  *        |                                  
+   000019               *                                                                *        |                                  
+   000020               *                                                                *        |                                  
+   000021               *                                                                *        |                                  
+   000022               ******************************************************************        |                                  
+   000023                IDENTIFICATION DIVISION.                                                 |                                  
+   000024                PROGRAM-ID. HCV1PL01.                                                    |                                  
+   000025                ENVIRONMENT DIVISION.                                                    |                                  
+   000026                CONFIGURATION SECTION.                                                   |                                  
+   000027               *                                                                         |                                  
+   000028                DATA DIVISION.                                                           |                                  
+   000029                WORKING-STORAGE SECTION.                                                 |                                  
+   000030                                                                                         |                                  
+   000031                01  WS-RESP                   PIC S9(8) COMP.                            |                                  
+   000032                                                                                         |                                  
+   000033                77 INQ-TRANS                    PIC X(4) VALUE 'HCV1'.                   |                                  
+   000034                77 ADD-TRANS                    PIC X(4) VALUE 'HCVA'.                   |                                  
+   000035                                                                                         |                                  
+   000036                77 MSGEND                     PIC X(24) VALUE                            |                                  
+   000037                                                 'Transaction ended      '.              |                                  
+   000038                                                                                         |                                  
+   000039                 COPY HCMAPS.                                                            |                                  
+   000040                 01 COMM-AREA.                                                           |                                  
+                                                                                                  |                                  
+ ==000040==> IGYDS1159-E A "PICTURE" clause was not found for elementary item "COMM-AREA".        |                                  
+                         "PICTURE X(1)" was assumed.                                              |                                  
+                                                                                                  |                                  
+   000041                 COPY HCCMAREA.                                                          |                                  
+   000042                                                                                         |                                  
+   000043               *----------------------------------------------------------------*        |                                  
+   000044               *****************************************************************         |                                  
+   000045                PROCEDURE DIVISION.                                                      |                                  
+   000046                                                                                         |                                  
+   000047               *---------------------------------------------------------------*         |                                  
+   000048                MAINLINE SECTION.                                                        |                                  
+   000049                                                                                         |                                  
+   000050                    IF EIBCALEN > 0                                                      |UND                               
+                                                                                                  |                                  
+ ==000050==> IGYPS2121-S "EIBCALEN" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page     4             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000051      1                GO TO A-GAIN.                                                     |71                                
+   000052                                                                                         |                                  
+   000053                    Initialize HCV1MAPI.                                                 |UND                               
+                                                                                                  |                                  
+ ==000053==> IGYPS2121-S "HCV1MAPI" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000054                    Initialize HCV1MAPO.                                                 |UND                               
+                                                                                                  |                                  
+ ==000054==> IGYPS2121-S "HCV1MAPO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000055                    Initialize COMM-AREA.                                                |40                                
+   000056                    MOVE LOW-VALUES To HCV1PNOO.                                         |IMP UND                           
+                                                                                                  |                                  
+ ==000056==> IGYPS2121-S "HCV1PNOO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000057                                                                                         |                                  
+   000058                    MOVE -1 TO HCV1PNOL                                                  |UND                               
+                                                                                                  |                                  
+ ==000058==> IGYPS2121-S "HCV1PNOL" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000059                                                                                         |                                  
+   000060                    PERFORM SETUP-SCREEN.                                                |233                               
+   000061                                                                                         |                                  
+   000062               * Display appropriate screen                                              |                                  
+   000063                    EXEC CICS SEND MAP ('HCV1MAP')                                       |                                  
+                                                                                                  |                                  
+ ==000063==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000064                              FROM(HCV1MAPO)                                             |                                  
+   000065                              MAPSET ('HCMAPS')                                          |                                  
+   000066                              ERASE                                                      |                                  
+   000067                              CURSOR                                                     |                                  
+   000068                              RESP(WS-RESP)                                              |                                  
+   000069                              END-EXEC.                                                  |                                  
+   000070                                                                                         |                                  
+   000071                 A-GAIN.                                                                 |                                  
+   000072                                                                                         |                                  
+   000073                    EXEC CICS HANDLE AID                                                 |                                  
+                                                                                                  |                                  
+ ==000073==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000074                              CLEAR(CLEARIT)                                             |                                  
+   000075                              PF3(ENDIT)                                                 |                                  
+   000076                              PF12(CANCELIT)                                             |                                  
+   000077                              END-EXEC.                                                  |                                  
+   000078                    EXEC CICS HANDLE CONDITION                                           |                                  
+                                                                                                  |                                  
+ ==000078==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000079                              MAPFAIL(ENDIT)                                             |                                  
+   000080                              END-EXEC.                                                  |                                  
+   000081                                                                                         |                                  
+   000082                    EXEC CICS RECEIVE MAP('HCV1MAP')                                     |                                  
+                                                                                                  |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page     5             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0==000082==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000083                              INTO(HCV1MAPI) ASIS TERMINAL                               |                                  
+   000084                              MAPSET('HCMAPS') END-EXEC.                                 |                                  
+   000085                                                                                         |                                  
+   000086                    PERFORM GET-PATIENT.                                                 |244                               
+   000087                                                                                         |                                  
+   000088                    PERFORM GET-THRESHOLD.                                               |260                               
+   000089                                                                                         |                                  
+   000090               * Get patient visit data                                                  |                                  
+   000091                    IF (HCV1DATEI EQUAL ZEROS OR SPACES OR LOW-VALUES) OR                |UND IMP IMP IMP                   
+                                                                                                  |                                  
+ ==000091==> IGYPS2121-S "HCV1DATEI" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+   000092                       (HCV1TIMEI EQUAL ZEROS OR SPACES OR LOW-VALUES)                   |UND IMP IMP IMP                   
+                                                                                                  |                                  
+ ==000092==> IGYPS2121-S "HCV1TIMEI" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+   000093      1                   Move 'Enter visit date and time'                               |                                  
+   000094      1                         To  HCV1MSGO                                             |UND                               
+                                                                                                  |                                  
+ ==000094==> IGYPS2121-S "HCV1MSGO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000095      1                   MOVE -1 TO HCV1DATEL                                           |UND                               
+                                                                                                  |                                  
+ ==000095==> IGYPS2121-S "HCV1DATEL" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+   000096                    ELSE                                                                 |                                  
+   000097               * Handle the Inquiry request                                              |                                  
+   000098      1                IF EIBTRNID EQUAL INQ-TRANS                                       |UND 33                            
+                                                                                                  |                                  
+ ==000098==> IGYPS2121-S "EIBTRNID" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000099      2                   Move '01IVIS'   To CA-REQUEST-ID                               |UND                               
+                                                                                                  |                                  
+ ==000099==> IGYPS2121-S "CA-REQUEST-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000100      2                   Move HCV1PNOI   To CA-PATIENT-ID                               |UND UND                           
+                                                                                                  |                                  
+ ==000100==> IGYPS2121-S "HCV1PNOI" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+ ==000100==> IGYPS2121-S "CA-PATIENT-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000101      2                   Move HCV1DATEI  To CA-VISIT-DATE                               |UND UND                           
+                                                                                                  |                                  
+ ==000101==> IGYPS2121-S "HCV1DATEI" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+ ==000101==> IGYPS2121-S "CA-VISIT-DATE" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000102      2                   Move HCV1TIMEI  To CA-VISIT-TIME                               |UND UND                           
+                                                                                                  |                                  
+ ==000102==> IGYPS2121-S "HCV1TIMEI" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page     6             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0==000102==> IGYPS2121-S "CA-VISIT-TIME" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000103                                                                                         |                                  
+   000104      2                   EXEC CICS LINK PROGRAM('HCV1BI01')                             |                                  
+                                                                                                  |                                  
+ ==000104==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000105      2                          COMMAREA(COMM-AREA)                                     |                                  
+   000106      2                          LENGTH(32500)                                           |                                  
+   000107      2                   END-EXEC                                                       |                                  
+   000108                                                                                         |                                  
+   000109      2                   IF CA-RETURN-CODE <= 1                                         |UND                               
+                                                                                                  |                                  
+ ==000109==> IGYPS2121-S "CA-RETURN-CODE" was not defined as a data-name.  The statement was      |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000110      3                      Move CA-HEART-RATE     to HCV1HRATEI                        |UND UND                           
+                                                                                                  |                                  
+ ==000110==> IGYPS2121-S "CA-HEART-RATE" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000110==> IGYPS2121-S "HCV1HRATEI" was not defined as a data-name.  The statement was          |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000111      3                      Move CA-BLOOD-PRESSURE to HCV1BLPRI                         |UND UND                           
+                                                                                                  |                                  
+ ==000111==> IGYPS2121-S "CA-BLOOD-PRESSURE" was not defined as a data-name.  The statement was   |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000111==> IGYPS2121-S "HCV1BLPRI" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+   000112               *             Move SPACES   to HCV1MSTATEI                                |                                  
+   000113      2                   END-IF                                                         |                                  
+   000114      1                ELSE                                                              |                                  
+   000115               * Handle the Add request                                                  |                                  
+   000116      2                   IF EIBTRNID EQUAL ADD-TRANS                                    |UND 34                            
+                                                                                                  |                                  
+ ==000116==> IGYPS2121-S "EIBTRNID" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000117      3                      Move '01AVIS'   To CA-REQUEST-ID                            |UND                               
+                                                                                                  |                                  
+ ==000117==> IGYPS2121-S "CA-REQUEST-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000118      3                      Move HCV1DATEI  To CA-VISIT-DATE                            |UND UND                           
+                                                                                                  |                                  
+ ==000118==> IGYPS2121-S "HCV1DATEI" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+ ==000118==> IGYPS2121-S "CA-VISIT-DATE" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000119      3                      Move HCV1TIMEI  To CA-VISIT-TIME                            |UND UND                           
+                                                                                                  |                                  
+ ==000119==> IGYPS2121-S "HCV1TIMEI" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page     7             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0==000119==> IGYPS2121-S "CA-VISIT-TIME" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000120      3                      Move HCV1HRATEI To CA-HEART-RATE                            |UND UND                           
+                                                                                                  |                                  
+ ==000120==> IGYPS2121-S "HCV1HRATEI" was not defined as a data-name.  The statement was          |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000120==> IGYPS2121-S "CA-HEART-RATE" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000121      3                      Move HCV1BLPRI  To CA-BLOOD-PRESSURE                        |UND UND                           
+                                                                                                  |                                  
+ ==000121==> IGYPS2121-S "HCV1BLPRI" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+ ==000121==> IGYPS2121-S "CA-BLOOD-PRESSURE" was not defined as a data-name.  The statement was   |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000122               *             Move HCV1MSTATEI To CA-MENTAL-STATE                         |                                  
+   000123                                                                                         |                                  
+   000124      3                      EXEC CICS LINK PROGRAM('HCV1BA01')                          |                                  
+                                                                                                  |                                  
+ ==000124==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000125      3                                COMMAREA(COMM-AREA)                               |                                  
+   000126      3                               LENGTH(32500)                                      |                                  
+   000127      3                      END-EXEC                                                    |                                  
+   000128      3                      IF CA-RETURN-CODE > 0                                       |UND                               
+                                                                                                  |                                  
+ ==000128==> IGYPS2121-S "CA-RETURN-CODE" was not defined as a data-name.  The statement was      |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000129      4                         Exec CICS Syncpoint Rollback End-Exec                    |                                  
+                                                                                                  |                                  
+ ==000129==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000130      4                         GO TO NO-ADD                                             |279                               
+   000131      3                      END-IF                                                      |                                  
+   000132                                                                                         |                                  
+   000133      3                      Move CA-PATIENT-ID   To HCV1PNOI                            |UND UND                           
+                                                                                                  |                                  
+ ==000133==> IGYPS2121-S "CA-PATIENT-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000133==> IGYPS2121-S "HCV1PNOI" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000134      3                      Move 'New Patient Visit Inserted'                           |                                  
+   000135      3                        To  HCV1MSGO                                              |UND                               
+                                                                                                  |                                  
+ ==000135==> IGYPS2121-S "HCV1MSGO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000136                                                                                         |                                  
+   000137      2                   END-IF                                                         |                                  
+   000138      1                END-IF                                                            |                                  
+   000139                    END-IF                                                               |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page     8             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000140                                                                                         |                                  
+   000141                    PERFORM SETUP-SCREEN.                                                |233                               
+   000142                                                                                         |                                  
+   000143                    EXEC CICS SEND MAP ('HCV1MAP')                                       |                                  
+                                                                                                  |                                  
+ ==000143==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000144                              FROM(HCV1MAPO)                                             |                                  
+   000145                              MAPSET ('HCMAPS')                                          |                                  
+   000146                              CURSOR                                                     |                                  
+   000147                    END-EXEC                                                             |                                  
+   000148                    GO TO ENDIT-STARTIT.                                                 |197                               
+   000149                                                                                         |                                  
+   000150               *          Move '01UVIS'   To CA-REQUEST-ID                               |                                  
+   000151               *          Move HCV1CNOI   To CA-PATIENT-ID                               |                                  
+   000152               *                                                                         |                                  
+   000153               *          IF HCV1DATEI > SPACES                                          |                                  
+   000154               *                Move HCV1HRATEI  to CA-HEART-RATE                        |                                  
+   000155               *                Move HCV1BLPRI   to CA-BLOOD-PRESSURE                    |                                  
+   000156               *                Move HCV1MSTATEI to CA-MENTAL-STATE                      |                                  
+   000157               *                                                                         |                                  
+   000158               *                EXEC CICS LINK PROGRAM('HCV1BU01')                       |                                  
+   000159               *                    COMMAREA(COMM-AREA)                                  |                                  
+   000160               *                    LENGTH(32500)                                        |                                  
+   000161               *                END-EXEC                                                 |                                  
+   000162               *          ELSE                                                           |                                  
+   000163               *             Move HCV1HRTHI  to CA-HR-THRESHOLD                          |                                  
+   000164               *             Move HCV1BPTHI  to CA-BP-THRESHOLD                          |                                  
+   000165               *             Move HCV1MSTHI  to CA-MS-THRESHOLD                          |                                  
+   000166               *                                                                         |                                  
+   000167               *             EXEC CICS LINK PROGRAM('HCT1BU01')                          |                                  
+   000168               *                  COMMAREA(COMM-AREA)                                    |                                  
+   000169               *                  LENGTH(32500)                                          |                                  
+   000170               *             END-EXEC                                                    |                                  
+   000171               *          END-IF                                                         |                                  
+   000172               *                                                                         |                                  
+   000173               *          IF CA-RETURN-CODE > 0                                          |                                  
+   000174               *            GO TO NO-UPD                                                 |                                  
+   000175               *          END-IF                                                         |                                  
+   000176               *                                                                         |                                  
+   000177               *          Move CA-PATIENT-ID   To HCV1CNOI                               |                                  
+   000178               *          Move ' '             To HCV1OPTI                               |                                  
+   000179               *          IF HCV1DATEI > SPACES                                          |                                  
+   000180               *             Move 'Patient visit details updated'                        |                                  
+   000181               *                  To  HCV1MSGO                                           |                                  
+   000182               *          ELSE                                                           |                                  
+   000183               *             Move 'Patient threshold details updated'                    |                                  
+   000184               *                  To  HCV1MSGO                                           |                                  
+   000185               *          END-IF                                                         |                                  
+   000186               *          EXEC CICS SEND MAP ('HCV1MAP')                                 |                                  
+   000187               *                    FROM(HCV1MAPO)                                       |                                  
+   000188               *                    MAPSET ('HCMAPS')                                    |                                  
+   000189               *          END-EXEC                                                       |                                  
+   000190               *          GO TO ENDIT-STARTIT                                            |                                  
+   000191                                                                                         |                                  
+   000192               *    Send message to terminal and return                                  |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page     9             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000193                                                                                         |                                  
+   000194                    EXEC CICS RETURN                                                     |                                  
+                                                                                                  |                                  
+ ==000194==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000195                    END-EXEC.                                                            |                                  
+   000196                                                                                         |                                  
+   000197                ENDIT-STARTIT.                                                           |                                  
+   000198                    EXEC CICS RETURN                                                     |                                  
+                                                                                                  |                                  
+ ==000198==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000199                         TRANSID(EIBTRNID)                                               |                                  
+   000200                         COMMAREA(COMM-AREA)                                             |                                  
+   000201                         END-EXEC.                                                       |                                  
+   000202                                                                                         |                                  
+   000203                ENDIT.                                                                   |                                  
+   000204                    EXEC CICS SEND TEXT                                                  |                                  
+                                                                                                  |                                  
+ ==000204==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000205                              FROM(MSGEND)                                               |                                  
+   000206                              LENGTH(LENGTH OF MSGEND)                                   |                                  
+   000207                              ERASE                                                      |                                  
+   000208                              FREEKB                                                     |                                  
+   000209                    END-EXEC                                                             |                                  
+   000210                    EXEC CICS RETURN                                                     |                                  
+                                                                                                  |                                  
+ ==000210==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000211                    END-EXEC.                                                            |                                  
+   000212                                                                                         |                                  
+   000213                CLEARIT.                                                                 |                                  
+   000214                                                                                         |                                  
+   000215                    Initialize HCV1MAPI.                                                 |UND                               
+                                                                                                  |                                  
+ ==000215==> IGYPS2121-S "HCV1MAPI" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000216                    EXEC CICS SEND MAP ('HCV1MAP')                                       |                                  
+                                                                                                  |                                  
+ ==000216==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000217                              MAPSET ('HCMAPS')                                          |                                  
+   000218                              MAPONLY                                                    |                                  
+   000219                    END-EXEC                                                             |                                  
+   000220                                                                                         |                                  
+   000221                    EXEC CICS RETURN                                                     |                                  
+                                                                                                  |                                  
+ ==000221==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000222                         TRANSID(EIBTRNID)                                               |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page    10             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000223                         COMMAREA(COMM-AREA)                                             |                                  
+   000224                         END-EXEC.                                                       |                                  
+   000225                                                                                         |                                  
+   000226                CANCELIT.                                                                |                                  
+   000227                                                                                         |                                  
+   000228                    EXEC CICS RETURN                                                     |                                  
+                                                                                                  |                                  
+ ==000228==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000229                         TRANSID('HCAZ')                                                 |                                  
+   000230                         IMMEDIATE                                                       |                                  
+   000231                         END-EXEC.                                                       |                                  
+   000232                                                                                         |                                  
+   000233                SETUP-SCREEN.                                                            |                                  
+   000234               * Determine appropriate heading                                           |                                  
+   000235                    IF EIBTRNID EQUAL INQ-TRANS                                          |UND 33                            
+                                                                                                  |                                  
+ ==000235==> IGYPS2121-S "EIBTRNID" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000236      1                MOVE INQ-TRANS TO HCV1TRNO                                        |33 UND                            
+                                                                                                  |                                  
+ ==000236==> IGYPS2121-S "HCV1TRNO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000237      1                MOVE 'Inquire Visit Information' to HCV1TITO                      |UND                               
+                                                                                                  |                                  
+ ==000237==> IGYPS2121-S "HCV1TITO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000238                    ELSE                                                                 |                                  
+   000239      1             IF EIBTRNID EQUAL ADD-TRANS                                          |UND 34                            
+                                                                                                  |                                  
+ ==000239==> IGYPS2121-S "EIBTRNID" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000240      2                MOVE ADD-TRANS TO HCV1TRNO                                        |34 UND                            
+                                                                                                  |                                  
+ ==000240==> IGYPS2121-S "HCV1TRNO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000241      2                MOVE 'Add Visit Information' to HCV1TITO                          |UND                               
+                                                                                                  |                                  
+ ==000241==> IGYPS2121-S "HCV1TITO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000242      1             END-IF.                                                              |                                  
+   000243                                                                                         |                                  
+   000244                GET-PATIENT.                                                             |                                  
+   000245               * Get patient name                                                        |                                  
+   000246                    Move '01IPAT'   To CA-REQUEST-ID                                     |UND                               
+                                                                                                  |                                  
+ ==000246==> IGYPS2121-S "CA-REQUEST-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000247                    Move HCV1PNOI   To CA-PATIENT-ID                                     |UND UND                           
+                                                                                                  |                                  
+ ==000247==> IGYPS2121-S "HCV1PNOI" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+ ==000247==> IGYPS2121-S "CA-PATIENT-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page    11             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000248                    EXEC CICS LINK PROGRAM('HCP1BI01')                                   |                                  
+                                                                                                  |                                  
+ ==000248==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000249                              COMMAREA(COMM-AREA)                                        |                                  
+   000250                              LENGTH(32500)                                              |                                  
+   000251                    END-EXEC                                                             |                                  
+   000252                                                                                         |                                  
+   000253                    IF CA-RETURN-CODE > 0                                                |UND                               
+                                                                                                  |                                  
+ ==000253==> IGYPS2121-S "CA-RETURN-CODE" was not defined as a data-name.  The statement was      |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000254      1                GO TO NO-PATIENT-DATA                                             |287                               
+   000255                    END-IF                                                               |                                  
+   000256                                                                                         |                                  
+   000257                    Move CA-FIRST-NAME to HCV1FNAI                                       |UND UND                           
+                                                                                                  |                                  
+ ==000257==> IGYPS2121-S "CA-FIRST-NAME" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000257==> IGYPS2121-S "HCV1FNAI" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000258                    Move CA-LAST-NAME  to HCV1LNAI.                                      |UND UND                           
+                                                                                                  |                                  
+ ==000258==> IGYPS2121-S "CA-LAST-NAME" was not defined as a data-name.  The statement was        |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000258==> IGYPS2121-S "HCV1LNAI" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000259                                                                                         |                                  
+   000260                GET-THRESHOLD.                                                           |                                  
+   000261               * Get patient threshold data                                              |                                  
+   000262                    Move '01ITHR'   To CA-REQUEST-ID                                     |UND                               
+                                                                                                  |                                  
+ ==000262==> IGYPS2121-S "CA-REQUEST-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000263                    Move HCV1PNOO   To CA-PATIENT-ID                                     |UND UND                           
+                                                                                                  |                                  
+ ==000263==> IGYPS2121-S "HCV1PNOO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+ ==000263==> IGYPS2121-S "CA-PATIENT-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000264                    EXEC CICS LINK PROGRAM('HCT1BI01')                                   |                                  
+                                                                                                  |                                  
+ ==000264==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000265                              COMMAREA(COMM-AREA)                                        |                                  
+   000266                              LENGTH(32500)                                              |                                  
+   000267                    END-EXEC                                                             |                                  
+   000268                                                                                         |                                  
+   000269                    IF CA-RETURN-CODE = 0                                                |UND                               
+                                                                                                  |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page    12             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0==000269==> IGYPS2121-S "CA-RETURN-CODE" was not defined as a data-name.  The statement was      |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000270      1                Move CA-HR-THRESHOLD to HCV1HRTHI                                 |UND UND                           
+                                                                                                  |                                  
+ ==000270==> IGYPS2121-S "CA-HR-THRESHOLD" was not defined as a data-name.  The statement was     |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000270==> IGYPS2121-S "HCV1HRTHI" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+   000271      1                Move CA-BP-THRESHOLD to HCV1BPTHI                                 |UND UND                           
+                                                                                                  |                                  
+ ==000271==> IGYPS2121-S "CA-BP-THRESHOLD" was not defined as a data-name.  The statement was     |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000271==> IGYPS2121-S "HCV1BPTHI" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+   000272               *       Move CA-MS-THRESHOLD to HCV1MSTHI                                 |                                  
+   000273                    END-IF.                                                              |                                  
+   000274                                                                                         |                                  
+   000275                NO-UPD.                                                                  |                                  
+   000276                    Move 'Error Updating Patient visit'    To  HCV1MSGO.                 |UND                               
+                                                                                                  |                                  
+ ==000276==> IGYPS2121-S "HCV1MSGO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000277                    Go To ERROR-OUT.                                                     |291                               
+   000278                                                                                         |                                  
+   000279                NO-ADD.                                                                  |                                  
+   000280                    Move 'Error Adding Patient visit'      To  HCV1MSGO.                 |UND                               
+                                                                                                  |                                  
+ ==000280==> IGYPS2121-S "HCV1MSGO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000281                    Go To ERROR-OUT.                                                     |291                               
+   000282                                                                                         |                                  
+   000283                NO-DATA.                                                                 |                                  
+   000284                    Move 'No data was returned.'           To  HCV1MSGO.                 |UND                               
+                                                                                                  |                                  
+ ==000284==> IGYPS2121-S "HCV1MSGO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000285                    Go To ERROR-OUT.                                                     |291                               
+   000286                                                                                         |                                  
+   000287                NO-PATIENT-DATA.                                                         |                                  
+   000288                    Move 'No patient data was returned.'  To  HCV1MSGO                   |UND                               
+                                                                                                  |                                  
+ ==000288==> IGYPS2121-S "HCV1MSGO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000289                    Go To ERROR-OUT.                                                     |291                               
+   000290                                                                                         |                                  
+   000291                ERROR-OUT.                                                               |                                  
+   000292                    EXEC CICS SEND MAP ('HCV1MAP')                                       |                                  
+                                                                                                  |                                  
+ ==000292==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000293                              FROM(HCV1MAPO)                                             |                                  
+   000294                              CURSOR                                                     |                                  
+   000295                              MAPSET ('HCMAPS')                                          |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page    13             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000296                    END-EXEC.                                                            |                                  
+   000297                                                                                         |                                  
+   000298                    Initialize HCV1MAPI.                                                 |UND                               
+                                                                                                  |                                  
+ ==000298==> IGYPS2121-S "HCV1MAPI" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000299                    Initialize HCV1MAPO.                                                 |UND                               
+                                                                                                  |                                  
+ ==000299==> IGYPS2121-S "HCV1MAPO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000300                    Initialize COMM-AREA.                                                |40                                
+   000301                                                                                         |                                  
+   000302                    GO TO ENDIT-STARTIT.                                                 |197                               
+   000303                    EXIT.                                                                |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page    14             
+0An "M" preceding a data-name reference indicates that the data-name is modified by this reference.
+  
+  Defined   Cross-reference of data names   References                                                                               
+  
+       34   ADD-TRANS. . . . . . . . . . .  116 239 240                                                                                                                                          
+       40   COMM-AREA. . . . . . . . . . .  M55 M300                                                                                                                                             
+       33   INQ-TRANS. . . . . . . . . . .  98 235 236                                                                                                                                           
+       36   MSGEND                                                                                                                                                                               
+       31   WS-RESP                                                                                                                                                                              
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page    15             
+0Context usage is indicated by the letter preceding a procedure-name reference.
+ These letters and their meanings are:
+     A = ALTER (procedure-name)
+     D = GO TO (procedure-name) DEPENDING ON
+     E = End of range of (PERFORM) through (procedure-name)
+     G = GO TO (procedure-name)
+     P = PERFORM (procedure-name)
+     T = (ALTER) TO PROCEED TO (procedure-name)
+     U = USE FOR DEBUGGING (procedure-name)
+  
+  Defined   Cross-reference of procedures   References                                                                               
+  
+       71   A-GAIN . . . . . . . . . . . .  G51                                                                                                                                                  
+      226   CANCELIT                                                                                                                                                                             
+      213   CLEARIT                                                                                                                                                                              
+      203   ENDIT                                                                                                                                                                                
+      197   ENDIT-STARTIT. . . . . . . . .  G148 G302                                                                                                                                            
+      291   ERROR-OUT. . . . . . . . . . .  G277 G281 G285 G289                                                                                                                                  
+      244   GET-PATIENT. . . . . . . . . .  P86                                                                                                                                                  
+      260   GET-THRESHOLD. . . . . . . . .  P88                                                                                                                                                  
+       48   MAINLINE                                                                                                                                                                             
+      279   NO-ADD . . . . . . . . . . . .  G130                                                                                                                                                 
+      283   NO-DATA                                                                                                                                                                              
+      287   NO-PATIENT-DATA. . . . . . . .  G254                                                                                                                                                 
+      275   NO-UPD                                                                                                                                                                               
+      233   SETUP-SCREEN . . . . . . . . .  P60 P141                                                                                                                                             
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page    16             
+0 Defined   Cross-reference of programs     References                                                                               
+  
+       24   HCV1PL01                                                                                                                                                                             
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page    17             
+0LineID  Message code  Message text
+                                                                                                                                     
+         IGYSC0207-S   Severe message(s) were issued during library phase processing.  Refer to the beginning of the listing.        
+                                                                                                                                     
+     40  IGYDS1159-E   A "PICTURE" clause was not found for elementary item "COMM-AREA".  "PICTURE X(1)" was assumed.                
+                                                                                                                                     
+     50  IGYPS2121-S   "EIBCALEN" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+     53  IGYPS2121-S   "HCV1MAPI" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+                       Same message on line:    215    298                                                                           
+                                                                                                                                     
+     54  IGYPS2121-S   "HCV1MAPO" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+                       Same message on line:    299                                                                                  
+                                                                                                                                     
+     56  IGYPS2121-S   "HCV1PNOO" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+                       Same message on line:    263                                                                                  
+                                                                                                                                     
+     58  IGYPS2121-S   "HCV1PNOL" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+     63  IGYPS0228-S   An "EXEC CICS" statement was found, but the "CICS" compiler option was not in effect.  The statement was      
+                       discarded.                                                                                                    
+                                                                                                                                     
+                       Same message on line:     73     78     82    104    124    129    143    194    198    204    210    216     
+                                                221    228    248    264    292                                                      
+                                                                                                                                     
+     91  IGYPS2121-S   "HCV1DATEI" was not defined as a data-name.  The statement was discarded.                                     
+                                                                                                                                     
+                       Same message on line:    101    118                                                                           
+                                                                                                                                     
+     92  IGYPS2121-S   "HCV1TIMEI" was not defined as a data-name.  The statement was discarded.                                     
+                                                                                                                                     
+                       Same message on line:    102    119                                                                           
+                                                                                                                                     
+     94  IGYPS2121-S   "HCV1MSGO" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+                       Same message on line:    135    276    280    284    288                                                      
+                                                                                                                                     
+     95  IGYPS2121-S   "HCV1DATEL" was not defined as a data-name.  The statement was discarded.                                     
+                                                                                                                                     
+     98  IGYPS2121-S   "EIBTRNID" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+                       Same message on line:    116    235    239                                                                    
+                                                                                                                                     
+     99  IGYPS2121-S   "CA-REQUEST-ID" was not defined as a data-name.  The statement was discarded.                                 
+                                                                                                                                     
+                       Same message on line:    117    246    262                                                                    
+                                                                                                                                     
+    100  IGYPS2121-S   "HCV1PNOI" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+                       Same message on line:    133    247                                                                           
+                                                                                                                                     
+    100  IGYPS2121-S   "CA-PATIENT-ID" was not defined as a data-name.  The statement was discarded.                                 
+                                                                                                                                     
+                       Same message on line:    133    247    263                                                                    
+                                                                                                                                     
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page    18             
+0   101  IGYPS2121-S   "CA-VISIT-DATE" was not defined as a data-name.  The statement was discarded.                                 
+                                                                                                                                     
+                       Same message on line:    118                                                                                  
+                                                                                                                                     
+    102  IGYPS2121-S   "CA-VISIT-TIME" was not defined as a data-name.  The statement was discarded.                                 
+                                                                                                                                     
+                       Same message on line:    119                                                                                  
+                                                                                                                                     
+    109  IGYPS2121-S   "CA-RETURN-CODE" was not defined as a data-name.  The statement was discarded.                                
+                                                                                                                                     
+                       Same message on line:    128    253    269                                                                    
+                                                                                                                                     
+    110  IGYPS2121-S   "CA-HEART-RATE" was not defined as a data-name.  The statement was discarded.                                 
+                                                                                                                                     
+                       Same message on line:    120                                                                                  
+                                                                                                                                     
+    110  IGYPS2121-S   "HCV1HRATEI" was not defined as a data-name.  The statement was discarded.                                    
+                                                                                                                                     
+                       Same message on line:    120                                                                                  
+                                                                                                                                     
+    111  IGYPS2121-S   "CA-BLOOD-PRESSURE" was not defined as a data-name.  The statement was discarded.                             
+                                                                                                                                     
+                       Same message on line:    121                                                                                  
+                                                                                                                                     
+    111  IGYPS2121-S   "HCV1BLPRI" was not defined as a data-name.  The statement was discarded.                                     
+                                                                                                                                     
+                       Same message on line:    121                                                                                  
+                                                                                                                                     
+    236  IGYPS2121-S   "HCV1TRNO" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+                       Same message on line:    240                                                                                  
+                                                                                                                                     
+    237  IGYPS2121-S   "HCV1TITO" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+                       Same message on line:    241                                                                                  
+                                                                                                                                     
+    257  IGYPS2121-S   "CA-FIRST-NAME" was not defined as a data-name.  The statement was discarded.                                 
+                                                                                                                                     
+    257  IGYPS2121-S   "HCV1FNAI" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+    258  IGYPS2121-S   "CA-LAST-NAME" was not defined as a data-name.  The statement was discarded.                                  
+                                                                                                                                     
+    258  IGYPS2121-S   "HCV1LNAI" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+    270  IGYPS2121-S   "CA-HR-THRESHOLD" was not defined as a data-name.  The statement was discarded.                               
+                                                                                                                                     
+    270  IGYPS2121-S   "HCV1HRTHI" was not defined as a data-name.  The statement was discarded.                                     
+                                                                                                                                     
+    271  IGYPS2121-S   "CA-BP-THRESHOLD" was not defined as a data-name.  The statement was discarded.                               
+                                                                                                                                     
+    271  IGYPS2121-S   "HCV1BPTHI" was not defined as a data-name.  The statement was discarded.                                     
+-Messages    Total    Informational    Warning    Error    Severe    Terminating
+0Printed:      85                                    1        84            
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCV1PL01  Date 01/23/2020  Time 04:55:36   Page    19             
+0* Statistics for COBOL program HCV1PL01:
+ *    Source records = 303
+ *    Data Division statements = 5
+ *    Procedure Division statements = 82
+0Locale = en_US.IBM-437
+0End of compilation 1,  program HCV1PL01,  highest severity: Severe.
+0Return code 12

@@ -1,0 +1,845 @@
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612          Date 01/23/2020  Time 04:55:35   Page     1             
+0Invocation parameters:
+  NOCOMPILE,adata,exit(adexit(fttfdbkw))
+0Options in effect:
+    ADATA                                                                                                                            
+    QUOTE                                                                                                                            
+    ARITH(COMPAT)                                                                                                                    
+    BINARY(NATIVE)                                                                                                                   
+    CALLINT(SYSTEM,NODESCRIPTOR)                                                                                                     
+    CHAR(NATIVE)                                                                                                                     
+  NOCICS                                                                                                                             
+    COLLSEQ(BINARY)                                                                                                                  
+  NOCOMPILE                                                                                                                          
+  NOCOPYRIGHT                                                                                                                        
+  NOCURRENCY                                                                                                                         
+  NODIAGTRUNC                                                                                                                        
+    DIVIDE(NATIVE)                                                                                                                   
+  NODYNAM                                                                                                                            
+    ENTRYINT(SYSTEM)                                                                                                                 
+    EXIT(NOINEXIT,NOPRTEXIT,NOLIBEXIT,ADEXIT(FTTFDBKW),NOMSGEXIT)                                                                    
+    FLAG(I,I)                                                                                                                        
+  NOFLAGSTD                                                                                                                          
+    FLOAT(NATIVE)                                                                                                                    
+    LINECOUNT(60)                                                                                                                    
+  NOLIST                                                                                                                             
+    LSTFILE(LOCALE)                                                                                                                  
+  NOMAP                                                                                                                              
+  NOMDECK                                                                                                                            
+    NCOLLSEQ(BINARY)                                                                                                                 
+    NSYMBOL(NATIONAL)                                                                                                                
+  NONUMBER                                                                                                                           
+    OPTIMIZE(0)                                                                                                                      
+    PGMNAME(LONGUPPER)                                                                                                               
+    PROBE                                                                                                                            
+    QUALIFY(COMPAT)                                                                                                                  
+  NORULES                                                                                                                            
+  NOSERVICE                                                                                                                          
+    SEPOBJ                                                                                                                           
+    SEQUENCE                                                                                                                         
+  NOSOSI                                                                                                                             
+    SOURCE                                                                                                                           
+    SPACE(1)                                                                                                                         
+  NOSQL                                                                                                                              
+    SRCFORMAT(COMPAT)                                                                                                                
+  NOSSRANGE                                                                                                                          
+  NOSUPPRESS                                                                                                                         
+    TERM                                                                                                                             
+  NOTEST                                                                                                                             
+  NOTHREAD                                                                                                                           
+    TRUNC(STD)                                                                                                                       
+  NOVBREF                                                                                                                            
+  NOWSCLEAR                                                                                                                          
+    XREF(FULL)                                                                                                                       
+    ZWB                                                                                                                              
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612          Date 01/23/2020  Time 04:55:35   Page     2             
+0LineID  Message code  Library phase message text
+                                                                                                                                     
+     31  IGYLI0049-S   The "COPY" library ".\HCTRST01" was not found.  Skipped to the period terminating the "COPY" statement.       
+                                                                                                                                     
+     35  IGYLI0049-S   The "COPY" library ".\HCCMAREA" was not found.  Skipped to the period terminating the "COPY" statement.       
+-Messages    Total    Informational    Warning    Error    Severe    Terminating
+0Printed:       2                                              2            
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page     3             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000001               ******************************************************************        |                                  
+   000002               *                                                                *        |                                  
+   000003               * LICENSED MATERIALS - PROPERTY OF IBM                           *        |                                  
+   000004               *                                                                *        |                                  
+   000005               * "RESTRICTED MATERIALS OF IBM"                                  *        |                                  
+   000006               *                                                                *        |                                  
+   000007               * CB12                                                           *        |                                  
+   000008               *                                                                *        |                                  
+   000009               * (C) COPYRIGHT IBM CORP. 2011, 2013 ALL RIGHTS RESERVED         *        |                                  
+   000010               *                                                                *        |                                  
+   000011               * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,      *        |                                  
+   000012               * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE                   *        |                                  
+   000013               * CONTRACT WITH IBM CORPORATION                                  *        |                                  
+   000014               *                                                                *        |                                  
+   000015               *                                                                *        |                                  
+   000016               ******************************************************************        |                                  
+   000017                IDENTIFICATION DIVISION.                                                 |                                  
+   000018                PROGRAM-ID. HCTRESTW.                                                    |                                  
+   000019                ENVIRONMENT DIVISION.                                                    |                                  
+   000020                CONFIGURATION SECTION.                                                   |                                  
+   000021               *                                                                         |                                  
+   000022                DATA DIVISION.                                                           |                                  
+   000023                WORKING-STORAGE SECTION.                                                 |                                  
+   000024                                                                                         |                                  
+   000025               *****************************************************************         |                                  
+   000026               *    DFHJS2WS GENERATED COPYBOOKS                                         |                                  
+   000027               *****************************************************************         |                                  
+   000028                                                                                         |                                  
+   000029                 01 JSON-REST-DATA.                                                      |                                  
+                                                                                                  |                                  
+ ==000029==> IGYDS1159-E A "PICTURE" clause was not found for elementary item "JSON-REST-DATA".   |                                  
+                         "PICTURE X(1)" was assumed.                                              |                                  
+                                                                                                  |                                  
+   000030                                                                                         |                                  
+   000031                 COPY HCTRST01.                                                          |                                  
+   000032                                                                                         |                                  
+   000033                 01 HCPAPP-PATIENT-DETAILS.                                              |                                  
+                                                                                                  |                                  
+ ==000033==> IGYDS1159-E A "PICTURE" clause was not found for elementary item                     |                                  
+                         "HCPAPP-PATIENT-DETAILS".  "PICTURE X(1)" was assumed.                   |                                  
+                                                                                                  |                                  
+   000034                                                                                         |                                  
+   000035                 COPY HCCMAREA.                                                          |                                  
+   000036                                                                                         |                                  
+   000037                01 DEFAULT-CHANNEL            PIC X(16).                                 |                                  
+   000038                                                                                         |                                  
+   000039                01  WS-TSQ-FIELDS.                                                       |                                  
+   000040                    03  WS-TSQ-NAME           PIC X(8) VALUE 'HCTRESTW'.                 |                                  
+   000041                    03  WS-TSQ-LEN            PIC S9(4) COMP VALUE +200.                 |                                  
+   000042                    03  WS-TSQ-DATA           PIC X(200).                                |                                  
+   000043                                                                                         |                                  
+   000044                01 WS-RETURN-RESPONSE         PIC X(100).                                |                                  
+   000045                                                                                         |                                  
+   000046                01 WS-HTTP-METHOD             PIC X(8).                                  |                                  
+   000047                                                                                         |                                  
+   000048                01 WS-RESID                   PIC X(100).                                |                                  
+   000049                01 WS-RESID2                  PIC X(100).                                |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page     4             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000050                                                                                         |                                  
+   000051               * Fields for URI manipulation                                             |                                  
+   000052                77 WS-FIELD1                  PIC X(10).                                 |                                  
+   000053                77 WS-FIELD2                  PIC X(3).                                  |                                  
+   000054                77 WS-FIELD3                  PIC X(3).                                  |                                  
+   000055                77 WS-FIELD4                  PIC X(30).                                 |                                  
+   000056                77 WS-FIELD5                  PIC X(30).                                 |                                  
+   000057                                                                                         |                                  
+   000058                77 RESP                       PIC S9(8) COMP-5 SYNC.                     |                                  
+   000059                77 RESP2                      PIC S9(8) COMP-5 SYNC.                     |                                  
+   000060                                                                                         |                                  
+   000061               * Container values                                                        |                                  
+   000062                77 UNEXPECTED-RESP-ABCODE      PIC X(04) VALUE 'ERRS'.                   |                                  
+   000063                77 UNSUPPORTED-METHOD-ABCODE   PIC X(04) VALUE 'UMET'.                   |                                  
+   000064                                                                                         |                                  
+   000065               * Method constants                                                        |                                  
+   000066                77 METHOD-GET                 PIC X(8) VALUE 'GET     '.                 |                                  
+   000067                77 METHOD-PUT                 PIC X(8) VALUE 'PUT     '.                 |                                  
+   000068                77 METHOD-POST                PIC X(8) VALUE 'POST    '.                 |                                  
+   000069               *77 METHOD-DELETE              PIC X(8) VALUE 'DELETE  '.                 |                                  
+   000070               *77 METHOD-HEAD                PIC X(8) VALUE 'HEAD    '.                 |                                  
+   000071                                                                                         |                                  
+   000072               *                                                                         |                                  
+   000073               *****************************************************************         |                                  
+   000074               * Externally referenced data areas                                        |                                  
+   000075               *****************************************************************         |                                  
+   000076                LINKAGE SECTION.                                                         |                                  
+   000077               *                                                                         |                                  
+   000078               *****************************************************************         |                                  
+   000079               * Main program code follows                                               |                                  
+   000080               *****************************************************************         |                                  
+   000081                PROCEDURE DIVISION.                                                      |                                  
+   000082                MAIN-PROCESSING SECTION.                                                 |                                  
+   000083                                                                                         |                                  
+   000084                    PERFORM INITIALISE-TEST.                                             |105                               
+   000085                                                                                         |                                  
+   000086                    PERFORM RETRIEVE-METHOD.                                             |124                               
+   000087                                                                                         |                                  
+   000088                    PERFORM PROCESS-METHOD.                                              |141                               
+   000089                                                                                         |                                  
+   000090                    EXEC CICS RETURN                                                     |                                  
+                                                                                                  |                                  
+ ==000090==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000091                              RESP(RESP)                                                 |                                  
+   000092                              RESP2(RESP2)                                               |                                  
+   000093                    END-EXEC.                                                            |                                  
+   000094                    IF RESP NOT = DFHRESP(NORMAL)                                        |58 UND UND                        
+                                                                                                  |                                  
+ ==000094==> IGYPS2121-S "DFHRESP" was not defined as a data-name.  The statement was discarded.  |                                  
+                                                                                                  |                                  
+ ==000094==> IGYPS2121-S "NORMAL" was not defined as a data-name.  The statement was discarded.   |                                  
+                                                                                                  |                                  
+ ==000094==> IGYPS2120-S Expected a reference-modification specification but found ")".  The "IF" |                                  
+                         statement was discarded.                                                 |                                  
+                                                                                                  |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page     5             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000095                    THEN                                                                 |                                  
+   000096      1                PERFORM GENERIC-ABEND                                             |352                               
+   000097                    END-IF.                                                              |                                  
+   000098                                                                                         |                                  
+   000099                    GOBACK.                                                              |                                  
+   000100                                                                                         |                                  
+   000101               *****************************************************************         |                                  
+   000102               * Initialise any variables and retrieve any test-specific                 |                                  
+   000103               * configuration information                                               |                                  
+   000104               *****************************************************************         |                                  
+   000105                INITIALISE-TEST.                                                         |                                  
+   000106                    INITIALIZE HCPAPP-PATIENT-DETAILS                                    |33                                
+   000107                    MOVE ' ' TO WS-RETURN-RESPONSE                                       |44                                
+   000108               * get channel                                                             |                                  
+   000109                    EXEC CICS ASSIGN                                                     |                                  
+                                                                                                  |                                  
+ ==000109==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000110                              CHANNEL(DEFAULT-CHANNEL)                                   |                                  
+   000111                              RESP(RESP)                                                 |                                  
+   000112                              RESP2(RESP2)                                               |                                  
+   000113                    END-EXEC                                                             |                                  
+   000114                    IF RESP NOT = DFHRESP(NORMAL)                                        |58 UND UND                        
+                                                                                                  |                                  
+ ==000114==> IGYPS2121-S "DFHRESP" was not defined as a data-name.  The statement was discarded.  |                                  
+                                                                                                  |                                  
+ ==000114==> IGYPS2121-S "NORMAL" was not defined as a data-name.  The statement was discarded.   |                                  
+                                                                                                  |                                  
+ ==000114==> IGYPS2120-S Expected a reference-modification specification but found ")".  The "IF" |                                  
+                         statement was discarded.                                                 |                                  
+                                                                                                  |                                  
+   000115                    THEN                                                                 |                                  
+   000116      1                EXEC CICS ABEND                                                   |                                  
+                                                                                                  |                                  
+ ==000116==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000117      1                       ABCODE('CHAB')                                             |                                  
+   000118      1                END-EXEC                                                          |                                  
+   000119                    END-IF.                                                              |                                  
+   000120                                                                                         |                                  
+   000121               *****************************************************************         |                                  
+   000122               * Retrieve the content of the method container                            |                                  
+   000123               *****************************************************************         |                                  
+   000124                RETRIEVE-METHOD.                                                         |                                  
+   000125                                                                                         |                                  
+   000126                    EXEC CICS GET CONTAINER('DFHHTTPMETHOD')                             |                                  
+                                                                                                  |                                  
+ ==000126==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000127                                  INTO(WS-HTTP-METHOD)                                   |                                  
+   000128                                  RESP(RESP)                                             |                                  
+   000129                                  RESP2(RESP2)                                           |                                  
+   000130                    END-EXEC                                                             |                                  
+   000131                    IF RESP NOT = DFHRESP(NORMAL)                                        |58 UND UND                        
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page     6             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0                                                                                                 |                                  
+ ==000131==> IGYPS2121-S "DFHRESP" was not defined as a data-name.  The statement was discarded.  |                                  
+                                                                                                  |                                  
+ ==000131==> IGYPS2121-S "NORMAL" was not defined as a data-name.  The statement was discarded.   |                                  
+                                                                                                  |                                  
+ ==000131==> IGYPS2120-S Expected a reference-modification specification but found ")".  The "IF" |                                  
+                         statement was discarded.                                                 |                                  
+                                                                                                  |                                  
+   000132                    THEN                                                                 |                                  
+   000133      1                EXEC CICS ABEND                                                   |                                  
+                                                                                                  |                                  
+ ==000133==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000134      1                       ABCODE('MEAB')                                             |                                  
+   000135      1                END-EXEC                                                          |                                  
+   000136                    END-IF.                                                              |                                  
+   000137                                                                                         |                                  
+   000138               *****************************************************************         |                                  
+   000139               * Perform the method                                                      |                                  
+   000140               *****************************************************************         |                                  
+   000141                PROCESS-METHOD.                                                          |                                  
+   000142                    EVALUATE WS-HTTP-METHOD                                              |46                                
+   000143                        WHEN METHOD-GET                                                  |66                                
+   000144      1                      PERFORM GET-DATA                                            |158                               
+   000145                        WHEN METHOD-PUT                                                  |67                                
+   000146      1                      PERFORM PUT-DATA                                            |226                               
+   000147                        WHEN METHOD-POST                                                 |68                                
+   000148      1                      PERFORM POST-DATA                                           |183                               
+   000149                        WHEN OTHER                                                       |                                  
+   000150      1                      EXEC CICS ABEND                                             |                                  
+                                                                                                  |                                  
+ ==000150==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000151      1                          ABCODE(UNSUPPORTED-METHOD-ABCODE)                       |                                  
+   000152      1                      END-EXEC                                                    |                                  
+   000153                    END-EVALUATE.                                                        |                                  
+   000154                                                                                         |                                  
+   000155               *****************************************************************         |                                  
+   000156               * Perform the GET method (READ)                                           |                                  
+   000157               *****************************************************************         |                                  
+   000158                get-data.                                                                |                                  
+   000159                    DISPLAY ' '.                                                         |                                  
+   000160                    DISPLAY 'Perform GET method.'                                        |                                  
+   000161                                                                                         |                                  
+   000162                    PERFORM GET-RESID                                                    |300                               
+   000163                                                                                         |                                  
+   000164                    MOVE '01ITHR'  TO CA-REQUEST-ID                                      |UND                               
+                                                                                                  |                                  
+ ==000164==> IGYPS2121-S "CA-REQUEST-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000165                    MOVE WS-FIELD1 TO CA-PATIENT-ID                                      |52 UND                            
+                                                                                                  |                                  
+ ==000165==> IGYPS2121-S "CA-PATIENT-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page     7             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0                                                                                                 |                                  
+   000166                                                                                         |                                  
+   000167                    EXEC CICS LINK PROGRAM('HCT1BI01')                                   |                                  
+                                                                                                  |                                  
+ ==000167==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000168                              COMMAREA(HCPAPP-PATIENT-DETAILS)                           |                                  
+   000169                              LENGTH(32500)                                              |                                  
+   000170                    END-EXEC                                                             |                                  
+   000171                                                                                         |                                  
+   000172                    MOVE CA-PATIENT-ID to patient-id                                     |UND UND                           
+                                                                                                  |                                  
+ ==000172==> IGYPS2121-S "CA-PATIENT-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000172==> IGYPS2121-S "PATIENT-ID" was not defined as a data-name.  The statement was          |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000173                    MOVE CA-HR-THRESHOLD TO heart-rate-threshold                         |UND UND                           
+                                                                                                  |                                  
+ ==000173==> IGYPS2121-S "CA-HR-THRESHOLD" was not defined as a data-name.  The statement was     |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000173==> IGYPS2121-S "HEART-RATE-THRESHOLD" was not defined as a data-name.  The statement was|                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000174                    MOVE CA-BP-THRESHOLD TO blood-pressure-threshold                     |UND UND                           
+                                                                                                  |                                  
+ ==000174==> IGYPS2121-S "CA-BP-THRESHOLD" was not defined as a data-name.  The statement was     |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000174==> IGYPS2121-S "BLOOD-PRESSURE-THRESHOLD" was not defined as a data-name.  The statement|                                  
+                         was discarded.                                                           |                                  
+                                                                                                  |                                  
+   000175                                                                                         |                                  
+   000176                    MOVE HCPAPP-PATIENT-DETAILS(1:200) TO WS-TSQ-DATA                    |33 42                             
+   000177                    PERFORM WRITE-TSQ                                                    |361                               
+   000178                    PERFORM PUT-RESPONSE-ROOT-DATA.                                      |284                               
+   000179                                                                                         |                                  
+   000180               *****************************************************************         |                                  
+   000181               * Perform the POST method (CREATE)                                        |                                  
+   000182               *****************************************************************         |                                  
+   000183                post-data.                                                               |                                  
+   000184                    DISPLAY ' '.                                                         |                                  
+   000185                    DISPLAY 'Performing POST method.'                                    |                                  
+   000186                                                                                         |                                  
+   000187                    PERFORM GET-RESID                                                    |300                               
+   000188                                                                                         |                                  
+   000189                    PERFORM GET-REQUEST-ROOT-DATA                                        |269                               
+   000190                                                                                         |                                  
+   000191                    MOVE '01ATHR'         TO CA-REQUEST-ID                               |UND                               
+                                                                                                  |                                  
+ ==000191==> IGYPS2121-S "CA-REQUEST-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000192                    MOVE patient-id       TO CA-PATIENT-ID                               |UND UND                           
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page     8             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0                                                                                                 |                                  
+ ==000192==> IGYPS2121-S "PATIENT-ID" was not defined as a data-name.  The statement was          |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000192==> IGYPS2121-S "CA-PATIENT-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000193                    MOVE heart-rate-threshold      TO CA-HR-THRESHOLD                    |UND UND                           
+                                                                                                  |                                  
+ ==000193==> IGYPS2121-S "HEART-RATE-THRESHOLD" was not defined as a data-name.  The statement was|                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000193==> IGYPS2121-S "CA-HR-THRESHOLD" was not defined as a data-name.  The statement was     |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000194                    MOVE blood-pressure-threshold  TO CA-BP-THRESHOLD                    |UND UND                           
+                                                                                                  |                                  
+ ==000194==> IGYPS2121-S "BLOOD-PRESSURE-THRESHOLD" was not defined as a data-name.  The statement|                                  
+                         was discarded.                                                           |                                  
+                                                                                                  |                                  
+ ==000194==> IGYPS2121-S "CA-BP-THRESHOLD" was not defined as a data-name.  The statement was     |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000195                                                                                         |                                  
+   000196                    EXEC CICS LINK PROGRAM('HCT1BA01')                                   |                                  
+                                                                                                  |                                  
+ ==000196==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000197                              COMMAREA(HCPAPP-PATIENT-DETAILS)                           |                                  
+   000198                              LENGTH(32500)                                              |                                  
+   000199                    END-EXEC                                                             |                                  
+   000200                                                                                         |                                  
+   000201                    MOVE CA-PATIENT-ID TO patient-id                                     |UND UND                           
+                                                                                                  |                                  
+ ==000201==> IGYPS2121-S "CA-PATIENT-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000201==> IGYPS2121-S "PATIENT-ID" was not defined as a data-name.  The statement was          |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000202                                                                                         |                                  
+   000203                    STRING WS-FIELD4 patient-id                                          |55 UND                            
+                                                                                                  |                                  
+ ==000203==> IGYPS2121-S "PATIENT-ID" was not defined as a data-name.  The statement was          |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000204                       DELIMITED BY SPACE                                                |IMP                               
+   000205                       INTO WS-RETURN-RESPONSE                                           |44                                
+   000206                    EXEC CICS PUT                                                        |                                  
+                                                                                                  |                                  
+ ==000206==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000207                              CONTAINER('DFHRESPONSE')                                   |                                  
+   000208                              CHAR                                                       |                                  
+   000209                              FROM (WS-RETURN-RESPONSE)                                  |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page     9             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000210                              RESP(RESP)                                                 |                                  
+   000211                              RESP2(RESP2)                                               |                                  
+   000212                    END-EXEC                                                             |                                  
+   000213                    IF RESP NOT = DFHRESP(NORMAL)                                        |58 UND UND                        
+                                                                                                  |                                  
+ ==000213==> IGYPS2121-S "DFHRESP" was not defined as a data-name.  The statement was discarded.  |                                  
+                                                                                                  |                                  
+ ==000213==> IGYPS2121-S "NORMAL" was not defined as a data-name.  The statement was discarded.   |                                  
+                                                                                                  |                                  
+ ==000213==> IGYPS2120-S Expected a reference-modification specification but found ")".  The "IF" |                                  
+                         statement was discarded.                                                 |                                  
+                                                                                                  |                                  
+   000214                    THEN                                                                 |                                  
+   000215      1                   EXEC CICS ABEND                                                |                                  
+                                                                                                  |                                  
+ ==000215==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000216      1                       ABCODE('POSA')                                             |                                  
+   000217      1                   END-EXEC                                                       |                                  
+   000218                    END-IF                                                               |                                  
+   000219                                                                                         |                                  
+   000220                    MOVE HCPAPP-PATIENT-DETAILS(1:200) TO WS-TSQ-DATA                    |33 42                             
+   000221                    PERFORM WRITE-TSQ.                                                   |361                               
+   000222                                                                                         |                                  
+   000223               *****************************************************************         |                                  
+   000224               * Perform the PUT method (UPDATE)                                         |                                  
+   000225               *****************************************************************         |                                  
+   000226                put-data.                                                                |                                  
+   000227                    DISPLAY ' '.                                                         |                                  
+   000228                    DISPLAY 'Performing PUT method.'                                     |                                  
+   000229                                                                                         |                                  
+   000230                    PERFORM GET-RESID                                                    |300                               
+   000231                                                                                         |                                  
+   000232                    PERFORM GET-REQUEST-ROOT-DATA                                        |269                               
+   000233                                                                                         |                                  
+   000234                    MOVE '01UTHR'         TO CA-REQUEST-ID                               |UND                               
+                                                                                                  |                                  
+ ==000234==> IGYPS2121-S "CA-REQUEST-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000235                    MOVE WS-FIELD1        TO CA-PATIENT-ID                               |52 UND                            
+                                                                                                  |                                  
+ ==000235==> IGYPS2121-S "CA-PATIENT-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000236                    MOVE heart-rate-threshold      TO CA-HR-THRESHOLD                    |UND UND                           
+                                                                                                  |                                  
+ ==000236==> IGYPS2121-S "HEART-RATE-THRESHOLD" was not defined as a data-name.  The statement was|                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000236==> IGYPS2121-S "CA-HR-THRESHOLD" was not defined as a data-name.  The statement was     |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000237                    MOVE blood-pressure-threshold  TO CA-BP-THRESHOLD                    |UND UND                           
+                                                                                                  |                                  
+ ==000237==> IGYPS2121-S "BLOOD-PRESSURE-THRESHOLD" was not defined as a data-name.  The statement|                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page    10             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0                        was discarded.                                                           |                                  
+                                                                                                  |                                  
+ ==000237==> IGYPS2121-S "CA-BP-THRESHOLD" was not defined as a data-name.  The statement was     |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000238                                                                                         |                                  
+   000239                    EXEC CICS LINK PROGRAM('HCT1BU01')                                   |                                  
+                                                                                                  |                                  
+ ==000239==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000240                              COMMAREA(HCPAPP-PATIENT-DETAILS)                           |                                  
+   000241                              LENGTH(32500)                                              |                                  
+   000242                    END-EXEC                                                             |                                  
+   000243                                                                                         |                                  
+   000244                    MOVE CA-PATIENT-ID TO patient-id                                     |UND UND                           
+                                                                                                  |                                  
+ ==000244==> IGYPS2121-S "CA-PATIENT-ID" was not defined as a data-name.  The statement was       |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+ ==000244==> IGYPS2121-S "PATIENT-ID" was not defined as a data-name.  The statement was          |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000245                                                                                         |                                  
+   000246                    STRING WS-FIELD4 patient-id                                          |55 UND                            
+                                                                                                  |                                  
+ ==000246==> IGYPS2121-S "PATIENT-ID" was not defined as a data-name.  The statement was          |                                  
+                         discarded.                                                               |                                  
+                                                                                                  |                                  
+   000247                       DELIMITED BY SPACE                                                |IMP                               
+   000248                       INTO WS-RETURN-RESPONSE                                           |44                                
+   000249                    EXEC CICS PUT                                                        |                                  
+                                                                                                  |                                  
+ ==000249==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000250                              CONTAINER('DFHRESPONSE')                                   |                                  
+   000251                              CHAR                                                       |                                  
+   000252                              FROM (WS-RETURN-RESPONSE)                                  |                                  
+   000253                              RESP(RESP)                                                 |                                  
+   000254                              RESP2(RESP2)                                               |                                  
+   000255                    END-EXEC                                                             |                                  
+   000256                    IF RESP NOT = DFHRESP(NORMAL)                                        |58 UND UND                        
+                                                                                                  |                                  
+ ==000256==> IGYPS2121-S "DFHRESP" was not defined as a data-name.  The statement was discarded.  |                                  
+                                                                                                  |                                  
+ ==000256==> IGYPS2121-S "NORMAL" was not defined as a data-name.  The statement was discarded.   |                                  
+                                                                                                  |                                  
+ ==000256==> IGYPS2120-S Expected a reference-modification specification but found ")".  The "IF" |                                  
+                         statement was discarded.                                                 |                                  
+                                                                                                  |                                  
+   000257                    THEN                                                                 |                                  
+   000258      1                   EXEC CICS ABEND                                                |                                  
+                                                                                                  |                                  
+ ==000258==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page    11             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000259      1                       ABCODE('PUTA')                                             |                                  
+   000260      1                   END-EXEC                                                       |                                  
+   000261                    END-IF                                                               |                                  
+   000262                                                                                         |                                  
+   000263                    MOVE HCPAPP-PATIENT-DETAILS(1:200) TO WS-TSQ-DATA                    |33 42                             
+   000264                    PERFORM WRITE-TSQ.                                                   |361                               
+   000265                                                                                         |                                  
+   000266               *****************************************************************         |                                  
+   000267               * Retrieve the content of the root container of the request tree          |                                  
+   000268               *****************************************************************         |                                  
+   000269                GET-REQUEST-ROOT-DATA.                                                   |                                  
+   000270                                                                                         |                                  
+   000271                    EXEC CICS GET CONTAINER('DFHWS-DATA')                                |                                  
+                                                                                                  |                                  
+ ==000271==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000272                                  INTO(JSON-REST-DATA)                                   |                                  
+   000273                                  RESP(RESP)                                             |                                  
+   000274                                  RESP2(RESP2)                                           |                                  
+   000275                    END-EXEC.                                                            |                                  
+   000276                    IF RESP NOT = DFHRESP(NORMAL)                                        |58 UND UND                        
+                                                                                                  |                                  
+ ==000276==> IGYPS2121-S "DFHRESP" was not defined as a data-name.  The statement was discarded.  |                                  
+                                                                                                  |                                  
+ ==000276==> IGYPS2121-S "NORMAL" was not defined as a data-name.  The statement was discarded.   |                                  
+                                                                                                  |                                  
+ ==000276==> IGYPS2120-S Expected a reference-modification specification but found ")".  The "IF" |                                  
+                         statement was discarded.                                                 |                                  
+                                                                                                  |                                  
+   000277                    THEN                                                                 |                                  
+   000278      1                PERFORM GENERIC-ABEND                                             |352                               
+   000279                    END-IF.                                                              |                                  
+   000280                                                                                         |                                  
+   000281               *****************************************************************         |                                  
+   000282               * Return a copy of root data                                              |                                  
+   000283               *****************************************************************         |                                  
+   000284                PUT-RESPONSE-ROOT-DATA.                                                  |                                  
+   000285                                                                                         |                                  
+   000286                    EXEC CICS PUT                                                        |                                  
+                                                                                                  |                                  
+ ==000286==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000287                              CONTAINER('DFHWS-DATA')                                    |                                  
+   000288                              FROM (JSON-REST-DATA)                                      |                                  
+   000289                              RESP(RESP)                                                 |                                  
+   000290                              RESP2(RESP2)                                               |                                  
+   000291                    END-EXEC.                                                            |                                  
+   000292                    IF RESP NOT = DFHRESP(NORMAL)                                        |58 UND UND                        
+                                                                                                  |                                  
+ ==000292==> IGYPS2121-S "DFHRESP" was not defined as a data-name.  The statement was discarded.  |                                  
+                                                                                                  |                                  
+ ==000292==> IGYPS2121-S "NORMAL" was not defined as a data-name.  The statement was discarded.   |                                  
+                                                                                                  |                                  
+ ==000292==> IGYPS2120-S Expected a reference-modification specification but found ")".  The "IF" |                                  
+                         statement was discarded.                                                 |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page    12             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0                                                                                                 |                                  
+   000293                    THEN                                                                 |                                  
+   000294      1                PERFORM GENERIC-ABEND                                             |352                               
+   000295                    END-IF.                                                              |                                  
+   000296                                                                                         |                                  
+   000297               *****************************************************************         |                                  
+   000298               * Get containers                                                          |                                  
+   000299               *****************************************************************         |                                  
+   000300                GET-RESID.                                                               |                                  
+   000301                    MOVE ' ' TO WS-RESID                                                 |48                                
+   000302                    EXEC CICS GET CONTAINER('DFHWS-URIMAPPATH')                          |                                  
+                                                                                                  |                                  
+ ==000302==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000303                                  INTO(WS-RESID)                                         |                                  
+   000304                                  RESP(RESP)                                             |                                  
+   000305                                  RESP2(RESP2)                                           |                                  
+   000306                    END-EXEC                                                             |                                  
+   000307                    IF RESP NOT = DFHRESP(NORMAL) THEN                                   |58 UND UND                        
+                                                                                                  |                                  
+ ==000307==> IGYPS2121-S "DFHRESP" was not defined as a data-name.  The statement was discarded.  |                                  
+                                                                                                  |                                  
+ ==000307==> IGYPS2121-S "NORMAL" was not defined as a data-name.  The statement was discarded.   |                                  
+                                                                                                  |                                  
+ ==000307==> IGYPS2120-S Expected a reference-modification specification but found ")".  The "IF" |                                  
+                         statement was discarded.                                                 |                                  
+                                                                                                  |                                  
+   000308      1                DISPLAY 'Cannot get URIMAP container.'                            |                                  
+   000309                    ELSE                                                                 |                                  
+   000310      1                UNSTRING WS-RESID DELIMITED BY '/'                                |48                                
+   000311      1                    INTO WS-FIELD1, WS-FIELD2, WS-FIELD3                          |52 53 54                          
+   000312      1                DISPLAY 'URIMAP in WS-resid is:' WS-RESID                         |48                                
+   000313      1                MOVE WS-RESID TO WS-RESID2                                        |48 49                             
+   000314      1                UNSTRING WS-RESID2 DELIMITED BY '*'                               |49                                
+   000315      1                    INTO WS-FIELD4, WS-FIELD5                                     |55 56                             
+   000316                    END-IF                                                               |                                  
+   000317               *                                                                         |                                  
+   000318                    MOVE ' ' TO WS-RESID                                                 |48                                
+   000319                    EXEC CICS GET CONTAINER('DFHWS-URI-QUERY')                           |                                  
+                                                                                                  |                                  
+ ==000319==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000320                                  INTO(WS-RESID)                                         |                                  
+   000321                                  RESP(RESP)                                             |                                  
+   000322                                  RESP2(RESP2)                                           |                                  
+   000323                    END-EXEC                                                             |                                  
+   000324                    IF RESP NOT = DFHRESP(NORMAL) THEN                                   |58 UND UND                        
+                                                                                                  |                                  
+ ==000324==> IGYPS2121-S "DFHRESP" was not defined as a data-name.  The statement was discarded.  |                                  
+                                                                                                  |                                  
+ ==000324==> IGYPS2121-S "NORMAL" was not defined as a data-name.  The statement was discarded.   |                                  
+                                                                                                  |                                  
+ ==000324==> IGYPS2120-S Expected a reference-modification specification but found ")".  The "IF" |                                  
+                         statement was discarded.                                                 |                                  
+                                                                                                  |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page    13             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000325      1                DISPLAY 'Cannot get QUERY container.'                             |                                  
+   000326                    ELSE                                                                 |                                  
+   000327      1                DISPLAY 'QUERY in WS-RESID is:' WS-RESID                          |48                                
+   000328                    END-IF                                                               |                                  
+   000329               *                                                                         |                                  
+   000330                    MOVE ' ' TO WS-RESID                                                 |48                                
+   000331                    EXEC CICS GET CONTAINER('DFHWS-URI-RESID')                           |                                  
+                                                                                                  |                                  
+ ==000331==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000332                                  INTO(WS-RESID)                                         |                                  
+   000333                                  RESP(RESP)                                             |                                  
+   000334                                  RESP2(RESP2)                                           |                                  
+   000335                    END-EXEC                                                             |                                  
+   000336                    IF RESP NOT = DFHRESP(NORMAL)                                        |58 UND UND                        
+                                                                                                  |                                  
+ ==000336==> IGYPS2121-S "DFHRESP" was not defined as a data-name.  The statement was discarded.  |                                  
+                                                                                                  |                                  
+ ==000336==> IGYPS2121-S "NORMAL" was not defined as a data-name.  The statement was discarded.   |                                  
+                                                                                                  |                                  
+ ==000336==> IGYPS2120-S Expected a reference-modification specification but found ")".  The "IF" |                                  
+                         statement was discarded.                                                 |                                  
+                                                                                                  |                                  
+   000337                    THEN                                                                 |                                  
+   000338      1                EXEC CICS ABEND                                                   |                                  
+                                                                                                  |                                  
+ ==000338==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000339      1                       ABCODE('RESA')                                             |                                  
+   000340      1                END-EXEC                                                          |                                  
+   000341                    ELSE                                                                 |                                  
+   000342      1                 DISPLAY 'RESID container is ' WS-resid                           |48                                
+   000343      1                 MOVE ' ' TO WS-FIELD1 WS-FIELD2 WS-FIELD3                        |52 53 54                          
+   000344      1                 UNSTRING WS-RESID DELIMITED BY '/'                               |48                                
+   000345      1                    INTO WS-FIELD1, WS-FIELD2, WS-FIELD3                          |52 53 54                          
+   000346      1                 DISPLAY 'After unstring, WS-FIELD1 is: ' WS-FIELD1               |52                                
+   000347                    END-IF.                                                              |                                  
+   000348                                                                                         |                                  
+   000349               *****************************************************************         |                                  
+   000350               * Generic abend                                                           |                                  
+   000351               *****************************************************************         |                                  
+   000352                GENERIC-ABEND.                                                           |                                  
+   000353                                                                                         |                                  
+   000354                    EXEC CICS ABEND                                                      |                                  
+                                                                                                  |                                  
+ ==000354==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000355                              ABCODE(UNEXPECTED-RESP-ABCODE)                             |                                  
+   000356                    END-EXEC.                                                            |                                  
+   000357                                                                                         |                                  
+   000358               *****************************************************************         |                                  
+   000359               * Write to TSQ                                                            |                                  
+   000360               *****************************************************************         |                                  
+   000361                WRITE-TSQ.                                                               |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page    14             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000362                                                                                         |                                  
+   000363                    EXEC CICS WRITEQ TS QUEUE(WS-TSQ-NAME)                               |                                  
+                                                                                                  |                                  
+ ==000363==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000364                              FROM(WS-TSQ-DATA)                                          |                                  
+   000365                              RESP(RESP)                                                 |                                  
+   000366                              NOSUSPEND                                                  |                                  
+   000367                              LENGTH(WS-TSQ-LEN)                                         |                                  
+   000368                    END-EXEC.                                                            |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page    15             
+0An "M" preceding a data-name reference indicates that the data-name is modified by this reference.
+  
+  Defined   Cross-reference of data names   References                                                                               
+  
+       37   DEFAULT-CHANNEL                                                                                                                                                                      
+       33   HCPAPP-PATIENT-DETAILS . . . .  M106 176 220 263                                                                                                                                     
+       29   JSON-REST-DATA                                                                                                                                                                       
+       66   METHOD-GET . . . . . . . . . .  143                                                                                                                                                  
+       68   METHOD-POST. . . . . . . . . .  147                                                                                                                                                  
+       67   METHOD-PUT . . . . . . . . . .  145                                                                                                                                                  
+       58   RESP . . . . . . . . . . . . .  94 114 131 213 256 276 292 307 324 336                                                                                                               
+       59   RESP2                                                                                                                                                                                
+       62   UNEXPECTED-RESP-ABCODE                                                                                                                                                               
+       63   UNSUPPORTED-METHOD-ABCODE                                                                                                                                                            
+       52   WS-FIELD1. . . . . . . . . . .  165 235 M311 M343 M345 346                                                                                                                           
+       53   WS-FIELD2. . . . . . . . . . .  M311 M343 M345                                                                                                                                       
+       54   WS-FIELD3. . . . . . . . . . .  M311 M343 M345                                                                                                                                       
+       55   WS-FIELD4. . . . . . . . . . .  203 246 M315                                                                                                                                         
+       56   WS-FIELD5. . . . . . . . . . .  M315                                                                                                                                                 
+       46   WS-HTTP-METHOD . . . . . . . .  142                                                                                                                                                  
+       48   WS-RESID . . . . . . . . . . .  M301 310 312 313 M318 327 M330 342 344                                                                                                               
+       49   WS-RESID2. . . . . . . . . . .  M313 314                                                                                                                                             
+       44   WS-RETURN-RESPONSE . . . . . .  M107 M205 M248                                                                                                                                       
+       42   WS-TSQ-DATA. . . . . . . . . .  M176 M220 M263                                                                                                                                       
+       39   WS-TSQ-FIELDS                                                                                                                                                                        
+       41   WS-TSQ-LEN                                                                                                                                                                           
+       40   WS-TSQ-NAME                                                                                                                                                                          
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page    16             
+0Context usage is indicated by the letter preceding a procedure-name reference.
+ These letters and their meanings are:
+     A = ALTER (procedure-name)
+     D = GO TO (procedure-name) DEPENDING ON
+     E = End of range of (PERFORM) through (procedure-name)
+     G = GO TO (procedure-name)
+     P = PERFORM (procedure-name)
+     T = (ALTER) TO PROCEED TO (procedure-name)
+     U = USE FOR DEBUGGING (procedure-name)
+  
+  Defined   Cross-reference of procedures   References                                                                               
+  
+      352   GENERIC-ABEND. . . . . . . . .  P96 P278 P294                                                                                                                                        
+      158   GET-DATA . . . . . . . . . . .  P144                                                                                                                                                 
+      269   GET-REQUEST-ROOT-DATA. . . . .  P189 P232                                                                                                                                            
+      300   GET-RESID. . . . . . . . . . .  P162 P187 P230                                                                                                                                       
+      105   INITIALISE-TEST. . . . . . . .  P84                                                                                                                                                  
+       82   MAIN-PROCESSING                                                                                                                                                                      
+      183   POST-DATA. . . . . . . . . . .  P148                                                                                                                                                 
+      141   PROCESS-METHOD . . . . . . . .  P88                                                                                                                                                  
+      226   PUT-DATA . . . . . . . . . . .  P146                                                                                                                                                 
+      284   PUT-RESPONSE-ROOT-DATA . . . .  P178                                                                                                                                                 
+      124   RETRIEVE-METHOD. . . . . . . .  P86                                                                                                                                                  
+      361   WRITE-TSQ. . . . . . . . . . .  P177 P221 P264                                                                                                                                       
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page    17             
+0 Defined   Cross-reference of programs     References                                                                               
+  
+       18   HCTRESTW                                                                                                                                                                             
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page    18             
+0LineID  Message code  Message text
+                                                                                                                                     
+         IGYSC0207-S   Severe message(s) were issued during library phase processing.  Refer to the beginning of the listing.        
+                                                                                                                                     
+     29  IGYDS1159-E   A "PICTURE" clause was not found for elementary item "JSON-REST-DATA".  "PICTURE X(1)" was assumed.           
+                                                                                                                                     
+     33  IGYDS1159-E   A "PICTURE" clause was not found for elementary item "HCPAPP-PATIENT-DETAILS".  "PICTURE X(1)" was assumed.   
+                                                                                                                                     
+     90  IGYPS0228-S   An "EXEC CICS" statement was found, but the "CICS" compiler option was not in effect.  The statement was      
+                       discarded.                                                                                                    
+                                                                                                                                     
+                       Same message on line:    109    116    126    133    150    167    196    206    215    239    249    258     
+                                                271    286    302    319    331    338    354    363                                 
+                                                                                                                                     
+     94  IGYPS2121-S   "DFHRESP" was not defined as a data-name.  The statement was discarded.                                       
+                                                                                                                                     
+                       Same message on line:    114    131    213    256    276    292    307    324    336                          
+                                                                                                                                     
+     94  IGYPS2121-S   "NORMAL" was not defined as a data-name.  The statement was discarded.                                        
+                                                                                                                                     
+                       Same message on line:    114    131    213    256    276    292    307    324    336                          
+                                                                                                                                     
+     94  IGYPS2120-S   Expected a reference-modification specification but found ")".  The "IF" statement was discarded.             
+                                                                                                                                     
+                       Same message on line:    114    131    213    256    276    292    307    324    336                          
+                                                                                                                                     
+    164  IGYPS2121-S   "CA-REQUEST-ID" was not defined as a data-name.  The statement was discarded.                                 
+                                                                                                                                     
+                       Same message on line:    191    234                                                                           
+                                                                                                                                     
+    165  IGYPS2121-S   "CA-PATIENT-ID" was not defined as a data-name.  The statement was discarded.                                 
+                                                                                                                                     
+                       Same message on line:    172    192    201    235    244                                                      
+                                                                                                                                     
+    172  IGYPS2121-S   "PATIENT-ID" was not defined as a data-name.  The statement was discarded.                                    
+                                                                                                                                     
+                       Same message on line:    192    201    203    244    246                                                      
+                                                                                                                                     
+    173  IGYPS2121-S   "CA-HR-THRESHOLD" was not defined as a data-name.  The statement was discarded.                               
+                                                                                                                                     
+                       Same message on line:    193    236                                                                           
+                                                                                                                                     
+    173  IGYPS2121-S   "HEART-RATE-THRESHOLD" was not defined as a data-name.  The statement was discarded.                          
+                                                                                                                                     
+                       Same message on line:    193    236                                                                           
+                                                                                                                                     
+    174  IGYPS2121-S   "CA-BP-THRESHOLD" was not defined as a data-name.  The statement was discarded.                               
+                                                                                                                                     
+                       Same message on line:    194    237                                                                           
+                                                                                                                                     
+    174  IGYPS2121-S   "BLOOD-PRESSURE-THRESHOLD" was not defined as a data-name.  The statement was discarded.                      
+                                                                                                                                     
+                       Same message on line:    194    237                                                                           
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCTRESTW  Date 01/23/2020  Time 04:55:35   Page    19             
+0Messages    Total    Informational    Warning    Error    Severe    Terminating
+0Printed:      81                                    2        79            
+-* Statistics for COBOL program HCTRESTW:
+ *    Source records = 368
+ *    Data Division statements = 23
+ *    Procedure Division statements = 93
+0Locale = en_US.IBM-437
+0End of compilation 1,  program HCTRESTW,  highest severity: Severe.
+0Return code 12

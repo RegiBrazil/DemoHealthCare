@@ -1,0 +1,393 @@
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612          Date 01/23/2020  Time 04:55:28   Page     1             
+0Invocation parameters:
+  NOCOMPILE,adata,exit(adexit(fttfdbkw))
+0Options in effect:
+    ADATA                                                                                                                            
+    QUOTE                                                                                                                            
+    ARITH(COMPAT)                                                                                                                    
+    BINARY(NATIVE)                                                                                                                   
+    CALLINT(SYSTEM,NODESCRIPTOR)                                                                                                     
+    CHAR(NATIVE)                                                                                                                     
+  NOCICS                                                                                                                             
+    COLLSEQ(BINARY)                                                                                                                  
+  NOCOMPILE                                                                                                                          
+  NOCOPYRIGHT                                                                                                                        
+  NOCURRENCY                                                                                                                         
+  NODIAGTRUNC                                                                                                                        
+    DIVIDE(NATIVE)                                                                                                                   
+  NODYNAM                                                                                                                            
+    ENTRYINT(SYSTEM)                                                                                                                 
+    EXIT(NOINEXIT,NOPRTEXIT,NOLIBEXIT,ADEXIT(FTTFDBKW),NOMSGEXIT)                                                                    
+    FLAG(I,I)                                                                                                                        
+  NOFLAGSTD                                                                                                                          
+    FLOAT(NATIVE)                                                                                                                    
+    LINECOUNT(60)                                                                                                                    
+  NOLIST                                                                                                                             
+    LSTFILE(LOCALE)                                                                                                                  
+  NOMAP                                                                                                                              
+  NOMDECK                                                                                                                            
+    NCOLLSEQ(BINARY)                                                                                                                 
+    NSYMBOL(NATIONAL)                                                                                                                
+  NONUMBER                                                                                                                           
+    OPTIMIZE(0)                                                                                                                      
+    PGMNAME(LONGUPPER)                                                                                                               
+    PROBE                                                                                                                            
+    QUALIFY(COMPAT)                                                                                                                  
+  NORULES                                                                                                                            
+  NOSERVICE                                                                                                                          
+    SEPOBJ                                                                                                                           
+    SEQUENCE                                                                                                                         
+  NOSOSI                                                                                                                             
+    SOURCE                                                                                                                           
+    SPACE(1)                                                                                                                         
+  NOSQL                                                                                                                              
+    SRCFORMAT(COMPAT)                                                                                                                
+  NOSSRANGE                                                                                                                          
+  NOSUPPRESS                                                                                                                         
+    TERM                                                                                                                             
+  NOTEST                                                                                                                             
+  NOTHREAD                                                                                                                           
+    TRUNC(STD)                                                                                                                       
+  NOVBREF                                                                                                                            
+  NOWSCLEAR                                                                                                                          
+    XREF(FULL)                                                                                                                       
+    ZWB                                                                                                                              
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612          Date 01/23/2020  Time 04:55:28   Page     2             
+0LineID  Message code  Library phase message text
+                                                                                                                                     
+     19  IGYLI0049-S   The "COPY" library ".\HCMAPS" was not found.  Skipped to the period terminating the "COPY" statement.         
+                                                                                                                                     
+     21  IGYLI0049-S   The "COPY" library ".\HCCMAREA" was not found.  Skipped to the period terminating the "COPY" statement.       
+-Messages    Total    Informational    Warning    Error    Severe    Terminating
+0Printed:       2                                              2            
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZMENU  Date 01/23/2020  Time 04:55:28   Page     3             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000001               *    Application menu  - changed April 12, 2018 - regi                    |                                  
+   000002               *   Look for %regi to chnage msg on first menu                            |                                  
+   000003               * Menu for health care application                               *        |                                  
+   000004               *                                                                *        |                                  
+   000005               ******************************************************************        |                                  
+   000006                IDENTIFICATION DIVISION.                                                 |                                  
+   000007                PROGRAM-ID. HCAZMENU.                                                    |                                  
+   000008                ENVIRONMENT DIVISION.                                                    |                                  
+   000009                CONFIGURATION SECTION.                                                   |                                  
+   000010               *                                                                         |                                  
+   000011                DATA DIVISION.                                                           |                                  
+   000012                WORKING-STORAGE SECTION.                                                 |                                  
+   000013                                                                                         |                                  
+   000014                01  WS-RESP                   PIC S9(8) COMP.                            |                                  
+   000015                                                                                         |                                  
+   000016                77 MSGEND                       PIC X(24) VALUE                          |                                  
+   000017                                                 'Transaction ended      '.              |                                  
+   000018                                                                                         |                                  
+   000019                 COPY HCMAPS.                                                            |                                  
+   000020                 01 COMM-AREA.                                                           |                                  
+                                                                                                  |                                  
+ ==000020==> IGYDS1159-E A "PICTURE" clause was not found for elementary item "COMM-AREA".        |                                  
+                         "PICTURE X(1)" was assumed.                                              |                                  
+                                                                                                  |                                  
+   000021                 COPY HCCMAREA.                                                          |                                  
+   000022                                                                                         |                                  
+   000023               *****************************************************************         |                                  
+   000024                PROCEDURE DIVISION.                                                      |                                  
+   000025                                                                                         |                                  
+   000026               *---------------------------------------------------------------*         |                                  
+   000027                MAINLINE SECTION.                                                        |                                  
+   000028                                                                                         |                                  
+   000029                    IF EIBCALEN > 0                                                      |UND                               
+                                                                                                  |                                  
+ ==000029==> IGYPS2121-S "EIBCALEN" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000030      1                GO TO A-GAIN.                                                     |43                                
+   000031                                                                                         |                                  
+   000032                    Initialize HCZMENUI.                                                 |UND                               
+                                                                                                  |                                  
+ ==000032==> IGYPS2121-S "HCZMENUI" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000033                    Initialize HCZMENUO.                                                 |UND                               
+                                                                                                  |                                  
+ ==000033==> IGYPS2121-S "HCZMENUO" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000034                    Initialize COMM-AREA.                                                |20                                
+   000035                                                                                         |                                  
+   000036               * Display Main Menu                                                       |                                  
+   000037                    EXEC CICS SEND MAP ('HCZMENU')                                       |                                  
+                                                                                                  |                                  
+ ==000037==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000038                              FROM(HCZMENUO)                                             |                                  
+   000039                              MAPSET ('HCMAPS')                                          |                                  
+   000040                              ERASE                                                      |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZMENU  Date 01/23/2020  Time 04:55:28   Page     4             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000041                              RESP(WS-RESP)                                              |                                  
+   000042                              END-EXEC.                                                  |                                  
+   000043                A-GAIN.                                                                  |                                  
+   000044                                                                                         |                                  
+   000045                    EXEC CICS HANDLE AID                                                 |                                  
+                                                                                                  |                                  
+ ==000045==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000046                              CLEAR(CLEARIT)                                             |                                  
+   000047                              PF3(ENDIT) END-EXEC.                                       |                                  
+   000048                    EXEC CICS HANDLE CONDITION                                           |                                  
+                                                                                                  |                                  
+ ==000048==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000049                              MAPFAIL(ENDIT)                                             |                                  
+   000050                              END-EXEC.                                                  |                                  
+   000051                                                                                         |                                  
+   000052                    EXEC CICS RECEIVE MAP('HCZMENU')                                     |                                  
+                                                                                                  |                                  
+ ==000052==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000053                              INTO(HCZMENUI) ASIS TERMINAL                               |                                  
+   000054                              MAPSET('HCMAPS') END-EXEC.                                 |                                  
+   000055                                                                                         |                                  
+   000056                                                                                         |                                  
+   000057                    EVALUATE HCZINPUTI                                                   |UND                               
+                                                                                                  |                                  
+ ==000057==> IGYPS2121-S "HCZINPUTI" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+   000058               * Add Patient                                                             |                                  
+   000059                      WHEN '1'                                                           |                                  
+   000060      1                  EXEC CICS RETURN                                                |                                  
+                                                                                                  |                                  
+ ==000060==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000061      1                            TRANSID('HCPA')                                       |                                  
+   000062      1                            IMMEDIATE                                             |                                  
+   000063      1                  END-EXEC                                                        |                                  
+   000064               * Inquire Patient                                                         |                                  
+   000065                      WHEN '2'                                                           |                                  
+   000066      1                  EXEC CICS RETURN                                                |                                  
+                                                                                                  |                                  
+ ==000066==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000067      1                            TRANSID('HCP1')                                       |                                  
+   000068      1                            IMMEDIATE                                             |                                  
+   000069      1                  END-EXEC                                                        |                                  
+   000070               * Add Medication                                                          |                                  
+   000071                      WHEN '3'                                                           |                                  
+   000072      1                  EXEC CICS RETURN                                                |                                  
+                                                                                                  |                                  
+ ==000072==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZMENU  Date 01/23/2020  Time 04:55:28   Page     5             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0                        not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000073      1                            TRANSID('HCMA')                                       |                                  
+   000074      1                            IMMEDIATE                                             |                                  
+   000075      1                  END-EXEC                                                        |                                  
+   000076               * Inquire Medications                                                     |                                  
+   000077                      WHEN '4'                                                           |                                  
+   000078      1                  EXEC CICS RETURN                                                |                                  
+                                                                                                  |                                  
+ ==000078==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000079      1                            TRANSID('HCM1')                                       |                                  
+   000080      1                            IMMEDIATE                                             |                                  
+   000081      1                  END-EXEC                                                        |                                  
+   000082               * Add Visit                                                               |                                  
+   000083                      WHEN '5'                                                           |                                  
+   000084      1                  EXEC CICS RETURN                                                |                                  
+                                                                                                  |                                  
+ ==000084==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000085      1                            TRANSID('HCVA')                                       |                                  
+   000086      1                            IMMEDIATE                                             |                                  
+   000087      1                  END-EXEC                                                        |                                  
+   000088               * Inquire Visit                                                           |                                  
+   000089                      WHEN '6'                                                           |                                  
+   000090      1                  EXEC CICS RETURN                                                |                                  
+                                                                                                  |                                  
+ ==000090==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000091      1                            TRANSID('HCV1')                                       |                                  
+   000092      1                            IMMEDIATE                                             |                                  
+   000093      1                  END-EXEC                                                        |                                  
+   000094               * Add Thresholds                                                          |                                  
+   000095                      WHEN '7'                                                           |                                  
+   000096      1                  EXEC CICS RETURN                                                |                                  
+                                                                                                  |                                  
+ ==000096==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000097      1                            TRANSID('HCTA')                                       |                                  
+   000098      1                            IMMEDIATE                                             |                                  
+   000099      1                  END-EXEC                                                        |                                  
+   000100               * Inquire Thresholds                                                      |                                  
+   000101                      WHEN '8'                                                           |                                  
+   000102      1                  EXEC CICS RETURN                                                |                                  
+                                                                                                  |                                  
+ ==000102==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000103      1                            TRANSID('HCT1')                                       |                                  
+   000104      1                            IMMEDIATE                                             |                                  
+   000105      1                  END-EXEC                                                        |                                  
+   000106                                                                                         |                                  
+   000107                      WHEN OTHER                                                         |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZMENU  Date 01/23/2020  Time 04:55:28   Page     6             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000108               *  %regi - change here the message on first Menu                          |                                  
+   000109      1             Move 'Nov 04 - Enter a valid option, or PF3 to exit.'                |                                  
+   000110      1                     To  HCZMSGO                                                  |UND                               
+                                                                                                  |                                  
+ ==000110==> IGYPS2121-S "HCZMSGO" was not defined as a data-name.  The statement was discarded.  |                                  
+                                                                                                  |                                  
+   000111      1                   Move -1 To HCZINPUTL                                           |UND                               
+                                                                                                  |                                  
+ ==000111==> IGYPS2121-S "HCZINPUTL" was not defined as a data-name.  The statement was discarded.|                                  
+                                                                                                  |                                  
+   000112                                                                                         |                                  
+   000113      1                   EXEC CICS SEND MAP ('HCZMENU')                                 |                                  
+                                                                                                  |                                  
+ ==000113==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000114      1                             FROM(HCZMENUO)                                       |                                  
+   000115      1                             MAPSET ('HCMAPS')                                    |                                  
+   000116      1                             CURSOR                                               |                                  
+   000117      1                   END-EXEC                                                       |                                  
+   000118      1                   GO TO ENDIT-STARTIT                                            |128                               
+   000119                                                                                         |                                  
+   000120                    END-EVALUATE.                                                        |                                  
+   000121                                                                                         |                                  
+   000122                                                                                         |                                  
+   000123               *    Send message to terminal and return                                  |                                  
+   000124                                                                                         |                                  
+   000125                    EXEC CICS RETURN                                                     |                                  
+                                                                                                  |                                  
+ ==000125==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000126                    END-EXEC.                                                            |                                  
+   000127                                                                                         |                                  
+   000128                ENDIT-STARTIT.                                                           |                                  
+   000129                    EXEC CICS RETURN                                                     |                                  
+                                                                                                  |                                  
+ ==000129==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000130                         TRANSID('HCAZ')                                                 |                                  
+   000131                         COMMAREA(COMM-AREA)                                             |                                  
+   000132                         END-EXEC.                                                       |                                  
+   000133                                                                                         |                                  
+   000134                ENDIT.                                                                   |                                  
+   000135                    EXEC CICS SEND TEXT                                                  |                                  
+                                                                                                  |                                  
+ ==000135==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000136                              FROM(MSGEND)                                               |                                  
+   000137                              LENGTH(LENGTH OF MSGEND)                                   |                                  
+   000138                              ERASE                                                      |                                  
+   000139                              FREEKB                                                     |                                  
+   000140                    END-EXEC                                                             |                                  
+   000141                    EXEC CICS RETURN                                                     |                                  
+                                                                                                  |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZMENU  Date 01/23/2020  Time 04:55:28   Page     7             
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0==000141==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000142                    END-EXEC.                                                            |                                  
+   000143                                                                                         |                                  
+   000144                CLEARIT.                                                                 |                                  
+   000145                                                                                         |                                  
+   000146                    Initialize HCZMENUI.                                                 |UND                               
+                                                                                                  |                                  
+ ==000146==> IGYPS2121-S "HCZMENUI" was not defined as a data-name.  The statement was discarded. |                                  
+                                                                                                  |                                  
+   000147                    EXEC CICS SEND MAP ('HCZMENU')                                       |                                  
+                                                                                                  |                                  
+ ==000147==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000148                              MAPSET ('HCMAPS')                                          |                                  
+   000149                              MAPONLY                                                    |                                  
+   000150                    END-EXEC                                                             |                                  
+   000151                                                                                         |                                  
+   000152                    EXEC CICS RETURN                                                     |                                  
+                                                                                                  |                                  
+ ==000152==> IGYPS0228-S An "EXEC CICS" statement was found, but the "CICS" compiler option was   |                                  
+                         not in effect.  The statement was discarded.                             |                                  
+                                                                                                  |                                  
+   000153                         TRANSID('HCAZ')                                                 |                                  
+   000154                         COMMAREA(COMM-AREA)                                             |                                  
+   000155                         END-EXEC.                                                       |                                  
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZMENU  Date 01/23/2020  Time 04:55:28   Page     8             
+0An "M" preceding a data-name reference indicates that the data-name is modified by this reference.
+  
+  Defined   Cross-reference of data names   References                                                                               
+  
+       20   COMM-AREA. . . . . . . . . . .  M34                                                                                                                                                  
+       16   MSGEND                                                                                                                                                                               
+       14   WS-RESP                                                                                                                                                                              
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZMENU  Date 01/23/2020  Time 04:55:28   Page     9             
+0Context usage is indicated by the letter preceding a procedure-name reference.
+ These letters and their meanings are:
+     A = ALTER (procedure-name)
+     D = GO TO (procedure-name) DEPENDING ON
+     E = End of range of (PERFORM) through (procedure-name)
+     G = GO TO (procedure-name)
+     P = PERFORM (procedure-name)
+     T = (ALTER) TO PROCEED TO (procedure-name)
+     U = USE FOR DEBUGGING (procedure-name)
+  
+  Defined   Cross-reference of procedures   References                                                                               
+  
+       43   A-GAIN . . . . . . . . . . . .  G30                                                                                                                                                  
+      144   CLEARIT                                                                                                                                                                              
+      134   ENDIT                                                                                                                                                                                
+      128   ENDIT-STARTIT. . . . . . . . .  G118                                                                                                                                                 
+       27   MAINLINE                                                                                                                                                                             
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZMENU  Date 01/23/2020  Time 04:55:28   Page    10             
+0 Defined   Cross-reference of programs     References                                                                               
+  
+        7   HCAZMENU                                                                                                                                                                             
+1PP 5724-L44 IBM COBOL for Windows                   8.0.0 S1612HCAZMENU  Date 01/23/2020  Time 04:55:28   Page    11             
+0LineID  Message code  Message text
+                                                                                                                                     
+         IGYSC0207-S   Severe message(s) were issued during library phase processing.  Refer to the beginning of the listing.        
+                                                                                                                                     
+     20  IGYDS1159-E   A "PICTURE" clause was not found for elementary item "COMM-AREA".  "PICTURE X(1)" was assumed.                
+                                                                                                                                     
+     29  IGYPS2121-S   "EIBCALEN" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+     32  IGYPS2121-S   "HCZMENUI" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+                       Same message on line:    146                                                                                  
+                                                                                                                                     
+     33  IGYPS2121-S   "HCZMENUO" was not defined as a data-name.  The statement was discarded.                                      
+                                                                                                                                     
+     37  IGYPS0228-S   An "EXEC CICS" statement was found, but the "CICS" compiler option was not in effect.  The statement was      
+                       discarded.                                                                                                    
+                                                                                                                                     
+                       Same message on line:     45     48     52     60     66     72     78     84     90     96    102    113     
+                                                125    129    135    141    147    152                                               
+                                                                                                                                     
+     57  IGYPS2121-S   "HCZINPUTI" was not defined as a data-name.  The statement was discarded.                                     
+                                                                                                                                     
+    110  IGYPS2121-S   "HCZMSGO" was not defined as a data-name.  The statement was discarded.                                       
+                                                                                                                                     
+    111  IGYPS2121-S   "HCZINPUTL" was not defined as a data-name.  The statement was discarded.                                     
+-Messages    Total    Informational    Warning    Error    Severe    Terminating
+0Printed:      28                                    1        27            
+-* Statistics for COBOL program HCAZMENU:
+ *    Source records = 155
+ *    Data Division statements = 3
+ *    Procedure Division statements = 29
+0Locale = en_US.IBM-437
+0End of compilation 1,  program HCAZMENU,  highest severity: Severe.
+0Return code 12
