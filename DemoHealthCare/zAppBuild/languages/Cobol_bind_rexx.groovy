@@ -4,7 +4,7 @@ import com.ibm.dbb.dependency.*
 import com.ibm.dbb.build.*
 import groovy.transform.*
 
-
+// Trying to invoke bind via REXX - not working.. Regi
 // define script properties
 @Field BuildProperties props = BuildProperties.getInstance()
 @Field def buildUtils= loadScript(new File("${props.zAppBuildDir}/utilities/BuildUtilities.groovy"))
