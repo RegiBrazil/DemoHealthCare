@@ -11,7 +11,7 @@ import groovy.transform.*
 @Field def bindUtils= loadScript(new File("${props.zAppBuildDir}/utilities/BindUtilities.groovy"))
 @Field RepositoryClient repositoryClient
 
-println("** Building files mapped to ${this.class.getName()}.groovy script")
+println("** Building files mapped to ${this.class.getName()}.groovy script ")
 
 // verify required build properties
 buildUtils.assertBuildProperties(props.cobol_requiredBuildProperties)
