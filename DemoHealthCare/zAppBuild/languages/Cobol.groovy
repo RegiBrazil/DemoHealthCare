@@ -99,22 +99,6 @@ sortedList.each { buildFile ->
 	
 	// clean up passed DD statements
 	job.stop()
-
-	if ( props.userBuild) {
-             def testfile = new File("${props.zunitDirs}/${member}.json")
-             def testCase
-             def playBackFile
-             println("${props.zunitDirs}/${member}.json")
-             if (testfile.exists()) {
-                (testCase,playBackFile) = retrieveTestparms(testfile)
-                testCase.toUpperCase()
-                println("Execute testcase ${testCase} and playback file ${playBackFile}")
-                def zUnitFail = runScript(new File("${props.zAppBuildDir}/zunit/ZUnitCICS.groovy"),
-                		['program':member.toUpperCase(),'testcase':testCase.toUpperCase(),
-                		 'playBackFile':playBackFile,'codeCoverage':props.codecov])
-                if (zUnitFail == 1) {props.error="true"}
-	         }
-	}
 }
 
 // end script
@@ -178,11 +162,12 @@ def createCompileCommand(String buildFile, LogicalFile logicalFile, String membe
 	String linkEditStream = props.getFileProperty('cobol_linkEditStream', buildFile)
 	String linkDebugExit = props.getFileProperty('cobol_linkDebugExit', buildFile)
 	
-	if ( (linkEditStream && doLinkEdit && doLinkEdit.toBoolean()) || (props.debug && linkDebugExit!= null && doLinkEdit)) {
+	if (props.debug && linkDebugExit && doLinkEdit.toBoolean()){
 		compile.dd(new DDStatement().name("SYSLIN").dsn("${props.cobol_objPDS}($member)").options('shr').output(true))
-	}
-	else {
+	} else if (doLinkEdit && doLinkEdit.toBoolean() && ( !linkEditStream || linkEditStream.isEmpty())) {
 		compile.dd(new DDStatement().name("SYSLIN").dsn("&&TEMPOBJ").options(props.cobol_tempOptions).pass(true))
+	} else {
+		compile.dd(new DDStatement().name("SYSLIN").dsn("${props.cobol_objPDS}($member)").options('shr').output(true))
 	}
 	
 	// add a syslib to the compile command with optional bms output copybook and CICS concatenation
@@ -196,8 +181,6 @@ def createCompileCommand(String buildFile, LogicalFile logicalFile, String membe
 	String isMQ = props.getFileProperty('cobol_isMQ', buildFile)
 	if (isMQ && isMQ.toBoolean())
 		compile.dd(new DDStatement().dsn(props.SCSQCOBC).options("shr"))
-        if (props.cobol_zUnit_cpyPDS)
-		compile.dd(new DDStatement().dsn(props.cobol_zUnit_cpyPDS).options("shr"))
 
 	// add a tasklib to the compile command with optional CICS, DB2, and IDz concatenations
 	String compilerVer = props.getFileProperty('cobol_compilerVersion', buildFile)
@@ -258,16 +241,15 @@ def createLinkEditCommand(String buildFile, LogicalFile logicalFile, String memb
 		// add the obj DD
 		linkedit.dd(new DDStatement().name("OBJECT").dsn("${props.cobol_objPDS}($member)").options('shr'))
 
-		//	} else if (props.debug && linkDebugExit!= null){
-		//		//instream SYSLIN, requires DDName list
-		//		String records = "  " + linkDebugExit.replace("\\n","\n").replace('@{member}',member)
-		//		linkedit.dd(new DDStatement().name("SYSLIN").instreamData(records))
 	} else { // no debug && no link card
 		// Use &&TEMP from Compile
 	}
 	
 	// add DD statements to the linkedit command
-	linkedit.dd(new DDStatement().name("SYSLMOD").dsn("${props.cobol_loadPDS}($member)").options('shr').output(true).deployType('LOAD'))
+	String linkedit_deployType = props.getFileProperty('linkedit_deployType', buildFile)
+	if ( linkedit_deployType == null )
+		linkedit_deployType = 'LOAD'
+	linkedit.dd(new DDStatement().name("SYSLMOD").dsn("${props.cobol_loadPDS}($member)").options('shr').output(true).deployType(linkedit_deployType))
 	linkedit.dd(new DDStatement().name("SYSPRINT").options(props.cobol_printTempOptions))
 	linkedit.dd(new DDStatement().name("SYSUT1").options(props.cobol_tempOptions))
 	
@@ -304,29 +286,6 @@ def getRepositoryClient() {
 	
 	return repositoryClient
 }
-
-def retrieveTestparms(File testfile) {
-    println(testfile)
-    def testCase = ''
-    def playBackFile = ''
-    testfile.eachLine { cfgline ->
-       String str = cfgline
-       if (testCase == '') {
-           testCase = str.substring(str.indexOf('testCase.name')+24,str.indexOf('testCase.name')+32)
-       }
-       if (playBackFile == '') {
-           str = str.substring(str.indexOf('<PlaybackFile id='))
-           String[] strarr = str.split('\\\\"')
-           playBackFile = strarr[3]
-       }
-    }
-    return [testCase,playBackFile]
-
-}
-
-
-
-
 
 
 

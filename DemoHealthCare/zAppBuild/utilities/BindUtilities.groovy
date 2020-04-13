@@ -29,16 +29,16 @@ def bindPackage(String file, String dbrmHLQ, String workDir, String confDir, Str
 		clist.delete()
 	}
 	
-	clist << """PROC 6 SUBSYS COLLID MEMBER LIB OWNER QUAL                       
-   DSN SYSTEM(&SUBSYS)                                       
-   BIND PACKAGE(&COLLID)    +                                
+	clist << """PROC 6 SUBSYS COLLID MEMBER LIB OWNER QUAL
+   DSN SYSTEM(&SUBSYS)
+   BIND PACKAGE(&COLLID)    +
         MEMBER(&MEMBER)     +
         LIBRARY('&LIB')     +	
-        OWNER(&OWNER)       +                                
-        QUALIFIER(&QUAL)    +                                
-        ACTION(REPLACE)     +                                
-        ISOLATION(CS)                                        
-   END                                                       
+        OWNER(&OWNER)       +
+        QUALIFIER(&QUAL)    +
+        ACTION(REPLACE)     +
+        ISOLATION(CS)
+   END
 EXIT CODE(&LASTCC)
 """
 
@@ -108,4 +108,3 @@ def bind(String[] cliArgs)
 		System.exit(1)
 	}
 }
-
