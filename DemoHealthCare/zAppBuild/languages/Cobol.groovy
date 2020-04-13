@@ -4,7 +4,6 @@ import com.ibm.dbb.dependency.*
 import com.ibm.dbb.build.*
 import groovy.transform.*
 
-
 // define script properties
 @Field BuildProperties props = BuildProperties.getInstance()
 @Field def buildUtils= loadScript(new File("${props.zAppBuildDir}/utilities/BuildUtilities.groovy"))
@@ -12,7 +11,7 @@ import groovy.transform.*
 @Field def bindUtils= loadScript(new File("${props.zAppBuildDir}/utilities/BindUtilities.groovy"))
 @Field RepositoryClient repositoryClient
 
-println("** Building files mapped to ${this.class.getName()}.groovy script")
+println("** Building files mapped to ${this.class.getName()}.groovy script ")
 
 // verify required build properties
 buildUtils.assertBuildProperties(props.cobol_requiredBuildProperties)
