@@ -12,7 +12,7 @@ Example:
 ```
 $DBB_HOME/bin/groovyz build.groovy --workspace /u/build/repos --application app1 --outDir /u/build/out --hlq BUILD.APP1
 ```
-Since we are still missing a build target or calculated build option, the build will run successfully but not actually build any programs.  
+Since we are still missing a build target or calculated build option, the build will run successfully but not actually build any programs.
 
 ## Common Invocation Examples
 
@@ -36,12 +36,15 @@ $DBB_HOME/bin/groovyz build.groovy --workspace /u/build/repos --application app1
 ```
 $DBB_HOME/bin/groovyz build.groovy --workspace /u/build/repos --application app1 --outDir /u/build/out --hlq BUILD.APP1 --fullBuild --scanOnly
 ```
+## REGI April 14,2020 - for the Full build and scan (FIRST TIME)```
+## Use USS SHELL
+/var/dbb/v.1.0.6/bin/groovyz /var/jenkins/workspace/GitHub_HealtCareAndUCD/DemoHealthCare/zAppBuild/build-no-bind-zunit.groovy  --fullBuild --scanOnly --workspace /var/jenkins/workspace/GitHub_HealtCareAndUCD --application DemoHealthCare --outDir /var/jenkins/workspace/GitHub_HealtCareAndUCD/BUILD-200 --hlq IBMUSER.GIT.TEAM.ZMOBILE
 
 ## Command Line Options Summary
 ```
 $DBB_HOME/bin/groovyz <ussLocation>/zAppBuild/build.groovy [options] buildfile
 
-buildFile (optional):  Path of the source file to build (absolute or relative to workspace). 
+buildFile (optional):  Path of the source file to build (absolute or relative to workspace).
 If buildFile is a text file (*.txt), then it is assumed to be a build list file.
 
 Options:
@@ -54,19 +57,19 @@ required options:
  -h,--hlq <arg>           High level qualifier for partition data sets
 
 build options:
- -p,--propFiles           Comma separated list of additional property files 
+ -p,--propFiles           Comma separated list of additional property files
                           to load. Absolute paths or relative to workspace
  -f,--fullBuild           Flag indicating to build all programs for
                           the application
  -i,--impactBuild         Flag indicating to build only programs impacted
                           by changed files since last successful build.
  -s,--scanOnly            Flag indicating to only scan files for application
- -r,--reset               Deletes the application's dependency collections 
+ -r,--reset               Deletes the application's dependency collections
                           and build result group from the DBB repository
  -v,--verbose             Flag to turn on script trace
  -d,--debug               Flag to build modules for debugging with
                           IBM Debug for z/OS
- -l,--logEncoding <arg>   Encoding of output logs. Default is EBCDIC 
+ -l,--logEncoding <arg>   Encoding of output logs. Default is EBCDIC
 
 web application credentials
  -url,--url <arg>         DBB repository URL

@@ -1,4 +1,4 @@
-      * Error handler - Changed April 14 2020
+      * Error handler - hanged April 14 2020
        01 HCAZERRS           PIC x(8) Value 'HCAZERRS'.
 
       * Variables for time/date processing
