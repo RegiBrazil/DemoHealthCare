@@ -1,4 +1,5 @@
 @groovy.transform.BaseScript com.ibm.dbb.groovy.ScriptLoader baseScript
+// used by Suman on genapp. no DB2 bind and zUnit. - April 14, 2020.
 import com.ibm.dbb.repository.*
 import com.ibm.dbb.dependency.*
 import com.ibm.dbb.build.*
@@ -52,7 +53,7 @@ if (processCounter == 0)
 	
 finalizeBuildProcess(start:startTime, count:processCounter)
 
-// if error occurred signal process error 
+// if error occurred signal process error
 if (props.error)
 	System.exit(1)
 
@@ -288,7 +289,7 @@ def populateBuildProperties(String[] args) {
 	if (opts.pf) props.pf = opts.pf
 	
 	// set debug flag
-	if(opts.d) props.debug = 'true' 
+	if(opts.d) props.debug = 'true'
 		
 	// set code coverage
     if (opts.cc) props.codecov = "true"
@@ -310,7 +311,7 @@ def populateBuildProperties(String[] args) {
 	// set calculated properties
 	if (!props.userBuild) {
 		def gitDir = buildUtils.getAbsolutePath(props.application)
-		if ( gitUtils.isGitDetachedHEAD(gitDir) ) 
+		if ( gitUtils.isGitDetachedHEAD(gitDir) )
 			props.applicationCurrentBranch = gitUtils.getCurrentGitDetachedBranch(gitDir)
 		else
 			props.applicationCurrentBranch = gitUtils.getCurrentGitBranch(gitDir)
@@ -350,7 +351,7 @@ def createDatasets(String[] datasets, String options) {
 *   - full build : Contains all programs in application and external directories. Use script option --fullBuild
 *   - impact build : Contains impacted programs from calculated changed files. Use script option --impactBuild
 *   - build file : Contains one program. Provide a build file argument.
-*   - build text file: Contains a list of programs from a text file. Provide a *.txt build file argument. 
+*   - build text file: Contains a list of programs from a text file. Provide a *.txt build file argument.
 */
 def createBuildList() {
 	
@@ -409,7 +410,7 @@ def createBuildList() {
 	String buildListFileLoc = "${props.buildOutDir}/buildList.${props.buildListFileExt}"
 	println "** Writing build list file to $buildListFileLoc"
 	File buildListFile = new File(buildListFileLoc)	
-	String enc = props.logEncoding ?: 'IBM-1047'  
+	String enc = props.logEncoding ?: 'IBM-1047'
 	buildListFile.withWriter(enc) { writer ->
 		buildList.each { file ->
 			if (props.verbose) println file
@@ -417,14 +418,14 @@ def createBuildList() {
 		}
 	}
 	println("enc :" + enc)
-	if (!enc.startsWith('IBM-1047')) { 
+	if (!enc.startsWith('IBM-1047')) {
 		String buildListEBCDIC = "${props.buildOutDir}/buildList-1047.${props.buildListFileExt}"
 		println buildListEBCDIC + " - printing the name of the EBCDIC file"
 		def comm = "iconv -f ISO8859-1 -t IBM-1047 ${buildListFileLoc} > ${buildListEBCDIC}  "
 		Process proc = comm.execute()
 		def out
 		def err
-		proc.waitForProcessOutput(out, err) 
+		proc.waitForProcessOutput(out, err)
 	    def rc = proc.exitValue()
 		def comm1 = "chtag -tc IBM-1047 ${buildListEBCDIC}"
 		Process proc1 = comm1.execute()
@@ -465,7 +466,7 @@ def finalizeBuildProcess(Map args) {
 	if (repositoryClient) {
 		if (props.verbose)
 			println "** Updating build result BuildGroup:${props.applicationBuildGroup} BuildLabel:${props.applicationBuildLabel}"
-		def buildResult = repositoryClient.getBuildResult(props.applicationBuildGroup, props.applicationBuildLabel) 
+		def buildResult = repositoryClient.getBuildResult(props.applicationBuildGroup, props.applicationBuildLabel)
 		buildResult.setBuildReport(new FileInputStream(htmlOutputFile))
 		buildResult.setBuildReportData(new FileInputStream(jsonOutputFile))
 		buildResult.setProperty("filesProcessed", String.valueOf(args.count))

@@ -504,18 +504,9 @@ def finalizeBuildProcess(Map args) {
 	println("** Total files processed : ${args.count}")
 	println("** Total build time  : $duration\n")
 
-// ADDED to INVOKE ZUNIT    by Regi April 10, 2020
+// ADDED to INVOKE ZUNIT    by Regi April 14, 2020
 def zunitrun = "/var/dbb/work_github/DemoHealthCare/zAppBuild/zunit/RunZUnitJCLCCDB02.groovy"
 run(new File(zunitrun))
 println("** zUnit finished at $endTime")
 //  end of ZUNIT
-
-
-
-
-
-
 }
-
-
-
