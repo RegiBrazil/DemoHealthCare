@@ -1,5 +1,5 @@
       *****************************************************************
-      *  Changed April 15  2020  -  Regi 06:34 AM
+      *  Changed April 15  2020  -  Regi 07:38 AM
       * Look for %regi for fixes on abends due missing date
       *   To add patient's name, address and date of birth to the
       *  DB2 patient table creating a new patient entry.
