@@ -152,9 +152,9 @@
            END-Evaluate.
       * %bug -- the line below will introduce a BUG Jan 02 2020
       *----------------------------------------------------------------*
-               IF DB2-PATIENT-ID = 1
-                   MOVE "BAD NAME" to CA-FIRST-NAME
-               END-IF
+      *        IF DB2-PATIENT-ID = 1
+      *            MOVE "BAD NAME" to CA-FIRST-NAME
+      *        END-IF
       *----------------------------------------------------------------*
            EXIT.
       *----------------------------------------------------------------*
