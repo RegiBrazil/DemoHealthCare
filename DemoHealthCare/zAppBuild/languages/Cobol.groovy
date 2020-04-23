@@ -172,6 +172,9 @@ def createCompileCommand(String buildFile, LogicalFile logicalFile, String membe
 	
 	// add a syslib to the compile command with optional bms output copybook and CICS concatenation
 	compile.dd(new DDStatement().name("SYSLIB").dsn(props.cobol_cpyPDS).options("shr"))
+ //  Add a SYSLIB for zUNIT allways.. - Regi April, 23 - 2020
+	compile.dd(new DDStatement().dsn(props.ZUNITLIB).options("shr"))
+//
 	if (props.bms_cpyPDS)
 		compile.dd(new DDStatement().dsn(props.bms_cpyPDS).options("shr"))
 	if(props.team)
