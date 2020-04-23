@@ -1,6 +1,6 @@
        PROCESS NODLL,NODYNAM,TEST(NOSEP),NOCICS,NOSQL,PGMN(LU)
       *+---------------------------------------------------------------+
-      *| THCIPDB0  -
+      *| THCIPDB0  - April 23 2020
       *| Product: IBM Developer for z/OS                               |
       *| Component: IBM z/OS Automated Unit Testing Framework (zUnit)  |
       *|   for Enterprise COBOL and PL/I                               |
