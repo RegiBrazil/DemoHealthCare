@@ -31,7 +31,7 @@ def resultDataset = "IBMUSER.ZUNIT.BZURES"
 /* The output member */
 def resultMember = "THCIPDB0"
 
-println "Running ZUnit in JCL '$jclDataset($jclMember)'"
+println "Running ZUnit for HCIPDB01 usingJCL '$jclDataset($jclMember)'"
 
 /* Execute the JCL */
 def exec = new JCLExec()
