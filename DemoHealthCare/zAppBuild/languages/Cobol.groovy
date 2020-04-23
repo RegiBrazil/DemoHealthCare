@@ -178,6 +178,10 @@ def createCompileCommand(String buildFile, LogicalFile logicalFile, String membe
 		compile.dd(new DDStatement().dsn(props.cobol_BMS_PDS).options("shr"))
 	if (buildUtils.isCICS(logicalFile))
 		compile.dd(new DDStatement().dsn(props.SDFHCOB).options("shr"))
+//  added by Regi - april 23 2020 - Adding SYLIB for compile zUNIT genertaed COBOL
+       	if (buildUtils.isCICS(logicalFile))
+		compile.dd(new DDStatement().dsn(props.ZUNITLIB).options("shr"))
+// -------------
 	String isMQ = props.getFileProperty('cobol_isMQ', buildFile)
 	if (isMQ && isMQ.toBoolean())
 		compile.dd(new DDStatement().dsn(props.SCSQCOBC).options("shr"))
