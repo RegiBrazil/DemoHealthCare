@@ -5,15 +5,15 @@
       *| Component: IBM z/OS Automated Unit Testing Framework (zUnit)  |
       *|   for Enterprise COBOL and PL/I                               |
       *| Program: Enterprise COBOL zUnit Test Case for Dynamic Runner  |
-      *| Date Generated: 04/23/2020 15:35                              |
+      *| Date Generated: 04/24/2020 10:21                              |
       *| ID: d432085d-add1-42e5-a1bd-1c3191be11e3                      |
       *+---------------------------------------------------------------+
       *+---------------------------------------------------------------+
-      *| TEST_TEST3                                                    |
-      *|     This program is for Test TEST3                            |
+      *| TEST_TEST1                                                    |
+      *|     This program is for Test TEST1                            |
       *+---------------------------------------------------------------+
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. 'TEST_TEST3'.
+       PROGRAM-ID. 'TEST_TEST1'.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 PROGRAM-NAME   PIC X(8)  VALUE 'HCIPDB01'.
@@ -3505,16 +3505,16 @@
        PROCEDURE DIVISION USING AZ-TEST
                       DFHEIBLK DFHCOMMAREA.
       * START
-           DISPLAY 'TEST_TEST3 Started...'
+           DISPLAY 'TEST_TEST1 Started...'
            MOVE 0 TO AZ-TEST-NAME-LEN.
            INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR
            CHARACTERS BEFORE INITIAL SPACE.
            MOVE AZ-TEST TO AZ-TEST-NAME.
       * SET INPUT VALUE
-           MOVE 133456 TO EIBTIME OF DFHEIBLK
-           MOVE 120114 TO EIBDATE OF DFHEIBLK
+           MOVE 81959 TO EIBTIME OF DFHEIBLK
+           MOVE 120115 TO EIBDATE OF DFHEIBLK
            MOVE ZUT00000000 TO EIBTRNID OF DFHEIBLK
-           MOVE 155 TO EIBTASKN OF DFHEIBLK
+           MOVE 1793 TO EIBTASKN OF DFHEIBLK
            MOVE ZUT00000001 TO EIBTRMID OF DFHEIBLK
            MOVE 0 TO DFHEIGDI OF DFHEIBLK
            MOVE 0 TO EIBCPOSN OF DFHEIBLK
@@ -3755,7 +3755,7 @@
                PERFORM THROW-ASSERTION
              END-IF
       * END
-           DISPLAY 'TEST_TEST3 Successful.'
+           DISPLAY 'TEST_TEST1 Successful.'
            GOBACK.
        CONVERT.
            MOVE AZ-CONVERT-HEXIN TO AZ-DECBYTE
@@ -3813,13 +3813,13 @@
            SUBTRACT 1 FROM TRACE-LEN OF AZ-TRACE
            CALL BZUTRACE USING AZ-TRACE
            EXIT.
-       END PROGRAM TEST_TEST3.
+       END PROGRAM TEST_TEST1.
       *+---------------------------------------------------------------+
-      *| TEST_TEST4                                                    |
-      *|     This program is for Test TEST4                            |
+      *| TEST_TEST2                                                    |
+      *|     This program is for Test TEST2                            |
       *+---------------------------------------------------------------+
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. 'TEST_TEST4'.
+       PROGRAM-ID. 'TEST_TEST2'.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 PROGRAM-NAME   PIC X(8)  VALUE 'HCIPDB01'.
@@ -7311,16 +7311,16 @@
        PROCEDURE DIVISION USING AZ-TEST
                       DFHEIBLK DFHCOMMAREA.
       * START
-           DISPLAY 'TEST_TEST4 Started...'
+           DISPLAY 'TEST_TEST2 Started...'
            MOVE 0 TO AZ-TEST-NAME-LEN.
            INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR
            CHARACTERS BEFORE INITIAL SPACE.
            MOVE AZ-TEST TO AZ-TEST-NAME.
       * SET INPUT VALUE
-           MOVE 133518 TO EIBTIME OF DFHEIBLK
-           MOVE 120114 TO EIBDATE OF DFHEIBLK
+           MOVE 82010 TO EIBTIME OF DFHEIBLK
+           MOVE 120115 TO EIBDATE OF DFHEIBLK
            MOVE ZUT00000027 TO EIBTRNID OF DFHEIBLK
-           MOVE 177 TO EIBTASKN OF DFHEIBLK
+           MOVE 1805 TO EIBTASKN OF DFHEIBLK
            MOVE ZUT00000028 TO EIBTRMID OF DFHEIBLK
            MOVE 0 TO DFHEIGDI OF DFHEIBLK
            MOVE 0 TO EIBCPOSN OF DFHEIBLK
@@ -7561,7 +7561,7 @@
                PERFORM THROW-ASSERTION
              END-IF
       * END
-           DISPLAY 'TEST_TEST4 Successful.'
+           DISPLAY 'TEST_TEST2 Successful.'
            GOBACK.
        CONVERT.
            MOVE AZ-CONVERT-HEXIN TO AZ-DECBYTE
@@ -7619,7 +7619,7 @@
            SUBTRACT 1 FROM TRACE-LEN OF AZ-TRACE
            CALL BZUTRACE USING AZ-TRACE
            EXIT.
-       END PROGRAM TEST_TEST4.
+       END PROGRAM TEST_TEST2.
       *+---------------------------------------------------------------+
       *| BZU_INIT                                                     |
       *|     Initial Procedure                                         |
@@ -8098,11 +8098,11 @@
                EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                  WHEN SPACE
                    CONTINUE
-                 WHEN 'TEST3'
-                   PERFORM O0E080-TEST3
+                 WHEN 'TEST1'
+                   PERFORM O0E080-TEST1
                    CONTINUE
-                 WHEN 'TEST4'
-                   PERFORM O0E080-TEST4
+                 WHEN 'TEST2'
+                   PERFORM O0E080-TEST2
                    CONTINUE
                  WHEN OTHER
                    CONTINUE
@@ -8138,9 +8138,9 @@
                EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                  WHEN SPACE
                    CONTINUE
-                 WHEN 'TEST3'
+                 WHEN 'TEST1'
                    CONTINUE
-                 WHEN 'TEST4'
+                 WHEN 'TEST2'
                    CONTINUE
                  WHEN OTHER
                    CONTINUE
@@ -8148,13 +8148,13 @@
              END-IF
            END-IF.
            PERFORM TEARDOWN.
-       O0E080-TEST3.
+       O0E080-TEST1.
            IF AZ-RECORD-COUNT-OT(1) = 0 THEN
              CONTINUE
            ELSE
              CONTINUE
            END-IF.
-       O0E080-TEST4.
+       O0E080-TEST2.
            IF AZ-RECORD-COUNT-OT(1) = 0 THEN
              CONTINUE
            ELSE
@@ -8993,11 +8993,11 @@
              EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                WHEN SPACE
                  CONTINUE
-               WHEN 'TEST3'
-                 PERFORM O00E70-TEST3
+               WHEN 'TEST1'
+                 PERFORM O00E70-TEST1
                  CONTINUE
-               WHEN 'TEST4'
-                 PERFORM O00E70-TEST4
+               WHEN 'TEST2'
+                 PERFORM O00E70-TEST2
                  CONTINUE
                WHEN OTHER
                  CONTINUE
@@ -9060,18 +9060,18 @@
              EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                WHEN SPACE
                  CONTINUE
-               WHEN 'TEST3'
-                 PERFORM I00E70-TEST3
+               WHEN 'TEST1'
+                 PERFORM I00E70-TEST1
                  CONTINUE
-               WHEN 'TEST4'
-                 PERFORM I00E70-TEST4
+               WHEN 'TEST2'
+                 PERFORM I00E70-TEST2
                  CONTINUE
                WHEN OTHER
                  CONTINUE
              END-EVALUATE
            END-IF.
            PERFORM TEARDOWN.
-       O00E70-TEST3.
+       O00E70-TEST1.
            INITIALIZE AZ-COMPARE-WORK-ITEMS
            IF AZ-RECORD-COUNT-OT(1) = 0 THEN
              CONTINUE
@@ -9106,7 +9106,7 @@
              CONTINUE
            END-IF
            END-IF.
-       O00E70-TEST4.
+       O00E70-TEST2.
            INITIALIZE AZ-COMPARE-WORK-ITEMS
            IF AZ-RECORD-COUNT-OT(1) = 0 THEN
              CONTINUE
@@ -9141,7 +9141,7 @@
              CONTINUE
            END-IF
            END-IF.
-       I00E70-TEST3.
+       I00E70-TEST1.
            IF AZ-RECORD-COUNT-IN(1) = 0 THEN
              CONTINUE
            ELSE IF AZ-RECORD-COUNT-IN(1) = 1
@@ -9183,7 +9183,7 @@
              CONTINUE
            END-IF
            END-IF.
-       I00E70-TEST4.
+       I00E70-TEST2.
            IF AZ-RECORD-COUNT-IN(1) = 0 THEN
              CONTINUE
            ELSE IF AZ-RECORD-COUNT-IN(1) = 1
