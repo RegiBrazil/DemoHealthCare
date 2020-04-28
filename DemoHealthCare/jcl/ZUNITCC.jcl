@@ -12,7 +12,9 @@
    ENVAR(
    "EQA_STARTUP_KEY=CC,THCIPDB0,testid=THCIPDB0")
 /*
+//* when having the playback file the below must be there
 //BZUPLAY DD DISP=SHR,
 // DSN=IBMUSER.ZUNIT.PB.HCIPDB01
+//*BZUPLAY DD DUMMY
 //BZURPT DD DISP=SHR,
 // DSN=IBMUSER.ZUNIT.BZURES(THCIPDB0)
