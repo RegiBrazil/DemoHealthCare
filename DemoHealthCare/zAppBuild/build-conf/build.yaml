@@ -16,7 +16,7 @@ buildProperties:
     value: assembler,bms,cobol,linkedit,pli
 
   # Alternate root directory for application-conf location.  Allows for the deployment of
-  # the application-conf directories to a static location.  
+  # the application-conf directories to a static location.
   # Defaults to ${workspace}/${application}
   - key: applicationConfRootDir
     value: ${zAppBuildDir}/application/
@@ -40,7 +40,7 @@ buildProperties:
 
   # build.groovy option -url, --url
   - key: dbb.RepositoryClient.url
-    value: 
+    value: https://10.1.1.1:11043/dbb
 
   # build.groovy option -id, --id
   - key: dbb.RepositoryClient.userId
