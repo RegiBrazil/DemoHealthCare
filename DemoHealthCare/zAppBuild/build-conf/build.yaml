@@ -47,9 +47,9 @@ buildProperties:
     value: ADMIN
 
   # build.groovy option -pw, --pw
-  # - key: dbb.RepositoryClient.password
-  #   value:
+  - key: dbb.RepositoryClient.password
+    value: ADMIN
 
   # build.groovy option -pf, --pf
-  - key: dbb.RepositoryClient.passwordFile
-    value: ${zAppBuildDir}/utilities/ADMIN.pw
+  #- key: dbb.RepositoryClient.passwordFile
+  #  value: ${zAppBuildDir}/utilities/ADMIN.pw
