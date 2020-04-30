@@ -163,12 +163,12 @@
            MOVE WS-START-NUM-DATE TO  WS-WORKING-DATE
       * =%regi ========== Below must be comments to have the abend
       * =   when DEMO is day 1 must change to Compute = 20170901
-            IF WS-WORKING-DATE < 16010101 or
-                 WS-WORKING-DATE > 99991231
-                 MOVE FUNCTION CURRENT-DATE (1:8) TO WS-WORKING-DATE
-                COMPUTE WS-WORKING-DATE = WS-WORKING-DATE - 1
-                COMPUTE WS-WORKING-DATE = 20170901
-             END-IF
+      *     IF WS-WORKING-DATE < 16010101 or
+      *          WS-WORKING-DATE > 99991231
+      *          MOVE FUNCTION CURRENT-DATE (1:8) TO WS-WORKING-DATE
+      *         COMPUTE WS-WORKING-DATE = WS-WORKING-DATE - 1
+      *         COMPUTE WS-WORKING-DATE = 20170901
+      *      END-IF
 
       *  ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -179,10 +179,10 @@
            MOVE WS-END-NUM-DATE TO  WS-WORKING-DATE
       * =%regi ========= Below must be comments to have the abend
       * =added to fix abend #2 END DATE
-           IF WS-WORKING-DATE < 16010101 or
-               WS-WORKING-DATE > 99991231
-                MOVE FUNCTION CURRENT-DATE (1:8) TO WS-WORKING-DATE
-             END-IF
+      *    IF WS-WORKING-DATE < 16010101 or
+      *        WS-WORKING-DATE > 99991231
+      *         MOVE FUNCTION CURRENT-DATE (1:8) TO WS-WORKING-DATE
+      *      END-IF
 
       * ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
