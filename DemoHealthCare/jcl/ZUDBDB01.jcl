@@ -1,6 +1,6 @@
 //ZUDBDB01   JOB ,
 // MSGCLASS=H,MSGLEVEL=(1,1),REGION=0M,COND=(16,LT)
-//* This JCL will run the test case DB in batch for HCIPDB01
+//* This JCL will run the test case and Debug in batch for HCIPDB01
 //* It can be submited using DBB from a Jenkins Pipeline
 //* See one groovy example of using DBB at the location below:
 //*  /var/jenkins/workspace/
