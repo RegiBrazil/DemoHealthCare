@@ -5,15 +5,15 @@
       *| Component: IBM z/OS Automated Unit Testing Framework (zUnit)  |
       *|   for Enterprise COBOL and PL/I                               |
       *| Program: Enterprise COBOL zUnit Test Case for Dynamic Runner  |
-      *| Date Generated: 05/18/2020 14:03                              |
-      *| ID: 5a5df300-4985-422b-b269-c869725fbd4c                      |
+      *| Date Generated: 05/19/2020 08:54                              |
+      *| ID: 7ca3e0e3-c45f-4f31-91b9-9fef9ef2128e                      |
       *+---------------------------------------------------------------+
       *+---------------------------------------------------------------+
-      *| TEST_TEST3                                                    |
-      *|     This program is for Test TEST3                            |
+      *| TEST_TEST1                                                    |
+      *|     This program is for Test TEST1                            |
       *+---------------------------------------------------------------+
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. 'TEST_TEST3'.
+       PROGRAM-ID. 'TEST_TEST1'.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 PROGRAM-NAME   PIC X(8)  VALUE 'HCIPDB01'.
@@ -3486,7 +3486,7 @@
        PROCEDURE DIVISION USING AZ-TEST
                       DFHEIBLK DFHCOMMAREA.
       * START
-           DISPLAY 'TEST_TEST3 Started...'
+           DISPLAY 'TEST_TEST1 Started...'
            MOVE 0 TO AZ-TEST-NAME-LEN.
            INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR
            CHARACTERS BEFORE INITIAL SPACE.
@@ -3721,7 +3721,7 @@
                PERFORM THROW-ASSERTION
              END-IF
       * END
-           DISPLAY 'TEST_TEST3 Successful.'
+           DISPLAY 'TEST_TEST1 Successful.'
            GOBACK.
        CONVERT.
            MOVE AZ-CONVERT-HEXIN TO AZ-DECBYTE
@@ -3779,13 +3779,13 @@
            SUBTRACT 1 FROM TRACE-LEN OF AZ-TRACE
            CALL BZUTRACE USING AZ-TRACE
            EXIT.
-       END PROGRAM TEST_TEST3.
+       END PROGRAM TEST_TEST1.
       *+---------------------------------------------------------------+
-      *| TEST_TEST4                                                    |
-      *|     This program is for Test TEST4                            |
+      *| TEST_TEST2                                                    |
+      *|     This program is for Test TEST2                            |
       *+---------------------------------------------------------------+
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. 'TEST_TEST4'.
+       PROGRAM-ID. 'TEST_TEST2'.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 PROGRAM-NAME   PIC X(8)  VALUE 'HCIPDB01'.
@@ -7258,7 +7258,7 @@
        PROCEDURE DIVISION USING AZ-TEST
                       DFHEIBLK DFHCOMMAREA.
       * START
-           DISPLAY 'TEST_TEST4 Started...'
+           DISPLAY 'TEST_TEST2 Started...'
            MOVE 0 TO AZ-TEST-NAME-LEN.
            INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR
            CHARACTERS BEFORE INITIAL SPACE.
@@ -7493,7 +7493,7 @@
                PERFORM THROW-ASSERTION
              END-IF
       * END
-           DISPLAY 'TEST_TEST4 Successful.'
+           DISPLAY 'TEST_TEST2 Successful.'
            GOBACK.
        CONVERT.
            MOVE AZ-CONVERT-HEXIN TO AZ-DECBYTE
@@ -7551,7 +7551,7 @@
            SUBTRACT 1 FROM TRACE-LEN OF AZ-TRACE
            CALL BZUTRACE USING AZ-TRACE
            EXIT.
-       END PROGRAM TEST_TEST4.
+       END PROGRAM TEST_TEST2.
       *+---------------------------------------------------------------+
       *| BZU_INIT                                                     |
       *|     Initial Procedure                                         |
@@ -7562,7 +7562,7 @@
        WORKING-STORAGE SECTION.
        01 AZ-TEST-NAME-LEN      PIC S9(9) COMP-5.
        01 AZ-TESTCASE-ID        PIC X(36)
-           VALUE '5a5df300-4985-422b-b269-c869725fbd4c'.
+           VALUE '7ca3e0e3-c45f-4f31-91b9-9fef9ef2128e'.
        LINKAGE SECTION.
        01 AZ-TEST               PIC X(80).
        01 AZ-TEST-ID            PIC X(80).
@@ -7864,11 +7864,11 @@
                EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                  WHEN SPACE
                    CONTINUE
-                 WHEN 'TEST3'
-                   PERFORM O0E080-TEST3
+                 WHEN 'TEST1'
+                   PERFORM O0E080-TEST1
                    CONTINUE
-                 WHEN 'TEST4'
-                   PERFORM O0E080-TEST4
+                 WHEN 'TEST2'
+                   PERFORM O0E080-TEST2
                    CONTINUE
                  WHEN OTHER
                    CONTINUE
@@ -7904,9 +7904,9 @@
                EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                  WHEN SPACE
                    CONTINUE
-                 WHEN 'TEST3'
+                 WHEN 'TEST1'
                    CONTINUE
-                 WHEN 'TEST4'
+                 WHEN 'TEST2'
                    CONTINUE
                  WHEN OTHER
                    CONTINUE
@@ -7914,13 +7914,13 @@
              END-IF
            END-IF.
            PERFORM TEARDOWN.
-       O0E080-TEST3.
+       O0E080-TEST1.
            IF AZ-RECORD-COUNT-OT(1) = 0 THEN
              CONTINUE
            ELSE
              CONTINUE
            END-IF.
-       O0E080-TEST4.
+       O0E080-TEST2.
            IF AZ-RECORD-COUNT-OT(1) = 0 THEN
              CONTINUE
            ELSE
