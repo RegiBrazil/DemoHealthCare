@@ -1,5 +1,6 @@
 @groovy.transform.BaseScript com.ibm.dbb.groovy.ScriptLoader baseScript
 // regi- copied from nazare zunit-new-build
+// regi- fixed May 21 - not showing Remote error list. see line 355 (thanks Wilbert)
 import com.ibm.dbb.repository.*
 import com.ibm.dbb.dependency.*
 import com.ibm.dbb.build.*
@@ -351,7 +352,8 @@ def populateBuildProperties(String[] args) {
 	if (opts.pf) props.'dbb.RepositoryClient.passwordFile' = opts.pf
 	
 	// set IDz/ZOD user build options
-	if (opts.err) props.errPrefix = opts.err
+// regi (thanks Wilbert) > was if (opts.err) props.errPrefix = opts.err
+	if (opts.e) props.errPrefix = opts.e
 	if (opts.u) props.userBuild = 'true'
 	if (opts.t) props.team = opts.t
 	
