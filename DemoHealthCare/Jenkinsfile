@@ -1,129 +1,111 @@
+// Updated by Regi to work with Regi Repo at github.ibm.com
+// * June 28, 2020  - for Healthcare demo  (HCAZ) using RegiBrazil
 // Global variables
-// Regi ==> MUST update April 09,2020
-
-// Agents labels
+// This is modified to use GitHub and DemoHealthCare repo
+// ---------------------------Agents labels
 def linuxAgent = 'master'
 def agentLabel = 'zOSSlaveJ'
-
-// Verbose
-def verbose = false
+// ---------------------------Verbose
+//def verbose = false
 def buildVerbose = ''
-
-// Hosts and ports
+// verbose -> def buildVerbose = '-v'
+// ---------------------------Hosts and ports
 def linuxHost = '10.1.1.1'
 def zosHost = '10.1.1.2'
 def zosPort = '22'
-
-// DBB
+// ----------------------------DBB
 def dbbUrl = 'https://'+linuxHost+':11043/dbb'
 def dbbHlq = 'JENKINS'
-def dbbDaemonPort = '18181'
+def dbbDaemonPort = '8080'
 def dbbGroovyzOpts= ''
-
-// GIT
-//def gitCredId = 'gitlab_ssh_cred'
-//def gitCred = 'gitlab_zos_cred'
-//def gitOrg = 'gitlab1'
-def gitCredId = 'git'
-def gitCred = 'G1tnimd'
-def gitOrg = 'git'
-
-
-def gitHost = linuxHost
-
-//def srcGitRepo =   'gitlab@'+gitHost+':'+gitOrg+'/genapp.git'
-def srcGitRepo =   '/Appliance/gitroot/projects'/genapp.git'
-def srcGitBranch = 'master'
-	
-// Build type
+// ---------------------------- Git (GitHub)
+def gitCredId = '8e1d5827-1f44-4168-a2a1-f47f78e3ea92'
+def gitCred = '8e1d5827-1f44-4168-a2a1-f47f78e3ea92'
+def gitOrg = 'RegiBrazil'
+def gitHost = 'github.com'
+//def gitHost = '140.82.114.3'
+//def srcGitRepo =   'git@github.com:RegiBrazil/DemoHealthCare.git'
+// Example def srcGitRepo =   'git@'+gitHost+':'+gitOrg+'/nazare-demo-genapp.git'
+def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/DemoHealthCare.git'
+def adminGitRepo =   'git@'+gitHost+':'+gitOrg+'/DemoHealthCare.git'
+def srcGitBranch = 'sandbox'
+def adminGitBranch = 'sandbox'
+def detectGitOrg = true
+// ----------------------------- Build type
 //  -i: incremental
 //  -f: full
 //  -c: only changed source
-def buildType='-c'
-
-// Build extra args
+//def buildType='-i'
+def buildType='-f'
+// -----------------------Build properties related to a specific jenkins agent
+def buildConf=''
+// UCD - not being used here
+def ucdApplication = 'A HC zOS COBOL CICS'
+def ucdProcess = 'Deploy HC to CICS + MF to Windows'
+def ucdComponent = 'HC_CICS'
+def ucdEnv = 'TEST'
+// def ucdBuztool = '/apps/ucd/v7/bin/buztool.sh'
+// ----------------------------  Build extra args
 //  -d: COBOL debug options
 def buildExtraParams='-d'
-
-
-// Deploy only in case of source code modifications
+// ----------------------------- code coverage daemon port
+def ccPORT='8005'
+def CCDIR='/Appliance/IDz14.2.1'
+// --------------------------- Deploy only in case of source code modifications
 def needDeploy = true
+// ===========================================================
+pipeline { agent { label linuxAgent }
+      environment { WORK_DIR = "${WORKSPACE}/BUILD-${BUILD_NUMBER}" }
+      options { skipDefaultCheckout(true) }
+      stages { stage('Init') {steps { script {env.DBB_HOME = '/var/dbb/v.1.0.6'
+			echo "branch: ${env.BRANCH_NAME}"
 
-def isMergeRequest ( ) {
-	def isMr = env.CHANGE_ID != null || ( env.gitlabActionType != null && env.gitlabActionType == 'MERGE' )
-	if ( isMr && env.CHANGE_ID == null )
-		env.CHANGE_ID = env.gitlabMergeRequestIid
-	return isMr		
-}
+	if ( env.ZOS_HOST ) {zosHost = env.ZOS_HOST} 					
+	else {env.ZOS_HOST = zosHost}
 
-pipeline {
+	if ( env.ZOS_PORT ) {zosPort = env.ZOS_PORT} 						
+	else {env.ZOS_PORT = zosPort} 				
 
-	agent { label linuxAgent }
-
-	environment { WORK_DIR = "${WORKSPACE}/BUILD-${BUILD_NUMBER}" }
-
-	options { skipDefaultCheckout(true) }
-
-	stages {
-	
-		stage('Init') {
-			steps {
-				script {
-					env.DBB_HOME = '/var/dbb/1.0.6'
-					echo "branch: ${env.BRANCH_NAME}"
-					if ( env.ZOS_HOST ) {
-						zosHost = env.ZOS_HOST
-					} else {
-						env.ZOS_HOST = zosHost					
-					}
-					if ( env.ZOS_PORT ) {
-						zosPort = env.ZOS_PORT
-					} else {
-						env.ZOS_PORT = zosPort						
-					} 				
-					if ( env.BRANCH_NAME != null ) {
-						srcGitBranch = env.BRANCH_NAME;
-						if ( isMergeRequest () ) {
-							dbbHlq = dbbHlq + ".PR"
-						} else {
-							// notes: Branch must respect z/Os naming conventions for now
-							dbbHlq = dbbHlq + "." + srcGitBranch.toUpperCase()
-						}
-					}
-					if ( env.DEBUG_PIPELINE && env.DEBUG_PIPELINE == 'true' ) {
-						verbose = true
-						buildVerbose = '-v'
-						echo sh(script: 'env|sort', returnStdout: true)						
-					} 					
-				}
-			}
-		}
-		
-		stage('Git Clone/Refresh') {
-			agent { label agentLabel }
-			steps {
-				script {
-					 dir('genapp') {
-						def scmVars = null
-						env.WORKSPACE_ZOS = "${WORKSPACE}/genapp"	
-						echo env.WORKSPACE_ZOS
-						sh(script: 'rm -rf .git', returnStdout: true)
-						sh(script: 'rm -rf *', returnStdout: true)
-						
-							buildType='--impactBuild'
-							scmVars = checkout([$class: 'GitSCM', branches: [[name: srcGitBranch]],
-							                    userRemoteConfigs: [[
-							                                         credentialsId: gitCred,
-							                                         url: srcGitRepo,
-							                                         ]]])
-
-						
-						env.GIT_COMMIT =  scmVars.GIT_COMMIT
-					 }
-					
-				}
-			}
-		}
+	if ( env.BRANCH_NAME != null ) {srcGitBranch = env.BRANCH_NAME; }
+			
+        if ( env.DEBUG_PIPELINE && env.DEBUG_PIPELINE == 'true' )     	
+        {verbose = true  buildVerbose = '-v'
+	echo sh(script: 'env|sort', returnStdout: true)}
+        }
+	}
+	}
+// -------------------------------------------------------------------------
+        stage('Git Clone/Refresh') {
+            agent { label agentLabel }
+            steps {
+ // added by Regi ---------- delete directory DemoHealthCare
+ //  since the 3rd build does not take the change.. BUG?
+                    sh(script: 'rm -rf ${WORKSPACE}/DemoHealthCare', returnStdout: true)
+                    sh(script: 'rm -rf ${WORKSPACE}/DemoHealthCare@tmp', returnStdout: true)
+ // ------------------------------------
+                script {
+                    dir('DemoHealthCare') {
+                    println "branch: ${srcGitBranch}"
+                    println "WORKSPACE  is ${WORKSPACE}"
+ // -----------------------------------------------------------------
+	            scmVars = checkout([$class: 'GitSCM', branches: [[name: srcGitBranch]],
+		    doGenerateSubmoduleConfigurations: false,
+		    submoduleCfg: [],
+    extensions: [[$class: 'SparseCheckoutPaths',sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'cobol_cics/'],
+				[$class:'SparseCheckoutPath', path:'cobol_cics_db2/'],
+				[$class:'SparseCheckoutPath', path:'bms/'],
+				[$class:'SparseCheckoutPath', path:'copybook/'],
+				[$class:'SparseCheckoutPath', path:'application-conf/'],
+				[$class:'SparseCheckoutPath', path:'zAppBuild/'],
+				[$class:'SparseCheckoutPath', path:'testcases/']
+				]]
+				],								
+				userRemoteConfigs: [[credentialsId: gitCred,url: srcGitRepo, ]]])
+		       }
+		       }
+		       }
+		       }
+// -------------------------------------------------------------------------
 		stage('DBB Build') {
 			steps {
 				script{
@@ -140,12 +122,15 @@ pipeline {
 							}
 						}
 						
-						sh "$DBB_HOME/bin/groovyz $dbbGroovyzOpts ${WORKSPACE}/genapp/zAppBuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE} --application genapp --sourceDir ${WORKSPACE}  --workDir ${WORKSPACE}/BUILD-${BUILD_NUMBER}  --hlq ${dbbHlq}.GENAPP --url $dbbUrl -pw ADMIN $buildType  $buildVerbose $buildExtraParams"
-						def files = findFiles(glob: "**BUILD-${BUILD_NUMBER}/buildList.txt")
-						def files1 = findFiles(glob: "**BUILD-${BUILD_NUMBER}/buildList-1047.txt")
-						// Do not deploy if nothing in the build list
+  sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/zAppBuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE} --application DemoHealthCare --sourceDir ${WORKSPACE}  --workDir ${WORKSPACE}/BUILD-${BUILD_NUMBER}  --hlq ${dbbHlq}.HEALTH --url $dbbUrl -pw ADMIN $buildType  $buildVerbose $buildExtraParams "
+  def files = findFiles(glob: "**BUILD-${BUILD_NUMBER}/buildList.txt")
+// Do not deploy if nothing in the build list
 						needDeploy = files.length > 0 && files[0].length > 0
-						needTest = files1.length > 0 && files1[0].length > 0
+						if (needDeploy) {
+						   sh "iconv -f ISO8859-1 -t IBM-1047 ${WORKSPACE}/BUILD-${BUILD_NUMBER}/buildList.txt > ${WORKSPACE}/BUILD-${BUILD_NUMBER}/buildList-1047.txt"
+			        		}
+						def files1 = findFiles(glob: "**BUILD-${BUILD_NUMBER}/buildList-1047.txt")
+			        		needTest = files1.length > 0 && files1[0].length > 0
 						
  					}
 				}
@@ -163,23 +148,35 @@ pipeline {
 				}
 			}
 		}
-		
+// -------------------------------------------------------------------------
 		stage('Unit Tests') {
 			steps {
+                               println "**Unit Test stage starts **"
+                               println("** needTest = " + needTest)
+
 				script{
 					if (needTest) {
-					    node( agentLabel ) {						
-						   sh "$DBB_HOME/bin/groovyz  ${WORKSPACE}/genapp/zAppBuild/zunit/ZUnitExecute.groovy -w ${WORKSPACE} --testConf ${WORKSPACE}/genapp/application-conf/ --outDir ${WORKSPACE}/BUILD-${BUILD_NUMBER} --hlq ${dbbHlq}.GENAPP  ${WORKSPACE}/BUILD-${BUILD_NUMBER}/buildList-1047.txt" 											
- 					    }
-					}
-				}
-			}
+             // ------ Linux agent ----------------------------------
+						node( linuxAgent ) {
+							sh "echo $PWD"
+							sh "rm -rf ${WORKSPACE}/../Testcases/results"
+							sh "mkdir ${WORKSPACE}/../Testcases/results"
+							sh "mkdir ${WORKSPACE}/BUILD-${BUILD_NUMBER}"
+							sh "mkdir ${WORKSPACE}/BUILD-${BUILD_NUMBER}/ccresults"
+						                   }
+            // ------ z/OS agent  ----------------------------------
+					    node( agentLabel ) {	
+		sh "$DBB_HOME/bin/groovyz  ${WORKSPACE}/DemoHealthCare/zAppBuild/zunit/ZUnitExecute.groovy -w ${WORKSPACE} --testConf ${WORKSPACE}/DemoHealthCare/application-conf/ --cc --outDir ${WORKSPACE}/BUILD-${BUILD_NUMBER} --hlq ${dbbHlq}.HEALTH  ${WORKSPACE}/BUILD-${BUILD_NUMBER}/buildList-1047.txt" 											
+ 					                       }
+					              }
+				      }
+			      }
 			post {
 				always {
 					node( agentLabel ) {
 						dir("${WORKSPACE}/BUILD-${BUILD_NUMBER}") {
 							archiveArtifacts allowEmptyArchive: true,
-											artifacts: '*.xml',
+											artifacts: '*.bzures',
 											excludes: '*clist',
 											onlyIfSuccessful: false
 						}
@@ -187,25 +184,79 @@ pipeline {
 				}
 			}
 		}
-	
-
-
-	}
-	
-		
-
-post {
-		success {
-			updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'success')
-		}
-		unstable {
-			updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'success')
-		}		
-		failure {
-			updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'failed')
-		}
-        aborted {
-			updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'canceled')
-        }		
-	}	
+// -------------------------------------------------------------------------
+		stage('Code coverage gating') {
+			steps {
+				script{
+					if (needTest) {
+					    node( linuxAgent ) {
+							sh "cp ${WORKSPACE}/../Testcases/results/* ${WORKSPACE}/BUILD-${BUILD_NUMBER}/ccresults/"
+							int ccpercent = sh (script: "$CCDIR/headless-cc/ccresults.sh ${WORKSPACE}/BUILD-${BUILD_NUMBER}/ccresults", returnStdout: true)
+							println "${ccpercent} + ccpercent"
+							if (ccpercent < 40) {
+								println "This build is unstable - the code coverage is less than 40%"
+								currentBuild.result = "UNSTABLE"
+							                    }
+						               }
+					              }
+				      }
+			      }
+			post {
+				always {
+					node( linuxAgent ) {
+						dir("${WORKSPACE}/BUILD-${BUILD_NUMBER}/ccresults") {
+							archiveArtifacts allowEmptyArchive: true,
+											artifacts: '*cczip',
+											onlyIfSuccessful: false
+						                                                    }
+					                   }
+				        }
+			     }
+	                                      }
+// -------------------------------------------------------------------------
+        stage('Push to UCD Code station') {
+            steps {
+                script{
+                    if ( needDeploy ) {
+                        node( agentLabel ) {
+                             println "Push to UCD Code station"
+   sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/zAppBuild/utilities/deploy.groovy --buztool  /apps/ucd/v7/bin/buztool.sh  --workDir ${WORKSPACE}/BUILD-${BUILD_NUMBER}  --component HC_CICS  "
+                                           }
+                                      }
+                     }
+                  }
+                                          }
+// -------------------------------------------------------------------------
+        stage('Deploy to CICS using UCD') {
+            steps {
+                script{
+                    if ( needDeploy ) {
+                        node( linuxAgent ) {
+                            script{
+                                step(
+                                  [$class: 'UCDeployPublisher',
+                                    deploy: [
+                                        deployApp: ucdApplication,
+                                        deployDesc: 'Requested from Jenkins',
+                                        deployEnv: ucdEnv,
+                                        deployOnlyChanged: false,
+                                        deployProc: ucdProcess,
+                                        deployVersions: ucdComponent + ':latest'],
+                                    siteName: 'Urbancode server'])
+//  siteName  is the UCD Profile name that is defined at Jenkins configuration
+                            }
+                        }
+                    }
+                }
+            }
+        }
+// -------------------------------------------------------------------------
+        /*  ---  Commented all post this is for GitLab
+post { 	success { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'success') }
+	unstable { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'success') }		
+	failure { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'failed') }
+        aborted { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'canceled') }		
+     }	
+   ----- end of comments   */
+}
 }

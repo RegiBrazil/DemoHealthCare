@@ -1,8 +1,13 @@
 @groovy.transform.BaseScript com.ibm.dbb.groovy.ScriptLoader baseScript
+// updated to change HLQ to right name (from json file) - June 28, 2020
+// look for %regi**
 import com.ibm.dbb.repository.*
 import com.ibm.dbb.dependency.*
 import com.ibm.dbb.build.*
 import groovy.transform.*
+import groovy.json.JsonSlurper
+import groovy.util.XmlParser
+import groovy.util.XmlSlurper
 
 // define script properties
 @Field BuildProperties props = BuildProperties.getInstance()
@@ -10,73 +15,81 @@ import groovy.transform.*
 
 def member = null
 def testCase = null
-def playBackFile = null 
+def playBackFile = null
 getTestProperties(args)
 	
 if (props.buildFile.endsWith(".txt")) {
 	if (!props.buildFile.trim().startsWith('/'))
 		props.buildFile = "${props.workspace}/${props.buildFile}" as String
 	println "** Adding files listed in ${props.buildFile} to test list"
-   
+
 	File jBuildFile = new File(props.buildFile)
 	String files = jBuildFile.readLines()
-	println files  
+	println files
 	String[] strarr = files.split('/')
-	member = strarr[strarr.length-1].tokenize(".")[0] 
+	member = strarr[strarr.length-1].tokenize(".")[0]
 	println member
 	runTest(member)
 }
 // else it's a single file to build
 else {
-	println "** Adding ${props.buildFile} to test program list" 
-	runTest(props.buildFile) 
+	println "** Adding ${props.buildFile} to test program list"
+	runTest(props.buildFile)
 }
 
 
-def runTest(String member) { 
+def runTest(String member) {
 	def env=System.getenv()
-	String dbb_home = env['DBB_HOME']  
-	println("dbbconf: ${dbb_home}") 
+	String dbb_home = env['DBB_HOME']
+	println("dbbconf: ${dbb_home}")
 	
-	(testCase,playBackFile) = checkIfTestExists(member) 
-	
-	if (testCase) { 
-		
-		println("testCase:" + testCase)
+ 	(testCase,playBackFile) = checkIfTestExists(member)
+
+  // --------------- added by %regi** Suman fix- June 26 , 2020
+    def Test = playBackFile.replaceAll(“<HLQ>“,,“JENKINS”)
+  	println(“test ” + Test)
+  playBackFile = Test
+  println(“playbackfile: ” + playBackFile)
+ // ---------------------------------------------------
+	if (testCase) {
+		println "**REGI we have a testcase"
+		println "**REGI we have a testcase"
 		println("playBackFile:" + playBackFile)
 		def programName = member.toUpperCase()
 		println("for program:" + programName)
 	
 		//Execute JCL from a String value in the script
-		def jcl = "//RUNZUNIT JOB , \n" +                                                           
-		"// MSGCLASS=H,MSGLEVEL=(1,1),TIME=NOLIMIT,REGION=0M,COND=(16,LT) \n" + 
+		def jcl = "//RUNZUNIT JOB , \n" +
+		"// MSGCLASS=H,MSGLEVEL=(1,1),TIME=NOLIMIT,REGION=0M,COND=(16,LT) \n" +
 		"//        JCLLIB ORDER=(${props.zunit_ProcLib}) \n" +
 		"//* \n" +
 		"//RUNNER EXEC PROC=BZUPPLAY, \n" +
 		"//  BZUCFG=${props.zunit_ConfFolder}(${testCase}), \n" +
-		"//  BZUCBK=${props.load_PDS}, \n" + 
+		"//  BZUCBK=${props.load_PDS}, \n" +
 		"//  BZULOD=${props.load_PDS}, \n" +
 		"//  PARM=('STOP=E,REPORT=XML') \n" +
 		"//BZUPLAY DD DISP=SHR, \n" +
 		"//  DSN=${playBackFile} \n" +
-		"//BZURPT DD DISP=SHR, \n" + 
-		"//  DSN=${props.zunit_ResultsFolder}(${testCase}) \n" + 
-		"//STEPLIB  DD                       \n" + 
-		"//         DD                       \n" + 
+		"//BZURPT DD DISP=SHR, \n" +
+		"//  DSN=${props.zunit_ResultsFolder}(${testCase}) \n" +
+		"//STEPLIB  DD                       \n" +
 		"//         DD                       \n" +
 		"//         DD                       \n" +
 		"//         DD                       \n" +
-		'//    DD  DISP=SHR,DSN=' + props.zunit_STEPLIB 
+		"//         DD                       \n" +
+		'//    DD  DISP=SHR,DSN=' + props.zunit_STEPLIB
 		if (props.codeCoverage) {
 		   jcl = jcl + " \n" +
-		   "//CEEOPTS DD *                        \n"   + 
-		   "TEST(ALL,,PROMPT,DBMDT:*)             \n" +
+		   "//CEEOPTS DD *                        \n"   +
+		   "TEST(,,,TCPIP&10.1.1.1%8005:*)        \n" +
 		   "ENVAR(                                \n" +
 		   '"'+"EQA_STARTUP_KEY=CC,${testCase},testid=${testCase},moduleinclude=${programName}" + '")' + "\n" +
 		   "/*"
 		}
 			
-		//println(jcl)
+		println "**REGI This is the JCL that will be submitted to batch"
+// was >		//println(jcl)
+		println(jcl)
 		def exec = new JCLExec()
 		int rc = exec.text(jcl).confDir("${dbb_home}/conf").execute()
 		
@@ -84,7 +97,7 @@ def runTest(String member) {
 		def maxRC = exec.maxRC
 		if ((maxRC == 'CC 0000') || (maxRC == 'CC 0004'))
 		    println "The JCL Job ${exec.submittedJobId} completed successfully"
-		else { 
+		else {
 		    println "The JCL Job ${exec.submittedJobId} completed with Max-RC: $maxRC"
 		    System.exit(1)
 		}
@@ -101,7 +114,7 @@ def runTest(String member) {
 		}
 		
 		
-		def comm = "chtag -tc ISO8859-1 ${resultFile}"
+		def comm = "chtag -tc UTF-8 ${resultFile}"
 		Process proc = comm.execute()
 		
 		/* Parsing the result file and display summary of the result */
@@ -142,12 +155,12 @@ static def statusToString(def status)
 
 def getTestProperties(String[] args) {
 
-	def zAppBuildDir =  getScriptDir() 
+	def zAppBuildDir =  getScriptDir()
 	props.zAppBuildDir = zAppBuildDir
 	println(zAppBuildDir)
 	
 	String usage = 'ZUnitExecute.groovy [options] programFile'
-	String header =  '''programFile (mandatory):  Path of the programs to be tested. \
+	String header =  '''programFile (mandatory):  Program(s) to be tested. \
 	If programFile is a text file (*.txt) then it is assumed to be a list .
 	options:
 		'''
@@ -158,14 +171,14 @@ def getTestProperties(String[] args) {
 	cli.h(longOpt:'hlq', args:1, 'High level qualifier for partition data sets')
 	cli.l(longOpt:'loadlib', args:1, 'Loadlib containing test case binaries')
 	cli.w(longOpt:'workspace', args:1, 'Absolute path to workspace (root) directory containing all required source directories')
-	cli.cc(longOpt:'codeCov', args:1, 'option to fetch interactive code coverage for user build only')
+	cli.cc(longOpt:'codeCov', 'Flag to initiate code coverage collection with the tests')
 	
 	def opts = cli.parse(args)
 	if (!opts) {
 		println(header)
 		System.exit(1)
 	}
- 
+
 	if (opts.o) props.outDir = opts.o
 	if (opts.c) props.testConf = opts.c
 	if (opts.h) props.hlq = opts.h
@@ -173,14 +186,14 @@ def getTestProperties(String[] args) {
 	else props.load_PDS = props.hlq + ".LOAD"
 	if (opts.w) props.workspace = opts.w
 	buildUtils.assertBuildProperties('outDir,load_PDS')
-	if (opts.cc) props.codeCoverage = true  
-	
+	if (opts.cc) props.codeCoverage = 'true'
+		
 	if (!props.zunitDirs) {
 	   buildUtils.assertBuildProperties('testConf')
 	}
 
 	println("** Building files mapped to ${this.class.getName()}.groovy script")
-    
+
 	if (opts.arguments()) {
 	    props.buildFile = opts.arguments()[0].trim()
 	    println(props.buildFile)
@@ -189,7 +202,7 @@ def getTestProperties(String[] args) {
 		System.exit(1)
 	}	
 
-	if (props.testConf) { 
+	if (props.testConf) {
 		props.load(new File("${props.testConf}/zunit.properties"))
 	}
 
@@ -203,37 +216,37 @@ def getTestProperties(String[] args) {
 //	println("steplib: ${props.zunit_STEPLIB}")
 }
 
-def checkIfTestExists(String member) {  
+def checkIfTestExists(String member) {
 	println member
 	testCase = ''
 	playBackFile = ''
 	def testfile = new File("${props.workspace}/${props.zunitDirs}/${member}.json")
 	println testfile
-     
+
     if (testfile.exists()) {
        (testCase,playBackFile) = retrieveTestparms(testfile)
-       println("Execute testcase ${testCase} and playback file ${playBackFile}")       
+       println("Execute testcase ${testCase} and playback file ${playBackFile}")
     }
     else println("No testcases exist for the program ${member}")
-    
+
 	return [testCase,playBackFile]
 }
 
 def retrieveTestparms(File testfile) {
-    println(testfile)
     testCase = ''
     playBackFile = ''
-    testfile.eachLine { cfgline ->
-       String str = cfgline
-       if (testCase == '') {
-           testCase = str.substring(str.indexOf('testCase.name')+24,str.indexOf('testCase.name')+32)
-       }
-       if (playBackFile == '') {
-           str = str.substring(str.indexOf('<PlaybackFile id='))
-           String[] strarr = str.split('\\\\"')
-           playBackFile = strarr[3]
-       }
-    }
+    def InputJSON = new JsonSlurper().parseText(testfile.text)
+
+    def testCaseInfo = InputJSON.get('config')
+       // println "testCaseInfo:" +  testCaseInfo
+
+    def genXML = testCaseInfo.keySet().iterator().next
+    xmlText = genXML.getValue()
+    def list = new XmlSlurper().parseText(xmlText)
+
+    testCase = list."OutputProgramArray"."OutputProgram".@fileName.text()
+
+    playBackFile = list."PlaybackFileArray"."PlaybackFile".@name.text()
     return [testCase.toUpperCase(),playBackFile.toUpperCase()]
 
 }
