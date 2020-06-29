@@ -4,5 +4,5 @@ encoding//jcl/@DB2DEL.jcl=UTF-8
 encoding//jcl/DB2CRE.jcl=UTF-8
 encoding//jcl/ZUNITCC.jcl=UTF-8
 encoding//jcl/ZUNITRUN.jcl=UTF-8
-encoding//testcases/THCAPDB0.cbl=Cp1252
 encoding//testcases/THCIPDB0.cbl=Cp1252
+encoding//testcases/THCMADB0.cbl=Cp1252
