@@ -7,8 +7,8 @@ def linuxAgent = 'master'
 def agentLabel = 'zOSSlaveJ'
 // ---------------------------Verbose
 //def verbose = false
-//def buildVerbose = ''
-def buildVerbose = '-v'
+def buildVerbose = ''
+// verbose -> def buildVerbose = '-v'
 // ---------------------------Hosts and ports
 def linuxHost = '10.1.1.1'
 def zosHost = '10.1.1.2'
@@ -22,15 +22,15 @@ def dbbGroovyzOpts= ''
 def gitCredId = '8e1d5827-1f44-4168-a2a1-f47f78e3ea92'
 def gitCred = '8e1d5827-1f44-4168-a2a1-f47f78e3ea92'
 def gitOrg = 'RegiBrazil'
-def gitHost = 'github.com'
-//def gitHost = '140.82.114.3'
-//def srcGitRepo =   'git@github.com:RegiBrazil/DemoHealthCare.git'
-// Example def srcGitRepo =   'git@'+gitHost+':'+gitOrg+'/nazare-demo-genapp.git'
-def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/DemoHealthCare.git'
-def adminGitRepo =   'git@'+gitHost+':'+gitOrg+'/DemoHealthCare.git'
 def srcGitBranch = 'sandbox'
-def adminGitBranch = 'sandbox'
-def detectGitOrg = true
+def gitHost = 'github.com'
+def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/DemoHealthCare.git'
+// def gitHost = '140.82.114.3'
+// Example def srcGitRepo =   'git@'+gitHost+':'+gitOrg+'/nazare-demo-genapp.git'
+//def srcGitRepo =   'git@github.com:RegiBrazil/DemoHealthCare.git'
+//def adminGitRepo =   'git@'+gitHost+':'+gitOrg+'/DemoHealthCare.git'
+//def adminGitBranch = 'sandbox'
+//def detectGitOrg = true
 // ----------------------------- Build type
 //  -i: incremental
 //  -f: full
@@ -39,7 +39,7 @@ def buildType='-i'
 // def buildType='-f'
 // -----------------------Build properties related to a specific jenkins agent
 def buildConf=''
-// UCD - not being used here
+// UCD definitions
 def ucdApplication = 'A HC zOS COBOL CICS'
 def ucdProcess = 'Deploy HC to CICS + MF to Windows'
 def ucdComponent = 'HC_CICS'
@@ -59,21 +59,17 @@ pipeline { agent { label linuxAgent }
       options { skipDefaultCheckout(true) }
       stages { stage('Init') {steps { script {env.DBB_HOME = '/var/dbb/v.1.0.6'
 			echo "branch: ${env.BRANCH_NAME}"
-
 	if ( env.ZOS_HOST ) {zosHost = env.ZOS_HOST} 					
 	else {env.ZOS_HOST = zosHost}
-
 	if ( env.ZOS_PORT ) {zosPort = env.ZOS_PORT} 						
 	else {env.ZOS_PORT = zosPort} 				
-
 	if ( env.BRANCH_NAME != null ) {srcGitBranch = env.BRANCH_NAME; }
-			
         if ( env.DEBUG_PIPELINE && env.DEBUG_PIPELINE == 'true' )     	
         {verbose = true  buildVerbose = '-v'
 	echo sh(script: 'env|sort', returnStdout: true)}
-        }
-	}
-	}
+         }
+	         }
+	                            }
 // -------------------------------------------------------------------------
         stage('Git Clone/Refresh') {
             agent { label agentLabel }
@@ -102,7 +98,7 @@ pipeline { agent { label linuxAgent }
 				]]
 				],								
 				userRemoteConfigs: [[credentialsId: gitCred,url: srcGitRepo, ]]])
-		       } } } }
+		                   } } } }
 // -------------------------------------------------------------------------
 		stage('DBB Build') {
 			steps {
@@ -249,12 +245,12 @@ pipeline { agent { label linuxAgent }
             }
         }
 // -------------------------------------------------------------------------
-        /*  ---  Commented all post this is for GitLab
+//        /*  ---  Commented all post this is for GitLab
 post { 	success { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'success') }
 	unstable { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'success') }		
 	failure { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'failed') }
         aborted { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'canceled') }		
      }	
-   ----- end of comments   */
+//   ----- end of comments   */
 }
 }
