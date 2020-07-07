@@ -2,6 +2,7 @@
 // * July 07, 2020  - for Healthcare demo  (HCAZ) using RegiBrazil
 // Global variables
 // This is modified to use GitHub and DemoHealthCare repo
+    println "**Regi IF using VPN the gitHost must be physical IP"
 // ---------------------------Agents labels
 def linuxAgent = 'master'
 def agentLabel = 'zOSSlaveJ'
@@ -57,8 +58,10 @@ def needDeploy = true
 pipeline { agent { label linuxAgent }
       environment { WORK_DIR = "${WORKSPACE}/BUILD-${BUILD_NUMBER}" }
       options { skipDefaultCheckout(true) }
+// -------------------------------------------------------------------------
       stages { stage('Init') {steps { script {env.DBB_HOME = '/var/dbb/v.1.0.6'
-			echo "branch: ${env.BRANCH_NAME}"
+//			echo "branch: ${env.BRANCH_NAME}"
+       			echo "branch: ${srcGitBranch}"
 	if ( env.ZOS_HOST ) {zosHost = env.ZOS_HOST} 					
 	else {env.ZOS_HOST = zosHost}
 	if ( env.ZOS_PORT ) {zosPort = env.ZOS_PORT} 						
@@ -180,6 +183,7 @@ pipeline { agent { label linuxAgent }
 		}
 // -------------------------------------------------------------------------
 		stage('Code coverage gating') {
+                println "on Linux IDz is listening for the Code Coverage"
 			steps {
 				script{
 					if (needTest) {
