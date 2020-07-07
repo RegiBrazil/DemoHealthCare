@@ -1,5 +1,6 @@
 @groovy.transform.BaseScript com.ibm.dbb.groovy.ScriptLoader baseScript
 // updated to change HLQ to right name (from json file) - June 28, 2020
+// bad char at line  50 and 51
 // look for %regi**
 import com.ibm.dbb.repository.*
 import com.ibm.dbb.dependency.*
