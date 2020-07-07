@@ -60,7 +60,6 @@ pipeline { agent { label linuxAgent }
       options { skipDefaultCheckout(true) }
 // -------------------------------------------------------------------------
       stages { stage('Init') {steps { script {env.DBB_HOME = '/var/dbb/v.1.0.6'
-//			echo "branch: ${env.BRANCH_NAME}"
        	echo "Repository: ${srcGitRepo}"
        	echo "branch: ${srcGitBranch}"
 	if ( env.ZOS_HOST ) {zosHost = env.ZOS_HOST} 					
@@ -184,9 +183,9 @@ pipeline { agent { label linuxAgent }
 		}
 // -------------------------------------------------------------------------
 		stage('Code coverage gating') {
-                println "on Linux IDz is listening for the Code Coverage"
 			steps {
 				script{
+                println "on Linux IDz is listening for the Code Coverage"
 					if (needTest) {
 					    node( linuxAgent ) {
 							sh "cp ${WORKSPACE}/../Testcases/results/* ${WORKSPACE}/BUILD-${BUILD_NUMBER}/ccresults/"
