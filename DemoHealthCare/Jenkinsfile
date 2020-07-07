@@ -238,19 +238,19 @@ pipeline { agent { label linuxAgent }
                                         deployVersions: ucdComponent + ':latest'],
                                     siteName: 'Urbancode server'])
 //  siteName  is the UCD Profile name that is defined at Jenkins configuration
-                            }
-                        }
-                    }
-                }
-            }
-        }
+                                   }
+                                           }
+                                      }
+                       }
+                  }
 // -------------------------------------------------------------------------
 //        /*  ---  Commented all post this is for GitLab
 post { 	success { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'success') }
 	unstable { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'success') }		
 	failure { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'failed') }
         aborted { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'canceled') }		
-     }	
+                                          }	
 //   ----- end of comments   */
+        }
 }
 }
