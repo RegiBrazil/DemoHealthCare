@@ -61,7 +61,8 @@ pipeline { agent { label linuxAgent }
 // -------------------------------------------------------------------------
       stages { stage('Init') {steps { script {env.DBB_HOME = '/var/dbb/v.1.0.6'
 //			echo "branch: ${env.BRANCH_NAME}"
-       			echo "branch: ${srcGitBranch}"
+       	echo "Repository: ${srcGitRepo}"
+       	echo "branch: ${srcGitBranch}"
 	if ( env.ZOS_HOST ) {zosHost = env.ZOS_HOST} 					
 	else {env.ZOS_HOST = zosHost}
 	if ( env.ZOS_PORT ) {zosPort = env.ZOS_PORT} 						
