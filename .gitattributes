@@ -26,4 +26,3 @@
 *.sh working-tree-encoding=ibm-1047 git-encoding=utf-8
 *.properties working-tree-encoding=ibm-1047 git-encoding=utf-8
 *.json working-tree-encoding=ibm-1047 git-encoding=utf-8
->>>>>>> branch 'sandbox' of git@github.com:RegiBrazil/DemoHealthCare.git
