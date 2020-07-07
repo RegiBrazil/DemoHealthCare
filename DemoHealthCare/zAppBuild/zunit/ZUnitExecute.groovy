@@ -1,6 +1,6 @@
 @groovy.transform.BaseScript com.ibm.dbb.groovy.ScriptLoader baseScript
-//  updated to change HLQ to right name (from json file) - June 26, 2020
-// fixed " that caused bad UTF8 and fail the clone - July 06 2020
+// updated to change HLQ to right name (from json file) - June 26, 2020
+// fixed " on line 49 that caused bad UTF8 and fail the clone - July 06 2020
 import com.ibm.dbb.repository.*
 import com.ibm.dbb.dependency.*
 import com.ibm.dbb.build.*
@@ -52,7 +52,6 @@ def runTest(String member) {
   println("playbackfile: " + playBackFile)
  // ---------------------------------------------------
 	if (testCase) {
-		println "**REGI we have a testcase"
 		println "**REGI we have a testcase"
 		println("playBackFile:" + playBackFile)
 		def programName = member.toUpperCase()

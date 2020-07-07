@@ -95,6 +95,7 @@ pipeline { agent { label linuxAgent }
 				[$class:'SparseCheckoutPath', path:'cobol_cics_db2/'],
 				[$class:'SparseCheckoutPath', path:'bms/'],
 				[$class:'SparseCheckoutPath', path:'copybook/'],
+       				[$class:'SparseCheckoutPath', path:'jcl/'],
 				[$class:'SparseCheckoutPath', path:'application-conf/'],
 				[$class:'SparseCheckoutPath', path:'zAppBuild/'],
 				[$class:'SparseCheckoutPath', path:'testcases/']
