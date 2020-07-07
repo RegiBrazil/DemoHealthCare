@@ -101,10 +101,7 @@ pipeline { agent { label linuxAgent }
 				]]
 				],								
 				userRemoteConfigs: [[credentialsId: gitCred,url: srcGitRepo, ]]])
-		       }
-		       }
-		       }
-		       }
+		       } } } }
 // -------------------------------------------------------------------------
 		stage('DBB Build') {
 			steps {

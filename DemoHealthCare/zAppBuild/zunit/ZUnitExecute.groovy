@@ -1,7 +1,6 @@
 @groovy.transform.BaseScript com.ibm.dbb.groovy.ScriptLoader baseScript
-// updated to change HLQ to right name (from json file) - June 28, 2020
-// bad char at line  50 and 51
-// look for %regi**
+//  updated to change HLQ to right name (from json file) - June 26, 2020
+// fixed " that caused bad UTF8 and fail the clone - July 06 2020
 import com.ibm.dbb.repository.*
 import com.ibm.dbb.dependency.*
 import com.ibm.dbb.build.*
@@ -46,11 +45,11 @@ def runTest(String member) {
 	
  	(testCase,playBackFile) = checkIfTestExists(member)
 
-  // --------------- added by %regi** Suman fix- June 26 , 2020
-    def Test = playBackFile.replaceAll(“<HLQ>“,,“JENKINS”)
-  	println(“test ” + Test)
+  // --------------- added by **regi** Suman fix- June 26 , 2020
+    def Test = playBackFile.replaceAll("<HLQ>",,"JENKINS")
+  	println("test " + Test)
   playBackFile = Test
-  println(“playbackfile: ” + playBackFile)
+  println("playbackfile: " + playBackFile)
  // ---------------------------------------------------
 	if (testCase) {
 		println "**REGI we have a testcase"
