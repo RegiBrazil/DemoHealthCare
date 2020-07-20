@@ -1,7 +1,7 @@
       ******************************************************************
       * Used on CICS trx HCAZ                                          *
       * invoked hen selecting option 2 - Inquire Patient               *
-      * Changed July 17 2020 - 12:16
+      * Changed July 20 2020 - 16:20
       *  Look for %bug to introdude a  bug                             *
       ******************************************************************
        IDENTIFICATION DIVISION.
@@ -152,9 +152,9 @@
            END-Evaluate.
       * %bug -- the line below will introduce a BUG
       *----------------------------------------------------------------*
-      *        IF DB2-PATIENT-ID = 1
-      *             MOVE "BAD NAME" to CA-FIRST-NAME
-      *        END-IF
+               IF DB2-PATIENT-ID = 1
+                    MOVE "BAD NAME" to CA-FIRST-NAME
+               END-IF
       *----------------------------------------------------------------*
            EXIT.
       *----------------------------------------------------------------*
