@@ -78,8 +78,8 @@ pipeline { agent { label linuxAgent }
             steps {
  // added by Regi ---------- delete directory DemoHealthCare
  //  since the 3rd build does not take the change.. BUG?
- //                   sh(script: 'rm -rf ${WORKSPACE}/DemoHealthCare', returnStdout: true)
- / /                  sh(script: 'rm -rf ${WORKSPACE}/DemoHealthCare@tmp', returnStdout: true)
+                    sh(script: 'rm -rf ${WORKSPACE}/DemoHealthCare', returnStdout: true)
+                    sh(script: 'rm -rf ${WORKSPACE}/DemoHealthCare@tmp', returnStdout: true)
  // ------------------------------------
                 script {
                     dir('DemoHealthCare') {
