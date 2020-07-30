@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="225bc1d4-cf83-4ea9-a749-b5162d045534">
+<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="62becf85-21e8-45c3-a930-125b760093f1">
   <runner:options contOnTestCaseError="false" contOnTestCaseFail="true" contOnTestError="false" contOnTestFail="true"/>
   <runner:testCase moduleName="THCMADB0">
     <test name="TEST2" entry="TEST_TEST2" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCMADB02" commarea="32500" skipTest="false" resetFile="true" stubCall="true" dummy="false"/>
