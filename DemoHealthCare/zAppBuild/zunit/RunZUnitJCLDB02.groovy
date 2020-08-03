@@ -2,7 +2,8 @@ import com.ibm.dbb.build.CopyToHFS
 import com.ibm.dbb.build.DBBConstants
 import com.ibm.dbb.build.JCLExec
 /**************************************************************************
- * Changed Mar 20, 20209 by Regi - Unit Test for HCMADB02 and CC
+ * Changed Aug 03, 2020 by Regi - Unit Test for HCMADB02 using WAZI VTP
+ * Eliminated the CC
  * The following sample shows how to use JCLExec API to execute a ZUnit and
  * display the results in the console.
  * This sample assumes that user has setup the ZUnit and a JCL to execute the
@@ -12,7 +13,6 @@ import com.ibm.dbb.build.JCLExec
  *    2.  The data set contains the output of the ZUnit result.
  * for program HCMADB02t:
  *    Running ZUnit in JCL 'IBMUSER.ZUNIT.JCL(ZRUNDB02)'
- *    The JCL Job  completed with Max-RC CC 0004
  *    ****************** Module [J05CMORT] ******************
  * zUnit Test Runner 2.0.0.1 started at 2019-11-06T13:57:22.885...
  * Test count: 1
