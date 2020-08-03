@@ -505,7 +505,8 @@ def finalizeBuildProcess(Map args) {
 	println("** Total build time  : $duration\n")
 
 // ADDED to INVOKE ZUNIT    by Regi April 14, 2020
-def zunitrun = "/var/dbb/work_github/DemoHealthCare/zAppBuild/zunit/RunZUnitJCLCCDB02.groovy"
+//was def zunitrun = "/var/dbb/work_github/DemoHealthCare/zAppBuild/zunit/RunZUnitJCLCCDB02.groovy"
+def zunitrun = "/var/dbb/work_github/DemoHealthCare/zAppBuild/zunit/RunZUnitJCLDB02.groovy"
 run(new File(zunitrun))
 println("** zUnit finished at $endTime")
 //  end of ZUNIT

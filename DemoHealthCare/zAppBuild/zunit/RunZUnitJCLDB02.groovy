@@ -2,7 +2,7 @@ import com.ibm.dbb.build.CopyToHFS
 import com.ibm.dbb.build.DBBConstants
 import com.ibm.dbb.build.JCLExec
 /**************************************************************************
- * Changed Mar 20, 20209 by Regi - Unit Test for HCMADB02
+ * Changed Mar 20, 20209 by Regi - Unit Test for HCMADB02 and CC
  * The following sample shows how to use JCLExec API to execute a ZUnit and
  * display the results in the console.
  * This sample assumes that user has setup the ZUnit and a JCL to execute the
@@ -10,9 +10,16 @@ import com.ibm.dbb.build.JCLExec
  * This sample requires:
  *    1.  The data set contains the JCL.
  *    2.  The data set contains the output of the ZUnit result.
- *
+ * for program HCMADB02t:
  *    Running ZUnit in JCL 'IBMUSER.ZUNIT.JCL(ZRUNDB02)'
  *    The JCL Job  completed with Max-RC CC 0004
+ *    ****************** Module [J05CMORT] ******************
+ * zUnit Test Runner 2.0.0.1 started at 2019-11-06T13:57:22.885...
+ * Test count: 1
+ * Tests passed: 1
+ * Tests failed: 0
+ * Tests in error: 0
+ *
  *********************************************************************************/
 
 /* DBB_CONF must be set for running JCLExec */
@@ -21,15 +28,19 @@ import com.ibm.dbb.build.JCLExec
 def confDir = "/var/dbb/v.1.0.6/conf"
 
 /* The data set contains the ZUnit JCL */
+/* For example:  IBMUSER.ZUNIT.JCL       */
 def jclDataset = "IBMUSER.ZUNIT.JCL"
 
 /* The ZUnit JCL */
+/* For example:  ZRUNDB02   */
 def jclMember =  "ZRUNDB02"
 
 /* The data set contains the output member */
+/* For example:  IBMUSER.ZUNIT.BZURES         */
 def resultDataset = "IBMUSER.ZUNIT.BZURES"
 
 /* The output member */
+/* For example:   THCMADB0     */
 def resultMember = "THCMADB0"
 
 println "Running ZUnit in JCL '$jclDataset($jclMember)'"
