@@ -43,5 +43,3 @@ if (maxRC == 'CC 0000')
     println "The JCL Job ${exec.submittedJobId} completed successfully"
 else
     println "The JCL Job ${exec.submittedJobId} completed with Max-RC: $maxRC"
-
-}
