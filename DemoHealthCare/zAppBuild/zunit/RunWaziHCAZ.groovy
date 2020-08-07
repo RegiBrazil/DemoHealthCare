@@ -1,4 +1,4 @@
-// %regi - Aug 07 - Su
+// %regi - Aug 07 - Submit WAZI JCL
 
 
 import com.ibm.dbb.build.CopyToHFS
@@ -44,8 +44,6 @@ if (maxRC == 'CC 0000')
 else
     println "The JCL Job ${exec.submittedJobId} completed with Max-RC: $maxRC"
 
-//------------------------------------------------------NOT DOING THIS ----------------
-/*  %regi ---> Dont need that
 /* Copy the result from the data set member to a temporary file on zFS to parse the XML */
 def resultFile = File.createTempFile(resultMember, 'xml')
 def copyRc = new CopyToHFS().dataset(resultDataset).member(resultMember).file(resultFile).copyMode(DBBConstants.CopyMode.BINARY).execute()
@@ -83,4 +81,3 @@ static def statusToString(def status)
 {
     return status.equalsIgnoreCase('pass') ? 'PASS' : 'FAIL'
 }
-*/
