@@ -20,16 +20,8 @@ import com.ibm.dbb.build.JCLExec
 def confDir = "/var/dbb/v.1.0.6/conf"
 /* The data set contains the ZUnit JCL */
 def jclDataset = "IBMUSER.POT.JCL"
-
-/* The ZUnit JCL */
-/* For example:  HCAZPLAY   */
+/* The WAZI JCL */
 def jclMember =  "HCAZPLAY"
-
-/* The data set contains the output member */
-def resultDataset = "IBMUSER.ZUNIT.BZURES"
-
-/* The output member */
-def resultMember = "THCIPDB0"
 
 println "Running Wazi VTP using JCL '$jclDataset($jclMember)'"
 
@@ -43,3 +35,4 @@ if (maxRC == 'CC 0000')
     println "The JCL Job ${exec.submittedJobId} completed successfully"
 else
     println "The JCL Job ${exec.submittedJobId} completed with Max-RC: $maxRC"
+    		println "**REGI This is the JCL that will be submitted to batch"
