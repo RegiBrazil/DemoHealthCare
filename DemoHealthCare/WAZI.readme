@@ -1,0 +1,21 @@
+1. Go to CICSTS5.4
+2. Clear screen.
+3. type bzus *  --> RECORDING STARTED for TERMINAL *
+4. Clear screen
+5. type HCAZ  and navigate to 2.1   and 2.2 and PF3 to end
+6. Clear screen
+7. type bzue    --> RECORDING STOPPED FOR TERMINAL *
+8. clear
+9. type bzuw    --> 82 RECORDS WRITTEN TO QUEUE BZUQ
+10.clear
+11.cemt inq td
+12.go to BZUQ  mouse to Ope and enter -> See BZU100.ZUNIT.PLAYBACK
+13.Close
+14.PF3
+15.use JCL from IBMUSER.POT.JCL(HCAZPLAY)
+16 Submit the JCL the RC must be 0
+
+
+
+
+
