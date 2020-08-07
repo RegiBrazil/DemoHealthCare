@@ -44,40 +44,4 @@ if (maxRC == 'CC 0000')
 else
     println "The JCL Job ${exec.submittedJobId} completed with Max-RC: $maxRC"
 
-/* Copy the result from the data set member to a temporary file on zFS to parse the XML */
-def resultFile = File.createTempFile(resultMember, 'xml')
-def copyRc = new CopyToHFS().dataset(resultDataset).member(resultMember).file(resultFile).copyMode(DBBConstants.CopyMode.BINARY).execute()
-
-if (copyRc != 0)
-{
-    println "Error copying result file from ${resultDataset($resultMember)} to $resultFile"
-    System.exit(1)
-}
-
-/* Parsing the result file and display summary of the result */
-def runnerResult = new XmlParser().parse(resultFile)
-def testCase = runnerResult.testCase
-println "****************** Module ${testCase.@moduleName} ******************"
-println "Name:       ${testCase.@name[0]}"
-println "Status:     ${statusToString(testCase.@result[0])}"
-println "Test cases: ${testCase.@tests[0]} (${testCase.@passed[0]} passed, ${testCase.@failures[0]} failed, ${testCase.@errors[0]} errors)"
-println "Details: "
-
-testCase.test.each { test ->
-    if (test.@result == 'pass')
-        print '    '
-    else
-        print ' x  '
-    println "${test.@name}"
-}
-
-
-/**
- * A helper to display the status as either PASS or FAIL
- * @param status the status from the zunit runner
- * @return a string representing the status
- */
-static def statusToString(def status)
-{
-    return status.equalsIgnoreCase('pass') ? 'PASS' : 'FAIL'
 }
