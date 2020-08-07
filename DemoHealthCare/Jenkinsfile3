@@ -218,6 +218,20 @@ pipeline { agent { label linuxAgent }
 			     }
 	                                      }
 */
+// %regi - added WAZI-VTP ---------------------------------------------------------------------
+        stage('Wazi VTP - Integration test') {
+            steps {
+                script{
+                       echo "Wazi VTP recoreded must have 00 RC "
+                    if ( needDeploy ) {
+                        node( agentLabel ) {
+                             println "Submit JCL to execute Wazi-VTP- run RunWaziHCAZ.groovy"
+   sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/zunit/RunWaziHCAZ.groovy"
+                                           }
+                                      }
+                     }
+                  }
+                                          }
 // -------------------------------------------------------------------------
         stage('Push to UCD Code station') {
             steps {
