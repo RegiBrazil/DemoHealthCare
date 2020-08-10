@@ -29,6 +29,8 @@ println "Running Wazi VTP using JCL '$jclDataset($jclMember)'"
 def exec = new JCLExec()
 int rc = exec.dataset(jclDataset).member(jclMember).confDir(confDir).execute()
 
+ println "**REGI This is the JCL that will be submitted to batch"
+ 		println(jclMember)
 /* Check the return code from the submitted job */
 def maxRC = exec.maxRC
 if (maxRC == 'CC 0000')
@@ -45,4 +47,3 @@ else
    exec.saveOutput(output,jclOut)
    println jclOut.text
    // ----------------------------------------------------------------
-    		println "**REGI This is the JCL that will be submitted to batch"

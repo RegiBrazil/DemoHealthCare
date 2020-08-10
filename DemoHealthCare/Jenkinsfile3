@@ -10,8 +10,8 @@ def linuxAgent = 'master'
 def agentLabel = 'zOSSlaveJ'
 // ---------------------------Verbose
 //def verbose = false
-def buildVerbose = ''
-// verbose -> def buildVerbose = '-v'
+// def buildVerbose = ''
+def buildVerbose = '-v'
 // ---------------------------Hosts and ports
 def linuxHost = '10.1.1.1'
 def zosHost = '10.1.1.2'
@@ -228,11 +228,6 @@ pipeline { agent { label linuxAgent }
                              println "Submit JCL to execute Wazi-VTP- run RunWaziHCAZ.groovy"
    sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/zunit/RunWaziHCAZ.groovy"
                                            }
-   // -- Print the job output
-   File jclOut = new File("/var/jenkins/jclout.out")
-   jclExec.saveOutput(jclOut)
-   println jclOut.text
-   // ----------------------------------------------------------------
                                       }
                      }
                   }
