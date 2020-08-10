@@ -36,8 +36,13 @@ if (maxRC == 'CC 0000')
 else
     println "The JCL Job ${exec.submittedJobId} completed with Max-RC: $maxRC"
   // -- Print the job output
-   File jclOut = new File("/var/jenkins/jclout.out")
-   exec.saveOutput(jclOut)
-   println jclOut.text
+  // File jclOut = new File("/var/jenkins/jclout.out")
+  // exec.saveOutput(jclOut)
+  // println jclOut.text
+ // ------------ Print output written at DD NAME SYSOUT
+   def output ="SYSOUT"
+   File2 jclOut2 = new File("/var/jenkins/jclout.out")
+   exec.saveOutput(output,jclOut2)
+   println jclOut2.text
    // ----------------------------------------------------------------
     		println "**REGI This is the JCL that will be submitted to batch"
