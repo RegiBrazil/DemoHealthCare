@@ -41,8 +41,8 @@ else
   // println jclOut.text
  // ------------ Print output written at DD NAME SYSOUT
    def output ="SYSOUT"
-   File2 jclOut2 = new File("/var/jenkins/jclout.out")
-   exec.saveOutput(output,jclOut2)
-   println jclOut2.text
+   File jclOut = new File("/var/jenkins/jclout.out")
+   exec.saveOutput(output,jclOut)
+   println jclOut.text
    // ----------------------------------------------------------------
     		println "**REGI This is the JCL that will be submitted to batch"
