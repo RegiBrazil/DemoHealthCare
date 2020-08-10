@@ -1,4 +1,4 @@
-// %regi - Aug 07 - Submit WAZI JCL
+// %regi - Aug 10 - Submit WAZI JCL
 
 
 import com.ibm.dbb.build.CopyToHFS
@@ -35,4 +35,9 @@ if (maxRC == 'CC 0000')
     println "The JCL Job ${exec.submittedJobId} completed successfully"
 else
     println "The JCL Job ${exec.submittedJobId} completed with Max-RC: $maxRC"
+  // -- Print the job output
+   File jclOut = new File("/var/jenkins/jclout.out")
+   exec.saveOutput(jclOut)
+   println jclOut.text
+   // ----------------------------------------------------------------
     		println "**REGI This is the JCL that will be submitted to batch"
