@@ -228,6 +228,11 @@ pipeline { agent { label linuxAgent }
                              println "Submit JCL to execute Wazi-VTP- run RunWaziHCAZ.groovy"
    sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/zunit/RunWaziHCAZ.groovy"
                                            }
+   // -- Print the job output
+   File jclOut = new File("/var/jenkins/jclout.out")
+   jclExec.saveOutput(jclOut)
+   println jclOut.text
+   // ----------------------------------------------------------------
                                       }
                      }
                   }
