@@ -1,7 +1,6 @@
 // Updated by Regi to work with Regi Repo at github.ibm.com
-// * Aug 07, 2020  - for Healthcare demo  (HCAZ) using RegiBrazil
-// * 1. Removed zUnit with CC, made no CC - see %regi
-// * 2. Added JCL to WAZI-VTP run  - see %regi
+// * Aug 12, 2020  - for Healthcare demo  (HCAZ) using RegiBrazil
+// * 1. Added JCL to WAZI-VTP run  - see %regi
 // Global variables
 // This is modified to use GitHub and DemoHealthCare repo
     println "**Regi IF using VPN the gitHost must be physical IP"
@@ -155,7 +154,6 @@ pipeline { agent { label linuxAgent }
 				script{
 					if (needTest) {
              // ------ Linux agent ----------------------------------
-/* %regi ---> removed CC activities at Linux - (Aug 07)
 						node( linuxAgent ) {
 							sh "echo $PWD"
 							sh "rm -rf ${WORKSPACE}/../Testcases/results"
@@ -163,12 +161,9 @@ pipeline { agent { label linuxAgent }
 							sh "mkdir ${WORKSPACE}/BUILD-${BUILD_NUMBER}"
 							sh "mkdir ${WORKSPACE}/BUILD-${BUILD_NUMBER}/ccresults"
 						                   }
-*/
             // ------ z/OS agent  ----------------------------------
 					    node( agentLabel ) {	
-// was		sh "$DBB_HOME/bin/groovyz  ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/zunit/ZUnitExecute.groovy -w ${WORKSPACE} --testConf ${WORKSPACE}/DemoHealthCare/DemoHealthCare/application-conf/ --cc --outDir ${WORKSPACE}/BUILD-${BUILD_NUMBER} --hlq ${dbbHlq}.HEALTH  ${WORKSPACE}/BUILD-${BUILD_NUMBER}/buildList-1047.txt" 											
-//%regi - Aug 07 - below: removed option cc for "code coverage"
-		sh "$DBB_HOME/bin/groovyz  ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/zunit/ZUnitExecute.groovy -w ${WORKSPACE} --testConf ${WORKSPACE}/DemoHealthCare/DemoHealthCare/application-conf/  --outDir ${WORKSPACE}/BUILD-${BUILD_NUMBER} --hlq ${dbbHlq}.HEALTH  ${WORKSPACE}/BUILD-${BUILD_NUMBER}/buildList-1047.txt" 											
+  sh "$DBB_HOME/bin/groovyz  ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/zunit/ZUnitExecute.groovy -w ${WORKSPACE} --testConf ${WORKSPACE}/DemoHealthCare/DemoHealthCare/application-conf/ --cc --outDir ${WORKSPACE}/BUILD-${BUILD_NUMBER} --hlq ${dbbHlq}.HEALTH  ${WORKSPACE}/BUILD-${BUILD_NUMBER}/buildList-1047.txt" 											
  					                       }
 					              }
 				      }
@@ -187,7 +182,6 @@ pipeline { agent { label linuxAgent }
 			}
 		}
 // -------------------------------------------------------------------------
-/* %regi --> no CC at this time
 		stage('Code coverage gating') {
 			steps {
 				script{
@@ -217,7 +211,6 @@ pipeline { agent { label linuxAgent }
 				        }
 			     }
 	                                      }
-*/
 // %regi - added WAZI-VTP ---------------------------------------------------------------------
         stage('Wazi VTP - Integration test') {
             steps {
