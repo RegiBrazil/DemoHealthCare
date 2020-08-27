@@ -6,8 +6,8 @@
     println "**Regi IF using VPN the gitHost must be physical IP"
 // ---------------------------Agents labels
 def linuxAgent = 'master'
-//def agentLabel = 'zOSSlaveJ'
-def agentLabel = 'zosZDT'
+def agentLabel = 'zOSSlaveJ'
+//def agentLabel = 'zosZDT'
 // ---------------------------Verbose
 //def verbose = false
 def buildVerbose = ''
