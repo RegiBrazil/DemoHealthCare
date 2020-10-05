@@ -5,7 +5,8 @@
     println "**Regi IF using VPN the gitHost must be physical IP"
 // ---------------------------Agents labels
 def linuxAgent = 'master'
-def agentLabel = 'zOSSlaveJ'
+// def agentLabel = 'zOSSlaveJ' > error ambiguous argument 'origin/sandbox^{commit}': unknown revision or path not in the working tree.
+def agentLabel = 'zosZDT'
 // ---------------------------Verbose
 //def verbose = false
 def buildVerbose = ''
