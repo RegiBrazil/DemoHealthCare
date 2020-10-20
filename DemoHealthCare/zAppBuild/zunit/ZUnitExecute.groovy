@@ -1,6 +1,6 @@
 @groovy.transform.BaseScript com.ibm.dbb.groovy.ScriptLoader baseScript
 // updated to change HLQ to right name (from json file) - June 26, 2020
-// Look for JENKINS on HLQ now
+// updated the loadlib to props.zunit_STEPLIB - Oct 20
 // Look for IBMUSER on HLQ now
 // fixed " on line 49 that caused bad UTF8 and fail the clone - July 06 2020
 import com.ibm.dbb.repository.*
@@ -67,8 +67,11 @@ def runTest(String member) {
 		"//* \n" +
 		"//RUNNER EXEC PROC=BZUPPLAY, \n" +
 		"//  BZUCFG=${props.zunit_ConfFolder}(${testCase}), \n" +
-		"//  BZUCBK=${props.load_PDS}, \n" +
-		"//  BZULOD=${props.load_PDS}, \n" +
+ // - Regi added the IBMUSER.GIT.ZMOBILE.LOAD instead of JENKINS.HEALTH.LOAD
+ //		"//  BZUCBK=${props.load_PDS}, \n" +
+ //		"//  BZULOD=${props.load_PDS}, \n" +
+		"//  BZUCBK=${props.zunit_STEPLIB}, \n" +
+		"//  BZULOD=${props.zunit_STEPLIB}, \n" +
 		"//  PARM=('STOP=E,REPORT=XML') \n" +
 		"//BZUPLAY DD DISP=SHR, \n" +
 		"//  DSN=${playBackFile} \n" +
