@@ -48,7 +48,7 @@ def runTest(String member) {
  	(testCase,playBackFile) = checkIfTestExists(member)
 
   // --------------- added by **regi** Suman fix- June 26 , 2020
-    def Test = playBackFile.replaceAll("<HLQ>",,"JENKINS")
+  //  def Test = playBackFile.replaceAll("<HLQ>",,"JENKINS")
     def Test = playBackFile.replaceAll("<HLQ>",,"IBMUSER")
   	println("test " + Test)
   playBackFile = Test
