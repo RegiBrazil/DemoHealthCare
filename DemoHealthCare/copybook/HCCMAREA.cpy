@@ -1,23 +1,4 @@
       ******************************************************************
-      *                                                                *
-      * LICENSED MATERIALS - PROPERTY OF IBM                           *
-      *                                                                *
-      * "RESTRICTED MATERIALS OF IBM"                                  *
-      *                                                                *
-      * (C) COPYRIGHT IBM CORP. 2011, 2014 ALL RIGHTS RESERVED         *
-      *                                                                *
-      * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,      *
-      * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE                   *
-      * CONTRACT WITH IBM CORPORATION                                  *
-      *                                                                *
-      *                                                                *
-      *               COPYBOOK for COMMAREA structure                  *
-      *                                                                *
-      *   This commarea can be used for most functions                 *
-      *                                                                *
-      *                                                                *
-      *                                                                *
-      ******************************************************************
            03 CA-REQUEST-ID            PIC X(6).
            03 CA-RETURN-CODE           PIC 9(2).
            03 CA-PATIENT-ID            PIC 9(10).

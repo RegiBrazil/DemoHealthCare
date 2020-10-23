@@ -1,32 +1,13 @@
-      ******************************************************************
-      *                                                                *
-      * LICENSED MATERIALS - PROPERTY OF IBM                           *
-      *                                                                *
-      * "RESTRICTED MATERIALS OF IBM"                                  *
-      *                                                                *
-      * (C) COPYRIGHT IBM CORP. 2014 ALL RIGHTS RESERVED               *
-      *                                                                *
-      * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,      *
-      * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE                   *
-      * CONTRACT WITH IBM CORPORATION                                  *
-      *                                                                *
-      *                                                                *
       *                    Inquire Patient                             *
-      *                                                                *
-      *   To obtain Patient's details from database.                   *
-      *                                                                *
+      *   change  obtain Patient's details from database.                   *
       * Patient Inquire Business logic                                 *
-      *                                                                *
       ******************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. HCP1BI01.
        ENVIRONMENT DIVISION.
        CONFIGURATION SECTION.
-      *
        DATA DIVISION.
-
        WORKING-STORAGE SECTION.
-
       *----------------------------------------------------------------*
       * Common defintions                                              *
       *----------------------------------------------------------------*
@@ -101,6 +82,11 @@
            MOVE CA-PATIENT-ID TO EM-PATNUM
 
            PERFORM GET-PATIENT-INFO.
+
+      *  %bug - This introduce a bug on the program HCIPDB01
+      *         IF CA-PATIENT-ID = 1
+      *             MOVE "BAD NAME" to CA-FIRST-NAME
+      *        END-IF
 
       *----------------------------------------------------------------*
       * END PROGRAM and return to caller                               *
