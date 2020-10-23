@@ -14,7 +14,7 @@
       * Run time (debug) infomation for this invocation
         01  WS-HEADER.
            03 WS-EYECATCHER            PIC X(16)
-                                        VALUE 'HCP1BI01------WS'.
+                                         VALUE 'HCP1BI01------WS'.
            03 WS-TRANSID               PIC X(4).
            03 WS-TERMID                PIC X(4).
            03 WS-TASKNUM               PIC 9(7).
@@ -80,13 +80,10 @@
            END-IF
 
            MOVE CA-PATIENT-ID TO EM-PATNUM
+      *    %bug - introduced a BUG
+      *     MOVE 99 TO CA-PATIENT-ID
 
            PERFORM GET-PATIENT-INFO.
-
-      *  %bug - This introduce a bug on the program HCIPDB01
-      *         IF CA-PATIENT-ID = 1
-      *             MOVE "BAD NAME" to CA-FIRST-NAME
-      *        END-IF
 
       *----------------------------------------------------------------*
       * END PROGRAM and return to caller                               *
