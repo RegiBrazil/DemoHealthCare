@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="e63e3060-25c6-42ad-ad5e-c53fc7d4b2ce">
+<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="bdd13a86-8879-4cf6-a86f-655239a5a053">
   <runner:options contOnTestCaseError="false" contOnTestCaseFail="true" contOnTestError="false" contOnTestFail="true"/>
   <runner:testCase moduleName="THCIPDB0">
-    <test name="TEST2" entry="TEST_TEST2" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="32500" skipTest="false" resetFile="true" stubCall="true" dummy="false"/>
+    <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCIPDB01" commarea="32500" skipTest="true" resetFile="true" stubCall="true" dummy="true"/>
+    <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCIPDB01" commarea="32500" skipTest="true" resetFile="false" stubCall="true" dummy="true"/>
     <test name="TEST3" entry="TEST_TEST3" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="32500" skipTest="false" resetFile="false" stubCall="true" dummy="false"/>
+    <test name="TEST4" entry="TEST_TEST4" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="32500" skipTest="false" resetFile="false" stubCall="true" dummy="false"/>
   </runner:testCase>
   <runner:playback moduleName="HCIPDB01">
     <playbackFile name="&lt;HLQ>.ZUNIT.PB.HCIPDB01" localName="HCIPDB01.plbck"/>
