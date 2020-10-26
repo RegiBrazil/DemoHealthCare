@@ -1,16 +1,4 @@
-      ******************************************************************
-      *                                                                *
-      * LICENSED MATERIALS - PROPERTY OF IBM                           *
-      *                                                                *
-      * "RESTRICTED MATERIALS OF IBM"                                  *
-      *                                                                *
-      * (C) COPYRIGHT IBM CORP. 2014 ALL RIGHTS RESERVED               *
-      *                                                                *
-      * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,      *
-      * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE                   *
-      * CONTRACT WITH IBM CORPORATION                                  *
-      *                                                                *
-      *                                                                *
+      * Chnaged Oct 26 - 10:40 - Regi
       *                    Inquire Threshold                           *
       *                                                                *
       *   Business Logic to obtain patient threshold                   *
