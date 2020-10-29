@@ -1,21 +1,8 @@
-      ******************************************************************
-      *                                                                *
-      * LICENSED MATERIALS - PROPERTY OF IBM                           *
-      *                                                                *
-      * "RESTRICTED MATERIALS OF IBM"                                  *
-      *                                                                *
-      * (C) COPYRIGHT IBM CORP. 2014 ALL RIGHTS RESERVED               *
-      *                                                                *
-      * US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION,      *
-      * OR DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE                   *
-      * CONTRACT WITH IBM CORPORATION                                  *
-      *                                                                *
-      *                                                                *
       *                    Patient menu                                *
       *                                                                *
       * Menu for Patient transactions                                  *
       *                                                                *
-      *                                                                *
+      *   changed Oct 28 17:25                                *
       *                                                                *
       ******************************************************************
        IDENTIFICATION DIVISION.

@@ -1,4 +1,4 @@
-      *   Inquire Patient    - Oct 26 2020 11:29 *
+      *   Inquire Patient    - Oct 28 2020 14:28 *
       *   change  obtain Patient's details from database.              *
       * Patient Inquire Business logic                                 *
       ******************************************************************
@@ -38,7 +38,8 @@
       *    L I N K A G E     S E C T I O N
       ******************************************************************
        LINKAGE SECTION.
-
+      *  %bug1 - introduced a BUG Name onCOMMAREA affects others but
+      *  not this program
        01  DFHCOMMAREA.
              COPY HCCMAREA.
 
@@ -80,11 +81,12 @@
            END-IF
 
            MOVE CA-PATIENT-ID TO EM-PATNUM
-      *    %bug - introduced a BUG
-      *     MOVE 99 TO CA-PATIENT-ID
-
            PERFORM GET-PATIENT-INFO.
 
+      *    %bug2 - introduced a BUG
+      *         IF CA-PATIENT-ID = 1
+      *              MOVE "123456789123456789012" to CA-LAST-NAME
+      *         END-IF.
       *----------------------------------------------------------------*
       * END PROGRAM and return to caller                               *
       *----------------------------------------------------------------*

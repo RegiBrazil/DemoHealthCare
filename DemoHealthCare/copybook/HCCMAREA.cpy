@@ -1,5 +1,5 @@
-      ******************************************************************
-      * Modificado em Oct 26 - 09:40   Regi *
+      *   changed 0ct 28 16:30
+      * increasing last-name to 22 may break other programs
       ******************************************************************
            03 CA-REQUEST-ID            PIC X(6).
            03 CA-RETURN-CODE           PIC 9(2).
@@ -8,9 +8,10 @@
       *    Fields used in INQ All and ADD patient
            03 CA-PATIENT-REQUEST REDEFINES CA-REQUEST-SPECIFIC.
               05 CA-INS-CARD-NUM       PIC X(10).
-      *        05 CA-FIRST-NAME         PIC X(12).
               05 CA-FIRST-NAME         PIC X(10).
               05 CA-LAST-NAME          PIC X(20).
+      ^    %bug - this below may introduce  a bug
+      *        05 CA-LAST-NAME          PIC X(22).
               05 CA-DOB                PIC X(10).
               05 CA-ADDRESS            PIC X(20).
               05 CA-CITY               PIC X(20).

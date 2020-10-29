@@ -1,7 +1,7 @@
-      *                                                                *
+      * Changed Oct 28  17:19
       * Menu for Patient thresholds                                    *
       *                                                                *
-      *                                                                *
+      *  cause broken code if not compiled after COMMAREA changes
       *                                                                *
       ******************************************************************
        IDENTIFICATION DIVISION.

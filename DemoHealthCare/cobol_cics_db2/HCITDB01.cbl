@@ -1,4 +1,4 @@
-      *  Changed Oct 26 2020 * Regi
+      *  Changed Oct 28 2020 14:36   * Regi
       *                    Inquire Threshold                           *
       *                                                                *
       * Select threshold details from DB2 table                        *
