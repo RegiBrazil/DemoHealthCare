@@ -1,4 +1,4 @@
-      *   changed 0ct 28 16:30
+      *   changed 0ct 29 15:00
       * increasing last-name to 22 may break other programs
       ******************************************************************
            03 CA-REQUEST-ID            PIC X(6).
@@ -10,7 +10,7 @@
               05 CA-INS-CARD-NUM       PIC X(10).
               05 CA-FIRST-NAME         PIC X(10).
               05 CA-LAST-NAME          PIC X(20).
-      ^    %bug - this below may introduce  a bug
+      *    %bug - this below may introduce  a bug
       *        05 CA-LAST-NAME          PIC X(22).
               05 CA-DOB                PIC X(10).
               05 CA-ADDRESS            PIC X(20).
