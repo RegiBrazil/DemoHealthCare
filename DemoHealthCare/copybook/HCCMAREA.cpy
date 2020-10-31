@@ -1,5 +1,7 @@
-      *   changed 0ct 29 17:12
-      * increasing last-name to 22 may break other programs
+      *               COPYBOOK for COMMAREA structure                  *
+      *   This commarea can be used for most functions                 *
+      *
+      *   look for %bug  to introduce a bug adding new field
       ******************************************************************
            03 CA-REQUEST-ID            PIC X(6).
            03 CA-RETURN-CODE           PIC 9(2).
@@ -10,8 +12,6 @@
               05 CA-INS-CARD-NUM       PIC X(10).
               05 CA-FIRST-NAME         PIC X(10).
               05 CA-LAST-NAME          PIC X(20).
-      *    %bug - this below may introduce  a bug
-      *        05 CA-LAST-NAME          PIC X(22).
               05 CA-DOB                PIC X(10).
               05 CA-ADDRESS            PIC X(20).
               05 CA-CITY               PIC X(20).
@@ -19,8 +19,12 @@
               05 CA-PHONE-MOBILE       PIC X(20).
               05 CA-EMAIL-ADDRESS      PIC X(50).
               05 CA-USERID             PIC X(10).
-              05 CA-ADDITIONAL-DATA    PIC X(32302).
-      *        05 CA-ADDITIONAL-DATA    PIC X(32300).
+      * -----------------------------------------
+      *  %bug un-comment below to add new field
+               05 CA-NEWFIELD           PIC X(2).
+               05 CA-ADDITIONAL-DATA    PIC X(32300).
+      * -----------------------------------------
+      *       05 CA-ADDITIONAL-DATA    PIC X(32302).
       *    Fields used in Add Patient User
            03 CA-PATIENT-USER-REQUEST REDEFINES CA-REQUEST-SPECIFIC.
               05 CA-USERNAME           PIC X(10).

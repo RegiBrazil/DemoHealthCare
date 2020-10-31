@@ -3,7 +3,7 @@
       * Menu for Patient transactions                                  *
       *                                                                *
       *   changed Oct 28 17:25                                *
-      *                                                                *
+      *   when recompiled with a new COMMAREA breaks the VTP
       ******************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. HCP1PL01.

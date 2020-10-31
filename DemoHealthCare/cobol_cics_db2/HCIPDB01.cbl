@@ -1,8 +1,8 @@
       *****************************************************************
       * Used on CICS trx HCAZ
       * invoked hen selecting option 2 - Inquire Patient
-      * Changed Oct 29 2020 -   15:00
-      *  Look for %bug to introdude a  bug  or CA-FIRST-NAME
+      * Changed Oct 30 2020 -   16:34
+      *  Look for %bug to introduce bugs
       ******************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. HCIPDB01.
@@ -54,6 +54,7 @@
        LINKAGE SECTION.
        01  DFHCOMMAREA.
            EXEC SQL
+      *    %bug1 add a new field
              INCLUDE HCCMAREA
            END-EXEC.
       ******************************************************************
@@ -150,11 +151,12 @@
                PERFORM WRITE-ERROR-MESSAGE
                EXEC CICS RETURN END-EXEC
            END-Evaluate.
-      * %bug -- the line below will introduce a BUG
+      * %bug2 -- the line below will introduce a BUG
       *----------------------------------------------------------------*
-      *         IF DB2-PATIENT-ID = 1
-      *              MOVE "BAD NAME" to CA-FIRST-NAME
-      *         END-IF
+                IF DB2-PATIENT-ID = 1
+                     MOVE "BAD NAME" to CA-USERID
+                END-IF
+                 MOVE "02" to CA-NEWFIELD
       *----------------------------------------------------------------*
            EXIT.
       *----------------------------------------------------------------*
