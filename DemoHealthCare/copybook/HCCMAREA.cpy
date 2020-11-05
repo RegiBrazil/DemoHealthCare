@@ -21,10 +21,10 @@
               05 CA-USERID             PIC X(10).
       * -----------------------------------------
       *  %bug un-comment below to add new field
-      *        05 CA-NEWFIELD           PIC X(2).
-      *        05 CA-ADDITIONAL-DATA    PIC X(32300).
+               05 CA-NEWFIELD           PIC X(2).
+               05 CA-ADDITIONAL-DATA    PIC X(32300).
       * -----------------------------------------
-              05 CA-ADDITIONAL-DATA    PIC X(32302).
+      *       05 CA-ADDITIONAL-DATA    PIC X(32302).
       *    Fields used in Add Patient User
            03 CA-PATIENT-USER-REQUEST REDEFINES CA-REQUEST-SPECIFIC.
               05 CA-USERNAME           PIC X(10).
