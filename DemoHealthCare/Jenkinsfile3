@@ -1,4 +1,5 @@
 // Updated by Regi to work with Regi Repo at github.ibm.com
+// * Nov 11, 2020  - for Nov 9 demo - see line 228 - Wazi VRP with new changed commarea
 // * Aug 12, 2020  - for Healthcare demo  (HCAZ) using RegiBrazil
 // * 1. Added JCL to WAZI-VTP run  - see %regi
 // Global variables
@@ -225,7 +226,9 @@ pipeline { agent { label linuxAgent }
                     if ( needDeploy ) {
                         node( agentLabel ) {
                              println "Submit JCL to execute Wazi-VTP- run RunWaziHCAZ.groovy"
-   sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/zunit/RunWaziHCAZ.groovy"
+ // without changed commarea  sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/zunit/RunWaziHCAZ.groovy"
+ // below with changed commarea
+   sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/zunit/RunWaziHCAZ2.groovy"
                                            }
                                       }
                      }
