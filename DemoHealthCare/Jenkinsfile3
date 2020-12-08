@@ -123,9 +123,7 @@ pipeline { agent { label linuxAgent }
 							}
 						}
 						
- // below is without DBB Daemon
- // sh "$DBB_HOME/bin/groovyz  ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE} --application DemoHealthCare --sourceDir ${WORKSPACE}/DemoHealthCare  --workDir ${WORKSPACE}/BUILD-${BUILD_NUMBER}  --hlq ${dbbHlq}.HEALTH --url $dbbUrl -pw ADMIN $buildType  $buildVerbose $buildExtraParams "
-  sh "$DBB_HOME/bin/groovyz  -DBB_DAEMON_HOST  127.0.0.1 -DBB_DAEMON_PORT  8080  ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE} --application DemoHealthCare --sourceDir ${WORKSPACE}/DemoHealthCare  --workDir ${WORKSPACE}/BUILD-${BUILD_NUMBER}  --hlq ${dbbHlq}.HEALTH --url $dbbUrl -pw ADMIN $buildType  $buildVerbose $buildExtraParams "
+  sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE} --application DemoHealthCare --sourceDir ${WORKSPACE}/DemoHealthCare  --workDir ${WORKSPACE}/BUILD-${BUILD_NUMBER}  --hlq ${dbbHlq}.HEALTH --url $dbbUrl -pw ADMIN $buildType  $buildVerbose $buildExtraParams "
   def files = findFiles(glob: "**BUILD-${BUILD_NUMBER}/buildList.txt")
 // Do not deploy if nothing in the build list
 						needDeploy = files.length > 0 && files[0].length > 0
