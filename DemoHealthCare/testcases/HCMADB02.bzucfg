@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="722c89d0-b4cb-4e5b-9871-bb7c03142f0e">
+<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="3feefc1a-706d-43f5-b048-d19419db4070">
   <runner:options contOnTestCaseError="false" contOnTestCaseFail="true" contOnTestError="false" contOnTestFail="true"/>
   <runner:testCase moduleName="THCMADB0">
-    <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCMADB02" commarea="32500" skipTest="true" resetFile="true" stubCall="true" dummy="true"/>
-    <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCMADB02" commarea="32500" skipTest="true" resetFile="false" stubCall="true" dummy="true"/>
-    <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCMADB02" commarea="32500" skipTest="true" resetFile="false" stubCall="true" dummy="true"/>
-    <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCMADB02" commarea="32500" skipTest="true" resetFile="false" stubCall="true" dummy="true"/>
-    <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCMADB02" commarea="32500" skipTest="true" resetFile="false" stubCall="true" dummy="true"/>
+    <test name="TEST2" entry="TEST_TEST2" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCMADB02" commarea="32500" skipTest="false" resetFile="true" stubCall="true" dummy="false"/>
     <test name="TEST3" entry="TEST_TEST3" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCMADB02" commarea="32500" skipTest="false" resetFile="false" stubCall="true" dummy="false"/>
-    <test name="TEST4" entry="TEST_TEST4" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCMADB02" commarea="32500" skipTest="false" resetFile="false" stubCall="true" dummy="false"/>
   </runner:testCase>
   <runner:playback moduleName="HCMADB02">
     <playbackFile name="&lt;HLQ>.ZUNIT.PB.HCMADB02" localName="HCMADB02.plbck"/>
