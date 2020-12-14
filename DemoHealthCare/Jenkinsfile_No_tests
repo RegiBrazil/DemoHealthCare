@@ -1,0 +1,293 @@
+// Updated by Regi to work with Regi Repo at github.ibm.com
+// * Dec 148 2020  - see line 228 - no zUNIT or Wazi-VTP
+// * Aug 12, 2020  - for Healthcare demo  (HCAZ) using RegiBrazil
+// * 1. Added JCL to WAZI-VTP run  - see %regi
+// Global variables
+// This is modified to use GitHub and DemoHealthCare repo
+    println "**Regi IF using VPN the gitHost must be physical IP"
+// ---------------------------Agents labels
+def linuxAgent = 'master'
+//def agentLabel = 'zOSSlaveJ'
+def agentLabel = 'zosZDT'
+// ---------------------------Verbose
+//def verbose = false
+def buildVerbose = ''
+// verbose --> def buildVerbose = '-v'
+// ---------------------------Hosts and ports
+def linuxHost = '10.1.1.1'
+def zosHost = '10.1.1.2'
+def zosPort = '22'
+// ----------------------------DBB
+def dbbUrl = 'https://'+linuxHost+':11043/dbb'
+def dbbHlq = 'JENKINS'
+def dbbDaemonPort = '8080'
+def dbbGroovyzOpts= ''
+// ---------------------------- Git (GitHub)
+def gitCredId = '8e1d5827-1f44-4168-a2a1-f47f78e3ea92'
+def gitCred = '8e1d5827-1f44-4168-a2a1-f47f78e3ea92'
+def gitOrg = 'RegiBrazil'
+def srcGitBranch = 'sandbox'
+def gitHost = 'github.com'
+def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/DemoHealthCare.git'
+// def gitHost = '140.82.114.3'
+// Example def srcGitRepo =   'git@'+gitHost+':'+gitOrg+'/nazare-demo-genapp.git'
+//def srcGitRepo =   'git@github.com:RegiBrazil/DemoHealthCare.git'
+//def adminGitRepo =   'git@'+gitHost+':'+gitOrg+'/DemoHealthCare.git'
+//def adminGitBranch = 'sandbox'
+//def detectGitOrg = true
+// ----------------------------- Build type
+//  -i: incremental
+//  -f: full
+//  -c: only changed source
+def buildType='-i'
+// def buildType='-f'
+// -----------------------Build properties related to a specific jenkins agent
+def buildConf=''
+// UCD definitions
+def ucdApplication = 'A HC zOS COBOL CICS'
+def ucdProcess = 'Deploy HC to CICS + MF to Windows'
+def ucdComponent = 'HC_CICS'
+def ucdEnv = 'TEST'
+// def ucdBuztool = '/apps/ucd/v7/bin/buztool.sh'
+// ----------------------------  Build extra args
+//  -d: COBOL debug options
+def buildExtraParams='-d'
+// ----------------------------- code coverage daemon port
+def ccPORT='8005'
+def CCDIR='/Appliance/IDz14.2.1'
+// --------------------------- Deploy only in case of source code modifications
+def needDeploy = true
+// ===========================================================
+pipeline { agent { label linuxAgent }
+      environment { WORK_DIR = "${WORKSPACE}/BUILD-${BUILD_NUMBER}" }
+      options { skipDefaultCheckout(true) }
+// -------------------------------------------------------------------------
+      stages { stage('Init') {steps { script {env.DBB_HOME = '/var/dbb/v.1.0.6'
+       	echo "Repository: ${srcGitRepo} - branch: ${srcGitBranch} "
+	if ( env.ZOS_HOST ) {zosHost = env.ZOS_HOST} 					
+	else {env.ZOS_HOST = zosHost}
+	if ( env.ZOS_PORT ) {zosPort = env.ZOS_PORT} 						
+	else {env.ZOS_PORT = zosPort} 				
+	if ( env.BRANCH_NAME != null ) {srcGitBranch = env.BRANCH_NAME; }
+        if ( env.DEBUG_PIPELINE && env.DEBUG_PIPELINE == 'true' )     	
+        {verbose = true  buildVerbose = '-v'
+	echo sh(script: 'env|sort', returnStdout: true)}
+         }
+	         }
+	                            }
+// -------------------------------------------------------------------------
+        stage('Git Clone/Refresh') {
+            agent { label agentLabel }
+            steps {
+            echo "Clone from GitHub to Rocket Git on zOS"
+ // added by Regi ---------- delete directory DemoHealthCare
+ //  since the 3rd build does not take the change.. BUG?
+                    sh(script: 'rm -rf ${WORKSPACE}/DemoHealthCare', returnStdout: true)
+                    sh(script: 'rm -rf ${WORKSPACE}/DemoHealthCare@tmp', returnStdout: true)
+ // ------------------------------------
+                script {
+                    dir('DemoHealthCare') {
+                    println "branch: ${srcGitBranch}"
+                    println "WORKSPACE  is ${WORKSPACE}"
+ // -----------------------------------------------------------------
+	            scmVars = checkout([$class: 'GitSCM', branches: [[name: srcGitBranch]],
+		    doGenerateSubmoduleConfigurations: false,
+		    submoduleCfg: [],
+    extensions: [[$class: 'SparseCheckoutPaths',sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'cobol_cics/'],
+				[$class:'SparseCheckoutPath', path:'cobol_cics_db2/'],
+				[$class:'SparseCheckoutPath', path:'bms/'],
+				[$class:'SparseCheckoutPath', path:'copybook/'],
+       				[$class:'SparseCheckoutPath', path:'jcl/'],
+				[$class:'SparseCheckoutPath', path:'application-conf/'],
+				[$class:'SparseCheckoutPath', path:'zAppBuild/'],
+				[$class:'SparseCheckoutPath', path:'testcases/']
+				]]
+				],								
+				userRemoteConfigs: [[credentialsId: gitCred,url: srcGitRepo, ]]])
+		                   } } } }
+// -------------------------------------------------------------------------
+		stage('DBB Build') {
+			steps {
+           echo "Perform the Build on required changes"
+				script{
+					node( agentLabel ) {
+						if ( dbbDaemonPort != null ) {
+							def r = sh script: "netstat | grep ${dbbDaemonPort}", returnStatus: true
+							if ( r == 0 ) {
+								println "DBB Daemon is running.."
+								dbbGroovyzOpts = "-DBB_DAEMON_PORT ${dbbDaemonPort} -DBB_DAEMON_HOST 127.0.0.1"
+							}
+							else {
+								println "WARNING: DBB Daemon not running build will be longer.."
+							//	currentBuild.result = "UNSTABLE"
+							}
+						}
+						
+  sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE} --application DemoHealthCare --sourceDir ${WORKSPACE}/DemoHealthCare  --workDir ${WORKSPACE}/BUILD-${BUILD_NUMBER}  --hlq ${dbbHlq}.HEALTH --url $dbbUrl -pw ADMIN $buildType  $buildVerbose $buildExtraParams "
+  def files = findFiles(glob: "**BUILD-${BUILD_NUMBER}/buildList.txt")
+// Do not deploy if nothing in the build list
+						needDeploy = files.length > 0 && files[0].length > 0
+						if (needDeploy) {
+						   sh "iconv -f ISO8859-1 -t IBM-1047 ${WORKSPACE}/BUILD-${BUILD_NUMBER}/buildList.txt > ${WORKSPACE}/BUILD-${BUILD_NUMBER}/buildList-1047.txt"
+			        		}
+						def files1 = findFiles(glob: "**BUILD-${BUILD_NUMBER}/buildList-1047.txt")
+			        		needTest = files1.length > 0 && files1[0].length > 0
+						
+ 					}
+				}
+			}
+			post {
+				always {
+					node( agentLabel ) {
+						dir("${WORKSPACE}/BUILD-${BUILD_NUMBER}") {
+							archiveArtifacts allowEmptyArchive: true,
+											artifacts: '*.log,*.json,*.html',
+											excludes: '*clist',
+											onlyIfSuccessful: false
+						}
+					}
+				}
+			}
+		}
+// -------------------------------------------------------------------------
+// Bypass Unit tests and Wazi VTP
+// -------------------------------------------------------------------------
+   /*
+		stage('Unit Tests') {
+			steps {
+           echo "Perform ZUnit to check if all is working as it was"
+                               println "**Unit Test stage starts NO CC **"
+                               println("** needTest = " + needTest)
+
+				script{
+					if (needTest) {
+             // ------ Linux agent ----------------------------------
+						node( linuxAgent ) {
+							sh "echo $PWD"
+							sh "rm -rf ${WORKSPACE}/../Testcases/results"
+							sh "mkdir ${WORKSPACE}/../Testcases/results"
+							sh "mkdir ${WORKSPACE}/BUILD-${BUILD_NUMBER}"
+							sh "mkdir ${WORKSPACE}/BUILD-${BUILD_NUMBER}/ccresults"
+						                   }
+            // ------ z/OS agent  ----------------------------------
+					    node( agentLabel ) {	
+  sh "$DBB_HOME/bin/groovyz  ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/zunit/ZUnitExecute.groovy -w ${WORKSPACE} --testConf ${WORKSPACE}/DemoHealthCare/DemoHealthCare/application-conf/ --cc --outDir ${WORKSPACE}/BUILD-${BUILD_NUMBER} --hlq ${dbbHlq}.HEALTH  ${WORKSPACE}/BUILD-${BUILD_NUMBER}/buildList-1047.txt" 											
+ 					                       }
+					              }
+				      }
+			      }
+			post {
+				always {
+					node( agentLabel ) {
+						dir("${WORKSPACE}/BUILD-${BUILD_NUMBER}") {
+							archiveArtifacts allowEmptyArchive: true,
+											artifacts: '*.bzures',
+											excludes: '*clist',
+											onlyIfSuccessful: false
+						}
+					}
+				}
+			}
+		}
+// -------------------------------------------------------------------------
+		stage('Code coverage gating') {
+			steps {
+				script{
+                   echo "Verify the percentage of the was covered by the previous test case"
+                println "on Linux IDz is listening for the Code Coverage"
+					if (needTest) {
+					    node( linuxAgent ) {
+							sh "cp ${WORKSPACE}/../Testcases/results/* ${WORKSPACE}/BUILD-${BUILD_NUMBER}/ccresults/"
+							int ccpercent = sh (script: "$CCDIR/headless-cc/ccresults.sh ${WORKSPACE}/BUILD-${BUILD_NUMBER}/ccresults", returnStdout: true)
+							println "${ccpercent} + ccpercent"
+							if (ccpercent < 40) {
+								println "This build is unstable - the code coverage is less than 40%"
+								currentBuild.result = "UNSTABLE"
+							                    }
+						               }
+					              }
+				      }
+			      }
+			post {
+				always {
+					node( linuxAgent ) {
+						dir("${WORKSPACE}/BUILD-${BUILD_NUMBER}/ccresults") {
+							archiveArtifacts allowEmptyArchive: true,
+											artifacts: '*cczip',
+											onlyIfSuccessful: false
+						                                                    }
+					                   }
+				        }
+			     }
+	                                      }
+// %regi - added WAZI-VTP ---------------------------------------------------------------------
+        stage('Wazi VTP - Integration test') {
+            steps {
+            echo "Perform Wazi VTP to check if CICS transactions are working as it was"
+                script{
+                       echo "Wazi VTP recoreded must have 00 RC "
+                    if ( needDeploy ) {
+                        node( agentLabel ) {
+                             println "Submit JCL to execute Wazi-VTP- run RunWaziHCAZ.groovy"
+ // without changed commarea is below
+ sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/zunit/RunWaziHCAZ.groovy"
+ // below with changed commarea for Nov 09 demo
+ //  sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/zunit/RunWaziHCAZ2.groovy"
+                                           }
+                                      }
+                     }
+                  }
+                                          }
+// -------------------------------------------------------------------------
+// Bypass Unit tests and Wazi VTP
+// -------------------------------------------------------------------------
+   */
+// -------------------------------------------------------------------------
+        stage('Push to UCD Code station') {
+            steps {
+                script{
+                echo "Move the binaries created by build to UCD to be deployed"
+                    if ( needDeploy ) {
+                        node( agentLabel ) {
+                             println "Push to UCD Code station"
+   sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/DemoHealthCare/DemoHealthCare/zAppBuild/utilities/deploy.groovy --buztool  /apps/ucd/v7/bin/buztool.sh  --workDir ${WORKSPACE}/BUILD-${BUILD_NUMBER}  --component HC_CICS  "
+                                           }
+                                      }
+                     }
+                  }
+                                          }
+// -------------------------------------------------------------------------
+        stage('Deploy to CICS using UCD') {
+            steps {
+                script{
+                echo "Invoke UCD and wait for the deplyment to be completed"
+                    if ( needDeploy ) {
+                        node( linuxAgent ) {
+                            script{
+                                step(
+                                  [$class: 'UCDeployPublisher',
+                                    deploy: [
+                                        deployApp: ucdApplication,
+                                        deployDesc: 'Requested from Jenkins',
+                                        deployEnv: ucdEnv,
+                                        deployOnlyChanged: false,
+                                        deployProc: ucdProcess,
+                                        deployVersions: ucdComponent + ':latest'],
+                                    siteName: 'Urbancode server'])
+//  siteName  is the UCD Profile name that is defined at Jenkins configuration
+                                   }
+                                           }
+                                      }
+                       }
+                  }
+// -------------------------------------------------------------------------
+/*  ---  Commented all post this is for GitLab
+post { 	success { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'success') }
+	unstable { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'success') }		
+	failure { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'failed') }
+        aborted { updateGitlabCommitStatus(name: "Jenkins Job: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${env.BUILD_DISPLAY_NAME}]' (${env.BUILD_URL})", state: 'canceled') }		
+     }	
+----- end of comments   */
+}
+}
+}
