@@ -1,5 +1,5 @@
 // Updated by Regi to work with Regi Repo at github.ibm.com
-// * Dec 148 2020  - see line 228 - no zUNIT or Wazi-VTP
+// * Dec 148 2020  - see line 156 - no zUNIT or Wazi-VTP
 // * Aug 12, 2020  - for Healthcare demo  (HCAZ) using RegiBrazil
 // * 1. Added JCL to WAZI-VTP run  - see %regi
 // Global variables
@@ -28,6 +28,7 @@ def gitCred = '8e1d5827-1f44-4168-a2a1-f47f78e3ea92'
 def gitOrg = 'RegiBrazil'
 def srcGitBranch = 'sandbox'
 def gitHost = 'github.com'
+def gitHost = '140.82.114.4'
 def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/DemoHealthCare.git'
 // def gitHost = '140.82.114.3'
 // Example def srcGitRepo =   'git@'+gitHost+':'+gitOrg+'/nazare-demo-genapp.git'
