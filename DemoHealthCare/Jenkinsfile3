@@ -1,5 +1,5 @@
 // Updated by Regi to work with Regi Repo at github.ibm.com
-// * Dec 08 2020  - see line 228 - Wazi VRP without  new changed commarea
+// *Feb 06 zos agent v 1,1 * Dec 08 2020  - see line 228 - Wazi VRP without  new changed commarea
 // * Aug 12, 2020  - for Healthcare demo  (HCAZ) using RegiBrazil
 // * 1. Added JCL to WAZI-VTP run  - see %regi
 // Global variables
@@ -8,7 +8,8 @@
 // ---------------------------Agents labels
 def linuxAgent = 'master'
 //def agentLabel = 'zOSSlaveJ'
-def agentLabel = 'zosZDT'
+// DBB 1.0.6 --> def agentLabel = 'zosZDT'
+def agentLabel = 'e2e-pipeline'
 // ---------------------------Verbose
 //def verbose = false
 def buildVerbose = ''
