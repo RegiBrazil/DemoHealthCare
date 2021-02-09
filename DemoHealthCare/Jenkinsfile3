@@ -1,5 +1,5 @@
 // Updated by Regi to work with Regi Repo at github.ibm.com
-// * Dec 08 2020  - see line 228 - Wazi VRP without  new changed commarea
+// *Feb 2021 - DBB V1.1 * Dec 08 2020  - see line 228 - Wazi VRP without  new changed commarea
 // * Aug 12, 2020  - for Healthcare demo  (HCAZ) using RegiBrazil
 // * 1. Added JCL to WAZI-VTP run  - see %regi
 // Global variables
@@ -63,8 +63,9 @@ pipeline { agent { label linuxAgent }
       environment { WORK_DIR = "${WORKSPACE}/BUILD-${BUILD_NUMBER}" }
       options { skipDefaultCheckout(true) }
 // -------------------------------------------------------------------------
-      stages { stage('Init') {steps { script {env.DBB_HOME = '/var/dbb/v.1.0.6'
-       	echo "Repository: ${srcGitRepo} - branch: ${srcGitBranch} "
+//      stages { stage('Init') {steps { script {env.DBB_HOME = '/var/dbb/v.1.0.6'
+      stages { stage('Init') {steps { script {env.DBB_HOME = '/var/dbb/1.1'
+       	echo "Repository: ${srcGitRepo} - branch: ${srcGitBranch} DBB: ${DBB_HOME}"
 	if ( env.ZOS_HOST ) {zosHost = env.ZOS_HOST} 					
 	else {env.ZOS_HOST = zosHost}
 	if ( env.ZOS_PORT ) {zosPort = env.ZOS_PORT} 						

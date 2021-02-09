@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="98cb0e1a-df0f-48ff-a82e-2f56c9621606">
+<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="87cc005e-eae3-4b1b-8aeb-a64a8e686f54">
   <runner:options contOnTestCaseError="false" contOnTestCaseFail="true" contOnTestError="false" contOnTestFail="true"/>
   <runner:testCase moduleName="THCIPDB0">
     <test name="TEST2" entry="TEST_TEST2" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="32500" skipTest="false" resetFile="true" stubCall="true" dummy="false"/>
