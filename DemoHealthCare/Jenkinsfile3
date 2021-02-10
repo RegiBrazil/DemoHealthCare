@@ -41,7 +41,8 @@ def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/DemoHealthCare.git'
 //  -f: full
 //  -c: only changed source
 //  -r  reset - remove the collection DemoHealthCare-sandbox
-def buildType='-i'
+// def buildType='-i'
+def buildType='-f'
 // -----------------------Build properties related to a specific jenkins agent
 def buildConf=''
 // UCD definitions
