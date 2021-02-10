@@ -11,4 +11,3 @@
 *.groovy zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
 *.sh zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
 *.properties zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
-*.json zos-working-tree-encoding=ibm-1047 git-encoding=utf-8
