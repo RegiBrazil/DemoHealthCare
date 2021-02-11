@@ -1,6 +1,6 @@
       *             08    COPYBOOK for COMMAREA structure                  *
       *   This commarea can be used for most functions                 *
-      *   Changed Feb 10 20:49
+      *   Changed Feb 11 17:45
       *   look for %bug  to introduce a bug adding new field
       ******************************************************************
            03 CA-REQUEST-ID            PIC X(6).
