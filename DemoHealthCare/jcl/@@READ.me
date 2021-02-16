@@ -1,0 +1,23 @@
+To install the HCAZ on CICSTS55 of WAZI Sandbox (regi Feb 2021):
+
+1. Execut ALLOC.JCL, @ASMMAP, @CDEF121, @CDEFDB2 and @DB2CRE
+1.1  move /u/zmobile from your VMWARE sandbox to Wazi Sandbox (not sure about that)
+2. Move the CICSTS55 that is on jcl folder to USER.Z24B.PROCLIB
+
+3. Move all COBOL progs from cobol_cics and cobol-cics-Db2 to IBMUSER.GIT.ZMOBILE.COBOL
+
+4. Move all Copybooks from copybook to IBMUSER.GIT.ZMOBILE.COPY
+
+5. Move LINKPARM.jcl that is on jcl folder to IBMUSER.GIT.ZMOBILE.JCL
+
+6. Compile all programs using @COBOL.jcl
+
+7. change  the member DFH550.SYSIN(DFH$SIP1) adding the new list as below:
+   GRPLIST=(XYZLIST,GENALIST,HCAZLIST)
+
+8. Restart CICSTS55
+
+8. Try HCAZ   also see if genapp SSC1 is also working
+
+-> Note that the CICSTS55 original is also at  FEU.Z24B.PROCLIB
+-> Genap is at  CB12.V51.LOAD
