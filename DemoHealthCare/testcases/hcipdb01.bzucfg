@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="b96b31b1-5f34-4dfc-b90b-2eed6e01d536">
+<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="16f1a73f-6134-4e10-80a3-eb21774c6b63">
   <runner:options contOnTestCaseError="false" contOnTestCaseFail="true" contOnTestError="false" contOnTestFail="true"/>
   <runner:testCase moduleName="THCIPDB0">
     <test name="TEST2" entry="TEST_TEST2" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="32500" skipTest="false" resetFile="true" stubCall="true" dummy="false"/>
     <test name="TEST3" entry="TEST_TEST3" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="32500" skipTest="false" resetFile="false" stubCall="true" dummy="false"/>
-    <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCIPDB01" commarea="32500" skipTest="true" resetFile="false" stubCall="true" dummy="true"/>
-    <test name="TEST5" entry="TEST_TEST5" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="32500" skipTest="false" resetFile="false" stubCall="true" dummy="false"/>
     <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCIPDB01" commarea="32500" skipTest="true" resetFile="true" stubCall="true" dummy="true"/>
     <test name="TEST4" entry="TEST_TEST4" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="32500" skipTest="false" resetFile="false" stubCall="true" dummy="false"/>
-    <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCIPDB01" commarea="32500" skipTest="true" resetFile="false" stubCall="true" dummy="true"/>
-    <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCIPDB01" commarea="32500" skipTest="true" resetFile="false" stubCall="true" dummy="true"/>
   </runner:testCase>
   <runner:playback moduleName="HCIPDB01">
     <playbackFile name="&lt;HLQ>.ZUNIT.PB.HCIPDB01" localName="hcipdb01.plbck"/>
