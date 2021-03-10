@@ -89,10 +89,7 @@
       * initialize working storage variables
            INITIALIZE WS-HEADER.
       * set up general variable
-           MOVE EIBTRNID TO WS-TRANSID.
-           MOVE EIBTRMID TO WS-TERMID.
-           MOVE EIBTASKN TO WS-TASKNUM.
-      *----------------------------------------------------------------*
+          ---------------------------*
 
 
       * initialize DB2 host variables

@@ -1,5 +1,5 @@
       *****************************************************************
-      *  Changed HCMADB02 Jan 11 2021  -   Regi 12:14
+      *  Changed HCMADB02 Mar 10 2021  -   12:16
       * Look for %regi for fixes on abends due missing date
       *   To add patient's name, address and date of birth to the
       *  DB2 patient table creating a new patient entry.
