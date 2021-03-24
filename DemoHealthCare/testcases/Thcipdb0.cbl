@@ -5,7 +5,7 @@
       *| COMPONENT: IBM Z/OS AUTOMATED UNIT TESTING FRAMEWORK (ZUNIT)  |
       *|   FOR ENTERPRISE COBOL AND PL/I                               |
       *| PROGRAM: ENTERPRISE COBOL ZUNIT TEST CASE FOR DYNAMIC RUNNER  |
-      *| DATE GENERATED: 03/01/2021 11:53                              |
+      *| DATE GENERATED: 03/24/2021 12:48                              |
       *| ID: 39cb7564-7d94-4d78-97f9-3e225b711bf4                      |
       *+---------------------------------------------------------------+
       *+---------------------------------------------------------------+
@@ -1111,11 +1111,11 @@
            EXIT.
        END PROGRAM TEST_TEST3.
       *+---------------------------------------------------------------+
-      *| TEST_TEST4                                                    |
-      *|     THIS PROGRAM IS FOR TEST TEST4                            |
+      *| TEST_TEST5                                                    |
+      *|     THIS PROGRAM IS FOR TEST TEST5                            |
       *+---------------------------------------------------------------+
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. 'TEST_TEST4'.
+       PROGRAM-ID. 'TEST_TEST5'.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 PROGRAM-NAME   PIC X(8)  VALUE 'HCIPDB01'.
@@ -1139,31 +1139,32 @@
           3 ZUT00000050.
             5 PIC X(6) DISPLAY VALUE '01IPAT'.
           3 ZUT00000051.
-            5 PIC X(10) DISPLAY VALUE '1234567891'.
+            5 PIC X(6) DISPLAY VALUE '123456'.
+            5 PIC X(4) DISPLAY VALUE SPACES.
           3 ZUT00000052.
-            5 PIC X(3) DISPLAY VALUE 'Tom'.
-            5 PIC X(7) DISPLAY VALUE SPACES.
-          3 ZUT00000053.
-            5 PIC X(4) DISPLAY VALUE 'Otto'.
+            5 PIC X(4) DISPLAY VALUE 'REGI'.
             5 PIC X(6) DISPLAY VALUE SPACES.
+          3 ZUT00000053.
+            5 PIC X(6) DISPLAY VALUE 'BAROSA'.
+            5 PIC X(4) DISPLAY VALUE SPACES.
           3 ZUT00000054.
             5 PIC X(10) DISPLAY VALUE SPACES.
           3 ZUT00000055.
-            5 PIC X(10) DISPLAY VALUE '1960-12-12'.
+            5 PIC X(10) DISPLAY VALUE '1964-01-21'.
           3 ZUT00000056.
-            5 PIC X(10) VALUE X'F4F340D48199A5859340'.
-            5 PIC X(10) VALUE X'C1A58540404040404040'.
-            5 PIC X(10) VALUE X'C796A388819440404040'.
+            5 PIC X(10) VALUE X'D9A48140C796968440C4'.
+            5 PIC X(10) VALUE X'89A58540F3F440404040'.
+            5 PIC X(10) VALUE X'C9938881828593814040'.
             5 PIC X(10) VALUE X'40404040404040404040'.
-            5 PIC X(10) VALUE X'F9F8F2F7F34040404040'.
-            5 PIC X(10) VALUE X'F8F8F8F4F2F6F6F8F4F0'.
+            5 PIC X(10) VALUE X'F3F3F5F6F64040404040'.
+            5 PIC X(10) VALUE X'F6F1F760F5F6F4F7F840'.
             5 PIC X(10) VALUE X'40404040404040404040'.
-            5 PIC X(10) VALUE X'A39694967C94854B8396'.
-            5 PIC X(10) VALUE X'94404040404040404040'.
+            5 PIC X(10) VALUE X'94A885948189937C8299'.
+            5 PIC X(10) VALUE X'4B839694404040404040'.
             5 PIC X(10) VALUE X'40404040404040404040'.
             5 PIC X(10) VALUE X'40404040404040404040'.
             5 PIC X(10) VALUE X'40404040404040404040'.
-            5 PIC X(10) VALUE X'A3969496404040404040'.
+            5 PIC X(10) VALUE X'D9C5C7C9F2F440404040'.
             5 PIC X(10) VALUE X'00000000000000000000'.
             5 PIC X(10) VALUE X'00000000000000000000'.
             5 PIC X(10) VALUE X'00000000000000000000'.
@@ -4559,7 +4560,7 @@
        PROCEDURE DIVISION USING AZ-TEST
            DFHEIBLK DFHCOMMAREA.
       * START
-           DISPLAY 'TEST_TEST4 STARTED...'
+           DISPLAY 'TEST_TEST5 STARTED...'
            MOVE 0 TO AZ-TEST-NAME-LEN.
            INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR
            CHARACTERS BEFORE INITIAL SPACE.
@@ -4605,11 +4606,11 @@
              PERFORM THROW-ASSERTION
            END-IF
            IF (CA-PATIENT-ID OF DFHCOMMAREA IS NUMERIC)
-               AND (CA-PATIENT-ID OF DFHCOMMAREA = 4) THEN
+               AND (CA-PATIENT-ID OF DFHCOMMAREA = 5) THEN
              CONTINUE
            ELSE
              MOVE CA-PATIENT-ID OF DFHCOMMAREA TO ZUT0000005C(1)
-             MOVE 4 TO ZUT0000005C(2)
+             MOVE 5 TO ZUT0000005C(2)
              SET AZ-COMPARE-ITEM-NAME-PTR TO ADDRESS OF ZUT0000005B
              MOVE LENGTH OF ZUT0000005B TO AZ-COMPARE-ITEM-NAME-LEN
              SET AZ-COMPARE-ITEM-VALUE-PTR TO ADDRESS OF ZUT0000005C(1)
@@ -4726,7 +4727,7 @@
              PERFORM THROW-ASSERTION
            END-IF
       * END
-           DISPLAY 'TEST_TEST4 SUCCESSFUL.'
+           DISPLAY 'TEST_TEST5 SUCCESSFUL.'
            GOBACK.
        INITIALIZE-PARM.
            EXIT.
@@ -4792,7 +4793,7 @@
            SUBTRACT 1 FROM TRACE-LEN OF BZ-TRACE
            CALL BZUTRACE USING BZ-TRACE
            EXIT.
-       END PROGRAM TEST_TEST4.
+       END PROGRAM TEST_TEST5.
       *+---------------------------------------------------------------+
       *| BZU_TEST                                                      |
       *|     THIS PROGRAM IS CALLBACK DEFINITION FOR TEST              |
@@ -4941,7 +4942,7 @@
              MOVE 0 TO RETURN-CODE
            WHEN 'TEST3'
              MOVE 0 TO RETURN-CODE
-           WHEN 'TEST4'
+           WHEN 'TEST5'
              MOVE 0 TO RETURN-CODE
            WHEN OTHER
              CONTINUE
@@ -5327,8 +5328,8 @@
                  WHEN 'TEST3'
                    PERFORM O0E080-TEST3
                    CONTINUE
-                 WHEN 'TEST4'
-                   PERFORM O0E080-TEST4
+                 WHEN 'TEST5'
+                   PERFORM O0E080-TEST5
                    CONTINUE
                  WHEN OTHER
                    CONTINUE
@@ -5374,7 +5375,7 @@
                    CONTINUE
                  WHEN 'TEST3'
                    CONTINUE
-                 WHEN 'TEST4'
+                 WHEN 'TEST5'
                    CONTINUE
                  WHEN OTHER
                    CONTINUE
@@ -5394,7 +5395,7 @@
            ELSE
              CONTINUE
            END-IF.
-       O0E080-TEST4.
+       O0E080-TEST5.
            IF AZ-RECORD-COUNT-OT(1) = 0 THEN
              CONTINUE
            ELSE

@@ -1,0 +1,11 @@
+For the zUnit and VTP demo recoreded (Nov 2020 and March 24/2021
+
+Use https://github.com/RegiBrazil/DemoHealthCare
+
+For DBB user build change preferences to pick      /var/dbb/v.1.0.6
+  Use Daemon: -DBB_DAEMON_HOST 127.0.0.1  -DBB_DAEMON_PORT 8080
+
+ ============ VTP demo:
+   bzus > start   bzue > end    bzuw > write
+  cemt inq td(BZUQ)     > Close
+
