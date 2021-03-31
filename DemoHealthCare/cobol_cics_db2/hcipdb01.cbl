@@ -1,7 +1,7 @@
       *****************************************************************
       * Used on CICS trx HCAZ
       * invoked hen selecting option 2 - Inquire Patient
-      * Changed March 11 2021 -   15:49
+      * Changed March 31 2021 -   19:16
       *  Look for %bug to introduce bugs
       ******************************************************************
        IDENTIFICATION DIVISION.
@@ -10,26 +10,35 @@
        CONFIGURATION SECTION.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
+       01 WORK-FIELDS.
+          03 FIELD-A                  PIC X(6).
+          03 FIELD-B                  PIC X(6).
+          03 FIELD-C                  PIC X(6).
+          03 FIELD-D                  PIC X(6).
+          03 FIELD-E                  PIC X(6).
+          03 FIELD-F                  PIC X(6).
       *----------------------------------------------------------------*
       * Common defintions                                              *
       *----------------------------------------------------------------*
       * Run time (debug) infomation for this invocation
-        01  WS-HEADER.
-           03 WS-EYECATCHER            PIC X(26)
-                                        VALUE 'HCIPDB01------WS'.
-           03 WS-TRANSID               PIC X(4).
-           03 WS-TERMID                PIC X(4).
-           03 WS-TASKNUM               PIC 9(7).
-           03 WS-FILLER                PIC X.
-           03 WS-ADDR-DFHCOMMAREA      USAGE is POINTER.
-           03 WS-CALEN                 PIC S9(4) COMP.
+       01 WS-HEADER.
+          03 WS-EYECATCHER            PIC X(26)
+                                                VALUE 'HCIPDB01------WS'
+                                                                      .
+          03 WS-TRANSID               PIC X(4).
+          03 WS-TERMID                PIC X(4).
+          03 WS-TASKNUM               PIC 9(7).
+          03 WS-FILLER                PIC X.
+          03 WS-ADDR-DFHCOMMAREA USAGE IS POINTER.
+          03 WS-CALEN                 PIC S9(4) COMP.
       *----------------------------------------------------------------*
        COPY HCERRSWS.
       *----------------------------------------------------------------*
       * Fields to be used to calculate if commarea is large enough
-       01  WS-COMMAREA-LENGTHS.
-           03 WS-CA-HEADERTRAILER-LEN  PIC S9(4) COMP VALUE +18.
-           03 WS-REQUIRED-CA-LEN       PIC S9(4)      VALUE +0.
+       01 WS-COMMAREA-LENGTHS.
+          03 WS-CA-HEADERTRAILER-LEN  PIC S9(4) COMP
+                                                VALUE +18.
+          03 WS-REQUIRED-CA-LEN       PIC S9(4) VALUE +0.
       *----------------------------------------------------------------*
       * Definitions required by SQL statement                          *
       *   DB2 datatypes to COBOL equivalents                           *
@@ -39,8 +48,8 @@
       *     TIMESTAMP   :   PIC X(26)                                  *
       *----------------------------------------------------------------*
       * Host variables for input to DB2 integer types
-       01  DB2-IN.
-           03 DB2-PATIENT-ID           PIC S9(9) COMP.
+       01 DB2-IN.
+          03 DB2-PATIENT-ID           PIC S9(9) COMP.
       *----------------------------------------------------------------*
       *    DB2 CONTROL
       *----------------------------------------------------------------*
@@ -52,7 +61,7 @@
       *    L I N K A G E     S E C T I O N
       ******************************************************************
        LINKAGE SECTION.
-       01  DFHCOMMAREA.
+       01 DFHCOMMAREA.
            EXEC SQL
       *    %bug1 add a new field
              INCLUDE HCCMAREA
@@ -77,9 +86,10 @@
       *----------------------------------------------------------------*
       * If NO commarea received issue an ABEND
            IF EIBCALEN IS EQUAL TO ZERO
-               MOVE ' NO COMMAREA RECEIVED' TO EM-VARIABLE
-               PERFORM WRITE-ERROR-MESSAGE
-               EXEC CICS ABEND ABCODE('HCCA') NODUMP END-EXEC
+              MOVE ' NO COMMAREA RECEIVED' TO EM-VARIABLE
+              PERFORM WRITE-ERROR-MESSAGE
+              EXEC CICS ABEND ABCODE('HCCA') NODUMP
+                   END-EXEC
            END-IF
       * initialize commarea return code to zero
            MOVE '00' TO CA-RETURN-CODE
@@ -94,8 +104,9 @@
            ADD WS-CA-HEADERTRAILER-LEN TO WS-REQUIRED-CA-LEN
       * if less set error return code and return to caller
            IF EIBCALEN IS LESS THAN WS-REQUIRED-CA-LEN
-             MOVE '98' TO CA-RETURN-CODE
-             EXEC CICS RETURN END-EXEC
+              MOVE '98' TO CA-RETURN-CODE
+              EXEC CICS RETURN
+                   END-EXEC
            END-IF
       * Convert commarea patient id to DB2 integer format
            MOVE CA-PATIENT-ID TO DB2-PATIENT-ID
@@ -110,47 +121,57 @@
       * END PROGRAM and return to caller                               *
       *----------------------------------------------------------------*
        MAINLINE-END.
-           EXEC CICS RETURN END-EXEC.
+           EXEC CICS RETURN
+                END-EXEC.
        MAINLINE-EXIT.
            EXIT.
       *----------------------------------------------------------------*
        GET-PATIENT-INFO.
            EXEC SQL
-               SELECT FIRSTNAME,
-                      LASTNAME,
-                      DATEOFBIRTH,
-                      insCardNumber,
-                      ADDRESS,
-                      CITY,
-                      POSTCODE,
-                      PHONEMOBILE,
-                      EMAILADDRESS,
-                      USERNAME
-               INTO  :CA-FIRST-NAME,
-                     :CA-LAST-NAME,
-                     :CA-DOB,
-                     :CA-INS-CARD-NUM,
-                     :CA-ADDRESS,
-                     :CA-CITY,
-                     :CA-POSTCODE,
-                     :CA-PHONE-MOBILE,
-                     :CA-EMAIL-ADDRESS,
-                     :CA-USERID
-               FROM PATIENT
-               WHERE PATIENTID = :DB2-PATIENT-ID
-               END-EXEC.
-           Evaluate SQLCODE
-             When 0
-               MOVE '00' TO CA-RETURN-CODE
-             When 100
-               MOVE '01' TO CA-RETURN-CODE
-             When -913
-               MOVE '01' TO CA-RETURN-CODE
-             When Other
-               MOVE '90' TO CA-RETURN-CODE
-               PERFORM WRITE-ERROR-MESSAGE
-               EXEC CICS RETURN END-EXEC
-           END-Evaluate.
+                SELECT FIRSTNAME,
+                LASTNAME,
+                DATEOFBIRTH,
+                INSCARDNUMBER,
+                ADDRESS,
+                CITY,
+                POSTCODE,
+                PHONEMOBILE,
+                EMAILADDRESS,
+                USERNAME
+                INTO :CA-FIRST-NAME,
+                :CA-LAST-NAME,
+                :CA-DOB,
+                :CA-INS-CARD-NUM,
+                :CA-ADDRESS,
+                :CA-CITY,
+                :CA-POSTCODE,
+                :CA-PHONE-MOBILE,
+                :CA-EMAIL-ADDRESS,
+                :CA-USERID
+                FROM PATIENT
+                WHERE PATIENTID = :DB2-PATIENT-ID
+                END-EXEC.
+           EVALUATE SQLCODE
+           WHEN 0
+                MOVE '00' TO CA-RETURN-CODE
+           WHEN 100
+                MOVE '01' TO CA-RETURN-CODE
+           WHEN -913
+                MOVE '01' TO CA-RETURN-CODE
+
+                MOVE 'AAAAAA' TO FIELD-A
+                MOVE 'BBBBBB' TO FIELD-B
+                MOVE 'CCCCCC' TO FIELD-C
+                MOVE 'DDDDDD' TO FIELD-D
+                MOVE 'EEEEEE' TO FIELD-E
+                MOVE 'FFFFFF' TO FIELD-F
+
+           WHEN OTHER
+                MOVE '90' TO CA-RETURN-CODE
+                PERFORM WRITE-ERROR-MESSAGE
+                EXEC CICS RETURN
+                     END-EXEC
+           END-EVALUATE.
       * %bug2 -- the line below will introduce a BUG
       *----------------------------------------------------------------*
       *         IF DB2-PATIENT-ID = 1
