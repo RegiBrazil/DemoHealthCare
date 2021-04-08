@@ -1,4 +1,5 @@
-For the zUnit and VTP demo recoreded (Nov 2020 and March 24/2021
+TIPS
+1. For the zUnit and VTP demo recoreded (Nov 2020 and March 24/2021
 
 Use https://github.com/RegiBrazil/DemoHealthCare
 
@@ -8,4 +9,14 @@ For DBB user build change preferences to pick      /var/dbb/v.1.0.6
  ============ VTP demo:
    bzus > start   bzue > end    bzuw > write
   cemt inq td(BZUQ)     > Close
+
+===============================================================
+2.  Using Code coverage for DTCN.. Press PF9 and enter
+    ENVAR("EQA_STARTUP_KEY=CC")
+
+and the use PF4 to SAVE it.
+================================================================
+
+
+
 
