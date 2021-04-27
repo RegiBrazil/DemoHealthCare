@@ -1,0 +1,13 @@
+//HCAZPLA3  JOB ,NOTIFY=&SYSUID,REGION=0M
+//*  Run VTP for HCAZ  with broken program
+//PLAYBK   EXEC PGM=BZUPLAY,PARM='TRACE=N'
+//*PLAYBK   EXEC PGM=BZUPLAY,PARM='TRACE=Y'
+//STEPLIB  DD DISP=SHR,DSN=BZU100.SBZULOAD
+//*         DD DISP=SHR,DSN=EMPOT.ZMOBILE.TEST.LOAD
+//* below where is the broken Load module
+//         DD DISP=SHR,DSN=IBMUSER.GIT.ZMOBILE.LOAD
+//*BZUPLAY  DD DISP=SHR,DSN=BZU100.ZUNIT.PLAYBACK
+//BZUPLAY  DD DISP=SHR,DSN=BZU100.ZUNIT.PLAYBACK.DEMO
+//SYSOUT   DD SYSOUT=*       (this keeps LE output in one spool file)
+//BZUMSG  DD SYSOUT=*        (optional, can be a VB output dataset)
+//
