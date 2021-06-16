@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="26d374d5-cb53-4943-832d-b4ba61acaef3">
+<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="109a2f3b-9f85-4e45-b862-273fe18cdbc6">
   <runner:options contOnTestCaseError="false" contOnTestCaseFail="true" contOnTestError="false" contOnTestFail="true"/>
   <runner:testCase moduleName="THCIPDB0">
     <test name="TEST4" entry="TEST_TEST4" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="0" skipTest="false" resetFile="true" stubCall="true" dummy="false"/>
     <test name="TEST5" entry="TEST_TEST5" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="0" skipTest="false" resetFile="false" stubCall="true" dummy="false"/>
+    <test name="TEST3" entry="TEST_TEST3" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="0" skipTest="false" resetFile="false" stubCall="true" dummy="false"/>
   </runner:testCase>
   <runner:playback moduleName="HCIPDB01">
     <playbackFile name="&lt;HLQ>.ZUNIT.PB2.HCIPDB01" localName="hcipdb01.plbck"/>
