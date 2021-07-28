@@ -1,7 +1,7 @@
       *****************************************************************
       * Used on CICS trx HCAZ
       * invoked cc selecting option 2 - Inquire Patient
-      * hcipdb01 Changed July 28  2021 -   09:47
+      * hcipdb01 Changed July 28  2021 -   04:24
       *  Look for %bug to introduce bugs
       ******************************************************************
        IDENTIFICATION DIVISION.
@@ -177,7 +177,7 @@
       *         IF DB2-PATIENT-ID = 1
       *              MOVE "BAD NAME" to CA-FIRST-NAME
       *         END-IF
-      *           MOVE "02" to CA-NEWFIELD
+      *            MOVE "02" to CA-NEWFIELD
       *----------------------------------------------------------------*
            EXIT.
       *----------------------------------------------------------------*

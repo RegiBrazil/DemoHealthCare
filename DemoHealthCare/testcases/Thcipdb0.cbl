@@ -5,7 +5,7 @@
       *| COMPONENT: IBM Z/OS AUTOMATED UNIT TESTING FRAMEWORK (ZUNIT)  |
       *|   FOR ENTERPRISE COBOL AND PL/I                               |
       *| PROGRAM: ENTERPRISE COBOL ZUNIT TEST CASE FOR DYNAMIC RUNNER  |
-      *| DATE GENERATED: 07/28/2021 11:11                              |
+      *| DATE GENERATED: 07/28/2021 13:45                              |
       *| ID: ee5b957f-44bb-4a99-9fc3-0202cfcf7a1a                      |
       *+---------------------------------------------------------------+
       *+---------------------------------------------------------------+
@@ -1017,6 +1017,212 @@
            EXIT.
        END PROGRAM TEST_TEST3.
       *+---------------------------------------------------------------+
+      *| TEST_TEST4                                                    |
+      *|     THIS PROGRAM IS FOR TEST TEST4                            |
+      *+---------------------------------------------------------------+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. 'TEST_TEST4'.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 PROGRAM-NAME   PIC X(8)  VALUE 'HCIPDB01'.
+       01 BZ-ASSERT.
+         03 MESSAGE-LEN PIC S9(4) COMP-4 VALUE 24.
+         03 MESSAGE-TXT PIC X(254) VALUE 'HELLO FROM TEST CALLBACK'.
+       01  BZ-P1 PIC S9(9) COMP-4 VALUE 4.
+       01  BZ-P2 PIC S9(9) COMP-4 VALUE 2001.
+       01  BZ-P3 PIC X(3) VALUE 'AZU'.
+       01 BZ-TRACE.
+         03 TRACE-LEN       PIC S9(4) COMP-4 VALUE 5.
+         03 TRACE-TXT       PIC X(254) VALUE 'TRACE'.
+       01 BZUASSRT          PIC X(8) VALUE 'BZUASSRT'.
+       01 BZUTRACE          PIC X(8) VALUE 'BZUTRACE'.
+       01 AZ-TRACE-PTR      POINTER.
+       01 ASSERT-ST.
+         03 ASSERT-RC PIC 9(9) BINARY VALUE 4.
+         03 ASSERT-TEXT PIC 9(4) BINARY VALUE 0.
+       01 AZ-TEST-NAME-LEN       PIC S9(9) COMP-5.
+       01 AZ-RC-WORK             PIC S9(4) USAGE BINARY.
+       01 AZ-COMPARE.
+         03 AZ-COMPARE-ITEM-NAME-PTR  POINTER.
+         03 AZ-COMPARE-ITEM-NAME-LEN  PIC S9(9) COMP-5.
+         03 AZ-COMPARE-ITEM-VALUE-PTR POINTER.
+         03 AZ-COMPARE-ITEM-VALUE-LEN PIC S9(9) COMP-5.
+         03 AZ-COMPARE-ITEM-EXP-VALUE-PTR POINTER.
+         03 AZ-COMPARE-ITEM-EXP-VALUE-LEN PIC S9(9) COMP-5.
+       LOCAL-STORAGE SECTION.
+       LINKAGE SECTION.
+       01 AZ-TEST                   PIC X(80).
+       01 AZ-ARG-LIST.
+         03 ARG-LENGTH PIC 9(4) COMP-4.
+         03 ARG-DATA PIC X(256).
+       01 AZ-COMPARE-ITEM-NAME      PIC X(254).
+       01 AZ-COMPARE-ITEM-VALUE     PIC X(254).
+       01 AZ-COMPARE-ITEM-EXP-VALUE PIC X(254).
+       1 DFHEIBLK.
+         2 EIBTIME PICTURE S9(7) USAGE COMPUTATIONAL-3.
+         2 EIBDATE PICTURE S9(7) USAGE COMPUTATIONAL-3.
+         2 EIBTRNID PICTURE X(4).
+         2 EIBTASKN PICTURE S9(7) USAGE COMPUTATIONAL-3.
+         2 EIBTRMID PICTURE X(4).
+         2 DFHEIGDI PICTURE S9(4) USAGE COMPUTATIONAL-5.
+         2 EIBCPOSN PICTURE S9(4) USAGE COMPUTATIONAL-5.
+         2 EIBCALEN PICTURE S9(4) USAGE COMPUTATIONAL-5.
+         2 EIBAID PICTURE X(1).
+         2 EIBFN PICTURE X(2).
+         2 EIBRCODE PICTURE X(6).
+         2 EIBDS PICTURE X(8).
+         2 EIBREQID PICTURE X(8).
+         2 EIBRSRCE PICTURE X(8).
+         2 EIBSYNC PICTURE X.
+         2 EIBFREE PICTURE X.
+         2 EIBRECV PICTURE X.
+         2 EIBSEND PICTURE X.
+         2 EIBATT PICTURE X.
+         2 EIBEOC PICTURE X.
+         2 EIBFMH PICTURE X.
+         2 EIBCOMPL PICTURE X(1).
+         2 EIBSIG PICTURE X(1).
+         2 EIBCONF PICTURE X(1).
+         2 EIBERR PICTURE X(1).
+         2 EIBERRCD PICTURE X(4).
+         2 EIBSYNRB PICTURE X.
+         2 EIBNODAT PICTURE X.
+         2 EIBRESP PICTURE S9(8) USAGE COMPUTATIONAL.
+         2 EIBRESP2 PICTURE S9(8) USAGE COMPUTATIONAL.
+         2 EIBRLDBK PICTURE X(1).
+       1 DFHCOMMAREA.
+         3 CA-REQUEST-ID PIC X(6).
+         3 CA-RETURN-CODE PIC 9(2).
+         3 CA-PATIENT-ID PIC 9(10).
+         3 CA-REQUEST-SPECIFIC PIC X(32482).
+         3 CA-PATIENT-REQUEST REDEFINES CA-REQUEST-SPECIFIC.
+         5 CA-INS-CARD-NUM PIC X(10).
+         5 CA-FIRST-NAME PIC X(10).
+         5 CA-LAST-NAME PIC X(20).
+         5 CA-DOB PIC X(10).
+         5 CA-ADDRESS PIC X(20).
+         5 CA-CITY PIC X(20).
+         5 CA-POSTCODE PIC X(10).
+         5 CA-PHONE-MOBILE PIC X(20).
+         5 CA-EMAIL-ADDRESS PIC X(50).
+         5 CA-USERID PIC X(10).
+         5 CA-ADDITIONAL-DATA PIC X(32302).
+         3 CA-PATIENT-USER-REQUEST REDEFINES CA-REQUEST-SPECIFIC.
+         5 CA-USERNAME PIC X(10).
+         5 CA-USERPASSWORD PIC X(14).
+         5 CA-ADDITIONAL-DATA PIC X(32458).
+         3 CA-MEDICATION-REQUEST REDEFINES CA-REQUEST-SPECIFIC.
+         5 CA-DRUG-NAME PIC X(50).
+         5 CA-STRENGTH PIC X(20).
+         5 CA-AMOUNT PIC 9(03).
+         5 CA-ROUTE PIC X(20).
+         5 CA-FREQUENCY PIC X(20).
+         5 CA-IDENTIFIER PIC X(20).
+         5 CA-BIOMED-TYPE PIC X(2).
+         5 CA-START-DATE PIC X(10).
+         5 CA-END-DATE PIC X(10).
+         5 CA-PRESCRIPTION-ID PIC 9(10).
+         5 CA-ADDITIONAL-DATA PIC X(32317).
+         3 CA-MEDITATION-REQUEST REDEFINES CA-REQUEST-SPECIFIC.
+         5 CA-MEDITATION-NAME PIC X(50).
+         5 CA-MEDITATION-TYPE PIC X(20).
+         5 CA-RELIEF PIC X(20).
+         5 CA-POSTURE PIC X(20).
+         5 CA-HOW-OFTEN PIC X(20).
+         5 CA-ADDITIONAL-DATA PIC X(32352).
+         3 CA-THRESHOLD-REQUEST REDEFINES CA-REQUEST-SPECIFIC.
+         5 CA-HR-THRESHOLD PIC X(10).
+         5 CA-BP-THRESHOLD PIC X(10).
+         5 CA-MS-THRESHOLD PIC X(10).
+         5 CA-ADDITIONAL-DATA PIC X(32452).
+         3 CA-VISIT-REQUEST REDEFINES CA-REQUEST-SPECIFIC.
+         5 CA-VISIT-DATE PIC X(10).
+         5 CA-VISIT-TIME PIC X(10).
+         5 CA-HEART-RATE PIC X(10).
+         5 CA-BLOOD-PRESSURE PIC X(10).
+         5 CA-MENTAL-STATE PIC X(10).
+         5 CA-ADDITIONAL-DATA PIC X(32432).
+       PROCEDURE DIVISION USING AZ-TEST
+           DFHEIBLK DFHCOMMAREA.
+      * START
+           DISPLAY 'TEST_TEST4 STARTED...'
+           MOVE 0 TO AZ-TEST-NAME-LEN.
+           INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR
+           CHARACTERS BEFORE INITIAL SPACE.
+      * INITIALIZE PARAMETER
+           PERFORM INITIALIZE-PARM
+      * SET AREA ADDRESS TO POINTER
+      * SET INPUT VALUE
+           MOVE 0 TO RETURN-CODE.
+           MOVE 90 TO CA-RETURN-CODE OF DFHCOMMAREA
+      * CALL TEST PROGRAM
+           DISPLAY 'CALL HCIPDB01'
+           CALL PROGRAM-NAME
+           USING DFHEIBLK DFHCOMMAREA
+           .
+      * EVALUATE OUTPUT VALUE
+           MOVE 0 TO RETURN-CODE
+      * END
+           DISPLAY 'TEST_TEST4 SUCCESSFUL.'
+           GOBACK.
+       INITIALIZE-PARM.
+           EXIT.
+       THROW-ASSERTION.
+           MOVE 1 TO MESSAGE-LEN OF BZ-ASSERT
+           STRING 'COMPARE FAILED IN PROCEDURE DIVISION.'
+             DELIMITED BY SIZE INTO MESSAGE-TXT OF BZ-ASSERT
+             WITH POINTER MESSAGE-LEN OF BZ-ASSERT
+           END-STRING
+           SUBTRACT 1 FROM MESSAGE-LEN OF BZ-ASSERT
+           SET ADDRESS OF AZ-COMPARE-ITEM-NAME TO
+           AZ-COMPARE-ITEM-NAME-PTR.
+           SET ADDRESS OF AZ-COMPARE-ITEM-VALUE TO
+           AZ-COMPARE-ITEM-VALUE-PTR.
+           SET ADDRESS OF AZ-COMPARE-ITEM-EXP-VALUE TO
+           AZ-COMPARE-ITEM-EXP-VALUE-PTR.
+           DISPLAY '****************************************************
+      -    '****************************'
+           DISPLAY 'AZU2001W THE TEST "' AZ-TEST(1:AZ-TEST-NAME-LEN) '"
+      -    'FAILED DUE TO AN ASSERTION.'
+           DISPLAY 'AZU1101I ' MESSAGE-TXT OF BZ-ASSERT(1:MESSAGE-LEN
+           OF BZ-ASSERT)
+           DISPLAY ' DATA ITEM NAME : '
+           AZ-COMPARE-ITEM-NAME(1:AZ-COMPARE-ITEM-NAME-LEN)
+           DISPLAY '  VALUE         : '
+           AZ-COMPARE-ITEM-VALUE(1:AZ-COMPARE-ITEM-VALUE-LEN)
+           DISPLAY '  EXPECTED VALUE: '
+           AZ-COMPARE-ITEM-EXP-VALUE(1:AZ-COMPARE-ITEM-EXP-VALUE-LEN)
+           DISPLAY '****************************************************
+      -    '****************************'
+           CALL BZUASSRT USING BZ-P1 BZ-P2 BZ-P3 BZ-ASSERT
+           MOVE 1 TO TRACE-LEN OF BZ-TRACE
+           STRING 'ITEM NAME='
+           AZ-COMPARE-ITEM-NAME(1:AZ-COMPARE-ITEM-NAME-LEN)
+               DELIMITED BY SIZE INTO TRACE-TXT OF BZ-TRACE
+               WITH POINTER TRACE-LEN OF BZ-TRACE
+             END-STRING
+           SUBTRACT 1 FROM TRACE-LEN OF BZ-TRACE
+           SET AZ-TRACE-PTR TO ADDRESS OF TRACE-TXT OF BZ-TRACE
+           CALL BZUTRACE USING BZ-TRACE
+           MOVE 1 TO TRACE-LEN OF BZ-TRACE
+           STRING 'VALUE='
+           AZ-COMPARE-ITEM-VALUE(1:AZ-COMPARE-ITEM-VALUE-LEN)
+               DELIMITED BY SIZE INTO TRACE-TXT OF BZ-TRACE
+               WITH POINTER TRACE-LEN OF BZ-TRACE
+             END-STRING
+           SUBTRACT 1 FROM TRACE-LEN OF BZ-TRACE
+           CALL BZUTRACE USING BZ-TRACE
+           MOVE 1 TO TRACE-LEN OF BZ-TRACE
+           STRING 'EXPECTED VALUE='
+           AZ-COMPARE-ITEM-EXP-VALUE(1:AZ-COMPARE-ITEM-EXP-VALUE-LEN)
+               DELIMITED BY SIZE INTO TRACE-TXT OF BZ-TRACE
+               WITH POINTER TRACE-LEN OF BZ-TRACE
+             END-STRING
+           SUBTRACT 1 FROM TRACE-LEN OF BZ-TRACE
+           CALL BZUTRACE USING BZ-TRACE
+           EXIT.
+       END PROGRAM TEST_TEST4.
+      *+---------------------------------------------------------------+
       *| BZU_TEST                                                      |
       *|     THIS PROGRAM IS CALLBACK DEFINITION FOR TEST              |
       *+---------------------------------------------------------------+
@@ -1161,6 +1367,8 @@
            WHEN 'TEST2'
              MOVE 0 TO RETURN-CODE
            WHEN 'TEST3'
+             MOVE 0 TO RETURN-CODE
+           WHEN 'TEST4'
              MOVE 0 TO RETURN-CODE
            WHEN OTHER
              CONTINUE
@@ -1551,6 +1759,9 @@
                  WHEN 'TEST3'
                    PERFORM O0E080-TEST3
                    CONTINUE
+                 WHEN 'TEST4'
+                   PERFORM O0E080-TEST4
+                   CONTINUE
                  WHEN OTHER
                    CONTINUE
                  END-EVALUATE
@@ -1599,6 +1810,8 @@
                    CONTINUE
                  WHEN 'TEST3'
                    CONTINUE
+                 WHEN 'TEST4'
+                   CONTINUE
                  WHEN OTHER
                    CONTINUE
                  END-EVALUATE
@@ -1617,6 +1830,13 @@
            ELSE
              CONTINUE
            END-IF.
+       O0E080-TEST4.
+           MOVE 0 TO RETURN-CODE
+           IF AZ-RECORD-COUNT-OT(1) = 0 THEN
+             CONTINUE
+           ELSE
+             CONTINUE
+           END-IF.
        GETLINENUM.
            MOVE 1 TO AZ-LINE-J
            PERFORM VARYING AZ-LINE-I FROM AZ-LINE-BYTE BY 1
@@ -1629,3 +1849,244 @@
            DISPLAY 'CICS_0E08_HCIPDB01 SUCCESSFUL.'
            GOBACK.
        END PROGRAM 'CICS_0E08_HCIPDB01'.
+      *+---------------------------------------------------------------+
+      *| PROGRAM FOR EXEC SQL SELECT_INTO                              |
+      *|    FUNCTION CODE: 00E7                                        |
+      *|                                                               |
+      *+---------------------------------------------------------------+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. 'DB2_00E7_HCIPDB01'.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 BZ-ASSERT.
+         03 MESSAGE-LEN PIC S9(4) COMP-4 VALUE 24.
+         03 MESSAGE-TXT PIC X(254) VALUE 'HELLO FROM DB2 CALLBACK'.
+       01  BZ-P1 PIC S9(9) COMP-4 VALUE 4.
+       01  BZ-P2 PIC S9(9) COMP-4 VALUE 2001.
+       01  BZ-P3 PIC X(3) VALUE 'AZU'.
+       01 BZ-TRACE.
+         03 TRACE-LEN       PIC S9(4) COMP-4 VALUE 5.
+         03 TRACE-TXT       PIC X(254) VALUE 'TRACE'.
+       01 BZUASSRT          PIC X(8) VALUE 'BZUASSRT'.
+       01 BZUTRACE          PIC X(8) VALUE 'BZUTRACE'.
+       01 AZ-TRACE-PTR      POINTER.
+       01 AZ-TEST-LEN        PIC S9(8) COMP.
+       01 AZ-RECORD.
+         03 AZ-RECORD-COUNT-OT OCCURS 1 PIC 9(5) COMP-5 VALUE 0.
+         03 AZ-RECORD-COUNT-IN OCCURS 1 PIC 9(5) COMP-5 VALUE 0.
+         03 AZ-OUT-PARM-NUM  PIC 9(8).
+         03 AZ-IN-PARM-NUM   PIC 9(8).
+         03 AZ-STMT-NUM      PIC 9(9).
+       01 AZ-GRP-INDEX       PIC 9(8).
+       01 AZ-FLAG-IN         PIC 9(1).
+       01 AZ-RECORD-PTR      POINTER.
+       01 AZ-RC-WORK         PIC S9(4) USAGE BINARY.
+       LOCAL-STORAGE SECTION.
+       01 AZ-HOSTVAR-PTR     POINTER.
+       01 AZ-HOSTVAR-PTR-ADDR
+           REDEFINES AZ-HOSTVAR-PTR PIC 9(9) COMP-5.
+       LINKAGE SECTION.
+       01 AZ-TEST            PIC X(80).
+       01 AZ-INFO-BLOCK.
+          COPY BZUITERC.
+       01 AZ-APLIST.
+          COPY BZUDB2CP.
+       01 AZ-WK-RECORD-COUNT PIC 9(5) COMP-5.
+       01 ARGO1.
+          COPY BZUDB2CV.
+       01 ARGI1          .
+          COPY BZUDB2CV.
+       01 ARGI2          .
+          COPY BZUDB2CV.
+       01 ARGI3          .
+          COPY BZUDB2CV.
+       01 ARGI4          .
+          COPY BZUDB2CV.
+       01 ARGI5          .
+          COPY BZUDB2CV.
+       01 ARGI6          .
+          COPY BZUDB2CV.
+       01 ARGI7          .
+          COPY BZUDB2CV.
+       01 ARGI8          .
+          COPY BZUDB2CV.
+       01 ARGI9          .
+          COPY BZUDB2CV.
+       01 ARGI10         .
+          COPY BZUDB2CV.
+       1 ZUT00000000.
+         3 DB2-PATIENT-ID PIC S9(9) COMP.
+       1 ZUT00000001.
+         5 CA-FIRST-NAME PIC X(10).
+       1 ZUT00000002.
+         5 CA-LAST-NAME PIC X(20).
+       1 ZUT00000003.
+         5 CA-DOB PIC X(10).
+       1 ZUT00000004.
+         5 CA-INS-CARD-NUM PIC X(10).
+       1 ZUT00000005.
+         5 CA-ADDRESS PIC X(20).
+       1 ZUT00000006.
+         5 CA-CITY PIC X(20).
+       1 ZUT00000007.
+         5 CA-POSTCODE PIC X(10).
+       1 ZUT00000008.
+         5 CA-PHONE-MOBILE PIC X(20).
+       1 ZUT00000009.
+         5 CA-EMAIL-ADDRESS PIC X(50).
+       1 ZUT0000000A.
+         5 CA-USERID PIC X(10).
+       1 SQLCA.
+         5 SQLCAID PIC X(8).
+         5 SQLCABC PIC S9(9) COMP.
+         5 SQLCODE PIC S9(9) COMP.
+         5 SQLERRM.
+         49 SQLERRML PIC S9(4) COMP.
+         49 SQLERRMC PIC X(70).
+         5 SQLERRP PIC X(8).
+         5 SQLERRD OCCURS 6 TIMES PIC S9(9) COMP.
+         5 SQLWARN.
+         10 SQLWARN0 PIC X(1).
+         10 SQLWARN1 PIC X(1).
+         10 SQLWARN2 PIC X(1).
+         10 SQLWARN3 PIC X(1).
+         10 SQLWARN4 PIC X(1).
+         10 SQLWARN5 PIC X(1).
+         10 SQLWARN6 PIC X(1).
+         10 SQLWARN7 PIC X(1).
+         5 SQLEXT.
+         10 SQLWARN8 PIC X(1).
+         10 SQLWARN9 PIC X(1).
+         10 SQLWARNA PIC X(1).
+         10 SQLSTATE PIC X(5).
+       01 AZ-SQLDA.
+          COPY BZUDB2CA.
+       PROCEDURE DIVISION.
+      * CHECK OUTPUT VALUE
+      * DB2_INPT_00E7_HCIPDB01.
+           ENTRY 'DB2_INPT_00E7_HCIPDB01' USING AZ-TEST
+           AZ-INFO-BLOCK AZ-APLIST ARGO1.
+           DISPLAY 'DB2_00E7_HCIPDB01 CHECK VALUES...'
+           MOVE 4 TO RETURN-CODE.
+           MOVE SQL-STMT-NUM OF AZ-APLIST TO AZ-STMT-NUM
+           SET ADDRESS OF AZ-SQLDA TO SQL-VPARMPTR
+           MOVE SQLDA-NUM OF AZ-SQLDA TO AZ-OUT-PARM-NUM
+           SET ADDRESS OF AZ-SQLDA TO SQL-APARMPTR
+           MOVE SQLDA-NUM OF AZ-SQLDA TO AZ-IN-PARM-NUM
+           SET ADDRESS OF SQLCA TO SQL-CODEPTR OF AZ-APLIST
+           MOVE 0 TO AZ-TEST-LEN.
+           INSPECT AZ-TEST TALLYING AZ-TEST-LEN FOR
+           CHARACTERS BEFORE INITIAL SPACE.
+      * EXEC SQL SELECT_INTO : OUT=1 IN=10
+           IF AZ-OUT-PARM-NUM = 1 AND
+              AZ-IN-PARM-NUM = 10 THEN
+             DISPLAY 'EXEC SQL SELECT_INTO'
+              ' : OUT=' 1 ' IN=' 10
+              ' L=' AZ-STMT-NUM
+             MOVE SQL-AVAR-ADDR OF ARGO1 TO AZ-HOSTVAR-PTR-ADDR
+             SET ADDRESS OF ZUT00000000
+             TO AZ-HOSTVAR-PTR
+             MOVE 6 TO AZ-GRP-INDEX
+             MOVE 0 TO AZ-FLAG-IN
+             MOVE RETURN-CODE TO AZ-RC-WORK
+             CALL 'GTMEMRC' USING TC-WORK-AREA OF AZ-INFO-BLOCK
+               AZ-GRP-INDEX AZ-FLAG-IN AZ-RECORD-PTR
+             SET ADDRESS OF AZ-WK-RECORD-COUNT TO AZ-RECORD-PTR
+             MOVE AZ-RC-WORK TO RETURN-CODE
+             ADD 1 TO AZ-WK-RECORD-COUNT
+             MOVE AZ-WK-RECORD-COUNT TO AZ-RECORD-COUNT-OT(1)
+             EVALUATE AZ-TEST(1:AZ-TEST-LEN)
+               WHEN SPACE
+                 CONTINUE
+               WHEN 'TEST4'
+                 CONTINUE
+               WHEN OTHER
+                 CONTINUE
+             END-EVALUATE
+           END-IF.
+           PERFORM TEARDOWN.
+      * SET INPUT VALUE
+      * DB2_OUTP_00E7_HCIPDB01.
+           ENTRY 'DB2_OUTP_00E7_HCIPDB01' USING AZ-TEST
+           AZ-INFO-BLOCK AZ-APLIST ARGI1 ARGI2 ARGI3 ARGI4 ARGI5 ARGI6
+           ARGI7 ARGI8 ARGI9 ARGI10.
+           DISPLAY 'DB2_00E7_HCIPDB01 INPUT VALUES...'
+           MOVE 0 TO RETURN-CODE.
+           MOVE SQL-STMT-NUM OF AZ-APLIST TO AZ-STMT-NUM
+           SET ADDRESS OF AZ-SQLDA TO SQL-VPARMPTR
+           MOVE SQLDA-NUM OF AZ-SQLDA TO AZ-OUT-PARM-NUM
+           SET ADDRESS OF AZ-SQLDA TO SQL-APARMPTR
+           MOVE SQLDA-NUM OF AZ-SQLDA TO AZ-IN-PARM-NUM
+           SET ADDRESS OF SQLCA TO SQL-CODEPTR OF AZ-APLIST
+           MOVE 0 TO AZ-TEST-LEN.
+           INSPECT AZ-TEST TALLYING AZ-TEST-LEN FOR
+           CHARACTERS BEFORE INITIAL SPACE.
+      * EXEC SQL SELECT_INTO : OUT=1 IN=10
+           IF AZ-OUT-PARM-NUM = 1 AND
+              AZ-IN-PARM-NUM = 10 THEN
+             DISPLAY 'EXEC SQL SELECT_INTO'
+              ' : OUT=' 1 ' IN=' 10
+              ' L=' AZ-STMT-NUM
+             MOVE SQL-AVAR-ADDR OF ARGI1 TO AZ-HOSTVAR-PTR-ADDR
+             SET ADDRESS OF ZUT00000001
+             TO AZ-HOSTVAR-PTR
+             MOVE SQL-AVAR-ADDR OF ARGI2 TO AZ-HOSTVAR-PTR-ADDR
+             SET ADDRESS OF ZUT00000002
+             TO AZ-HOSTVAR-PTR
+             MOVE SQL-AVAR-ADDR OF ARGI3 TO AZ-HOSTVAR-PTR-ADDR
+             SET ADDRESS OF ZUT00000003
+             TO AZ-HOSTVAR-PTR
+             MOVE SQL-AVAR-ADDR OF ARGI4 TO AZ-HOSTVAR-PTR-ADDR
+             SET ADDRESS OF ZUT00000004
+             TO AZ-HOSTVAR-PTR
+             MOVE SQL-AVAR-ADDR OF ARGI5 TO AZ-HOSTVAR-PTR-ADDR
+             SET ADDRESS OF ZUT00000005
+             TO AZ-HOSTVAR-PTR
+             MOVE SQL-AVAR-ADDR OF ARGI6 TO AZ-HOSTVAR-PTR-ADDR
+             SET ADDRESS OF ZUT00000006
+             TO AZ-HOSTVAR-PTR
+             MOVE SQL-AVAR-ADDR OF ARGI7 TO AZ-HOSTVAR-PTR-ADDR
+             SET ADDRESS OF ZUT00000007
+             TO AZ-HOSTVAR-PTR
+             MOVE SQL-AVAR-ADDR OF ARGI8 TO AZ-HOSTVAR-PTR-ADDR
+             SET ADDRESS OF ZUT00000008
+             TO AZ-HOSTVAR-PTR
+             MOVE SQL-AVAR-ADDR OF ARGI9 TO AZ-HOSTVAR-PTR-ADDR
+             SET ADDRESS OF ZUT00000009
+             TO AZ-HOSTVAR-PTR
+             MOVE SQL-AVAR-ADDR OF ARGI10 TO AZ-HOSTVAR-PTR-ADDR
+             SET ADDRESS OF ZUT0000000A
+             TO AZ-HOSTVAR-PTR
+             MOVE 6 TO AZ-GRP-INDEX
+             MOVE 1 TO AZ-FLAG-IN
+             MOVE RETURN-CODE TO AZ-RC-WORK
+             CALL 'GTMEMRC' USING TC-WORK-AREA OF AZ-INFO-BLOCK
+               AZ-GRP-INDEX AZ-FLAG-IN AZ-RECORD-PTR
+             SET ADDRESS OF AZ-WK-RECORD-COUNT TO AZ-RECORD-PTR
+             MOVE AZ-RC-WORK TO RETURN-CODE
+             ADD 1 TO AZ-WK-RECORD-COUNT
+             MOVE AZ-WK-RECORD-COUNT TO AZ-RECORD-COUNT-IN(1)
+             EVALUATE AZ-TEST(1:AZ-TEST-LEN)
+               WHEN SPACE
+                 CONTINUE
+               WHEN 'TEST4'
+                 PERFORM I00E70-TEST4
+                 CONTINUE
+               WHEN OTHER
+                 CONTINUE
+             END-EVALUATE
+           END-IF.
+           PERFORM TEARDOWN.
+       I00E70-TEST4.
+           IF AZ-RECORD-COUNT-IN(1) = 0 THEN
+             CONTINUE
+           ELSE IF AZ-RECORD-COUNT-IN(1) = 1
+           MOVE -922 TO SQLCODE OF SQLCA
+           ELSE
+             CONTINUE
+           END-IF
+           END-IF.
+       TEARDOWN.
+           DISPLAY 'DB2_00E7_HCIPDB01 SUCCESSFUL.'
+           GOBACK.
+       END PROGRAM 'DB2_00E7_HCIPDB01'.
