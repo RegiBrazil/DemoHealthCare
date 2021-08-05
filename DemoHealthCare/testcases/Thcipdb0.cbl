@@ -5,15 +5,15 @@
       *| COMPONENT: IBM Z/OS AUTOMATED UNIT TESTING FRAMEWORK (ZUNIT)  |
       *|   FOR ENTERPRISE COBOL AND PL/I                               |
       *| PROGRAM: ENTERPRISE COBOL ZUNIT TEST CASE FOR DYNAMIC RUNNER  |
-      *| DATE GENERATED: 07/28/2021 13:45                              |
+      *| DATE GENERATED: 08/05/2021 11:28                              |
       *| ID: ee5b957f-44bb-4a99-9fc3-0202cfcf7a1a                      |
       *+---------------------------------------------------------------+
       *+---------------------------------------------------------------+
-      *| TEST_TEST2                                                    |
-      *|     THIS PROGRAM IS FOR TEST TEST2                            |
+      *| TEST_TEST1                                                    |
+      *|     THIS PROGRAM IS FOR TEST TEST1                            |
       *+---------------------------------------------------------------+
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. 'TEST_TEST2'.
+       PROGRAM-ID. 'TEST_TEST1'.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 PROGRAM-NAME   PIC X(8)  VALUE 'HCIPDB01'.
@@ -232,7 +232,7 @@
        PROCEDURE DIVISION USING AZ-TEST
            DFHEIBLK DFHCOMMAREA.
       * START
-           DISPLAY 'TEST_TEST2 STARTED...'
+           DISPLAY 'TEST_TEST1 STARTED...'
            MOVE 0 TO AZ-TEST-NAME-LEN.
            INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR
            CHARACTERS BEFORE INITIAL SPACE.
@@ -453,7 +453,7 @@
              PERFORM THROW-ASSERTION
            END-IF
       * END
-           DISPLAY 'TEST_TEST2 SUCCESSFUL.'
+           DISPLAY 'TEST_TEST1 SUCCESSFUL.'
            GOBACK.
        INITIALIZE-PARM.
            EXIT.
@@ -511,13 +511,13 @@
            SUBTRACT 1 FROM TRACE-LEN OF BZ-TRACE
            CALL BZUTRACE USING BZ-TRACE
            EXIT.
-       END PROGRAM TEST_TEST2.
+       END PROGRAM TEST_TEST1.
       *+---------------------------------------------------------------+
-      *| TEST_TEST3                                                    |
-      *|     THIS PROGRAM IS FOR TEST TEST3                            |
+      *| TEST_TEST2                                                    |
+      *|     THIS PROGRAM IS FOR TEST TEST2                            |
       *+---------------------------------------------------------------+
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. 'TEST_TEST3'.
+       PROGRAM-ID. 'TEST_TEST2'.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 PROGRAM-NAME   PIC X(8)  VALUE 'HCIPDB01'.
@@ -736,7 +736,7 @@
        PROCEDURE DIVISION USING AZ-TEST
            DFHEIBLK DFHCOMMAREA.
       * START
-           DISPLAY 'TEST_TEST3 STARTED...'
+           DISPLAY 'TEST_TEST2 STARTED...'
            MOVE 0 TO AZ-TEST-NAME-LEN.
            INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR
            CHARACTERS BEFORE INITIAL SPACE.
@@ -957,7 +957,7 @@
              PERFORM THROW-ASSERTION
            END-IF
       * END
-           DISPLAY 'TEST_TEST3 SUCCESSFUL.'
+           DISPLAY 'TEST_TEST2 SUCCESSFUL.'
            GOBACK.
        INITIALIZE-PARM.
            EXIT.
@@ -1015,13 +1015,13 @@
            SUBTRACT 1 FROM TRACE-LEN OF BZ-TRACE
            CALL BZUTRACE USING BZ-TRACE
            EXIT.
-       END PROGRAM TEST_TEST3.
+       END PROGRAM TEST_TEST2.
       *+---------------------------------------------------------------+
-      *| TEST_TEST4                                                    |
-      *|     THIS PROGRAM IS FOR TEST TEST4                            |
+      *| TEST_TEST3                                                    |
+      *|     THIS PROGRAM IS FOR TEST TEST3                            |
       *+---------------------------------------------------------------+
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. 'TEST_TEST4'.
+       PROGRAM-ID. 'TEST_TEST3'.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 PROGRAM-NAME   PIC X(8)  VALUE 'HCIPDB01'.
@@ -1145,7 +1145,7 @@
        PROCEDURE DIVISION USING AZ-TEST
            DFHEIBLK DFHCOMMAREA.
       * START
-           DISPLAY 'TEST_TEST4 STARTED...'
+           DISPLAY 'TEST_TEST3 STARTED...'
            MOVE 0 TO AZ-TEST-NAME-LEN.
            INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR
            CHARACTERS BEFORE INITIAL SPACE.
@@ -1154,7 +1154,6 @@
       * SET AREA ADDRESS TO POINTER
       * SET INPUT VALUE
            MOVE 0 TO RETURN-CODE.
-           MOVE 90 TO CA-RETURN-CODE OF DFHCOMMAREA
       * CALL TEST PROGRAM
            DISPLAY 'CALL HCIPDB01'
            CALL PROGRAM-NAME
@@ -1163,7 +1162,7 @@
       * EVALUATE OUTPUT VALUE
            MOVE 0 TO RETURN-CODE
       * END
-           DISPLAY 'TEST_TEST4 SUCCESSFUL.'
+           DISPLAY 'TEST_TEST3 SUCCESSFUL.'
            GOBACK.
        INITIALIZE-PARM.
            EXIT.
@@ -1221,7 +1220,7 @@
            SUBTRACT 1 FROM TRACE-LEN OF BZ-TRACE
            CALL BZUTRACE USING BZ-TRACE
            EXIT.
-       END PROGRAM TEST_TEST4.
+       END PROGRAM TEST_TEST3.
       *+---------------------------------------------------------------+
       *| BZU_TEST                                                      |
       *|     THIS PROGRAM IS CALLBACK DEFINITION FOR TEST              |
@@ -1364,11 +1363,11 @@
            EVALUATE AZ-TEST(1:AZ-TEST-NAME-LEN)
            WHEN SPACE
              CONTINUE
+           WHEN 'TEST1'
+             MOVE 0 TO RETURN-CODE
            WHEN 'TEST2'
              MOVE 0 TO RETURN-CODE
            WHEN 'TEST3'
-             MOVE 0 TO RETURN-CODE
-           WHEN 'TEST4'
              MOVE 0 TO RETURN-CODE
            WHEN OTHER
              CONTINUE
@@ -1753,14 +1752,14 @@
                EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                  WHEN SPACE
                    CONTINUE
+                 WHEN 'TEST1'
+                   PERFORM O0E080-TEST1
+                   CONTINUE
                  WHEN 'TEST2'
                    PERFORM O0E080-TEST2
                    CONTINUE
                  WHEN 'TEST3'
                    PERFORM O0E080-TEST3
-                   CONTINUE
-                 WHEN 'TEST4'
-                   PERFORM O0E080-TEST4
                    CONTINUE
                  WHEN OTHER
                    CONTINUE
@@ -1806,11 +1805,11 @@
                EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                  WHEN SPACE
                    CONTINUE
+                 WHEN 'TEST1'
+                   CONTINUE
                  WHEN 'TEST2'
                    CONTINUE
                  WHEN 'TEST3'
-                   CONTINUE
-                 WHEN 'TEST4'
                    CONTINUE
                  WHEN OTHER
                    CONTINUE
@@ -1818,6 +1817,12 @@
              END-IF
            END-IF.
            PERFORM TEARDOWN.
+       O0E080-TEST1.
+           IF AZ-RECORD-COUNT-OT(1) = 0 THEN
+             CONTINUE
+           ELSE
+             CONTINUE
+           END-IF.
        O0E080-TEST2.
            IF AZ-RECORD-COUNT-OT(1) = 0 THEN
              CONTINUE
@@ -1825,12 +1830,6 @@
              CONTINUE
            END-IF.
        O0E080-TEST3.
-           IF AZ-RECORD-COUNT-OT(1) = 0 THEN
-             CONTINUE
-           ELSE
-             CONTINUE
-           END-IF.
-       O0E080-TEST4.
            MOVE 0 TO RETURN-CODE
            IF AZ-RECORD-COUNT-OT(1) = 0 THEN
              CONTINUE
@@ -1998,7 +1997,7 @@
              EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                WHEN SPACE
                  CONTINUE
-               WHEN 'TEST4'
+               WHEN 'TEST3'
                  CONTINUE
                WHEN OTHER
                  CONTINUE
@@ -2069,15 +2068,15 @@
              EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                WHEN SPACE
                  CONTINUE
-               WHEN 'TEST4'
-                 PERFORM I00E70-TEST4
+               WHEN 'TEST3'
+                 PERFORM I00E70-TEST3
                  CONTINUE
                WHEN OTHER
                  CONTINUE
              END-EVALUATE
            END-IF.
            PERFORM TEARDOWN.
-       I00E70-TEST4.
+       I00E70-TEST3.
            IF AZ-RECORD-COUNT-IN(1) = 0 THEN
              CONTINUE
            ELSE IF AZ-RECORD-COUNT-IN(1) = 1
