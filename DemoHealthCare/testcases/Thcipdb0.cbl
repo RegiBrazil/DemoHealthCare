@@ -5,7 +5,7 @@
       *| COMPONENT: IBM Z/OS AUTOMATED UNIT TESTING FRAMEWORK (ZUNIT)  |
       *|   FOR ENTERPRISE COBOL AND PL/I                               |
       *| PROGRAM: ENTERPRISE COBOL ZUNIT TEST CASE FOR DYNAMIC RUNNER  |
-      *| DATE GENERATED: 08/05/2021 19:25                              |
+      *| DATE GENERATED: 08/05/2021 20:10                              |
       *| ID: ee5b957f-44bb-4a99-9fc3-0202cfcf7a1a                      |
       *+---------------------------------------------------------------+
       *+---------------------------------------------------------------+
@@ -33,7 +33,6 @@
          03 ASSERT-RC PIC 9(9) BINARY VALUE 4.
          03 ASSERT-TEXT PIC 9(4) BINARY VALUE 0.
        01 AZ-TEST-NAME-LEN       PIC S9(9) COMP-5.
-       01 AZ-RC-WORK             PIC S9(4) USAGE BINARY.
        1 AZ-TEST-EXPECTED-DATA-VALUE.
           3 ZUT00000000.
             5 PIC X(6) DISPLAY VALUE '01IPAT'.
@@ -537,7 +536,6 @@
          03 ASSERT-RC PIC 9(9) BINARY VALUE 4.
          03 ASSERT-TEXT PIC 9(4) BINARY VALUE 0.
        01 AZ-TEST-NAME-LEN       PIC S9(9) COMP-5.
-       01 AZ-RC-WORK             PIC S9(4) USAGE BINARY.
        1 AZ-TEST-EXPECTED-DATA-VALUE.
           3 ZUT00000025.
             5 PIC X(6) DISPLAY VALUE '01IPAT'.
@@ -1017,11 +1015,11 @@
            EXIT.
        END PROGRAM TEST_TEST2.
       *+---------------------------------------------------------------+
-      *| TEST_TEST3                                                    |
-      *|     THIS PROGRAM IS FOR TEST TEST3                            |
+      *| TEST_SQL-922                                                  |
+      *|     THIS PROGRAM IS FOR TEST SQL-922                          |
       *+---------------------------------------------------------------+
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. 'TEST_TEST3'.
+       PROGRAM-ID. 'TEST_SQL-922'.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 PROGRAM-NAME   PIC X(8)  VALUE 'HCIPDB01'.
@@ -1041,7 +1039,6 @@
          03 ASSERT-RC PIC 9(9) BINARY VALUE 4.
          03 ASSERT-TEXT PIC 9(4) BINARY VALUE 0.
        01 AZ-TEST-NAME-LEN       PIC S9(9) COMP-5.
-       01 AZ-RC-WORK             PIC S9(4) USAGE BINARY.
        01 AZ-COMPARE.
          03 AZ-COMPARE-ITEM-NAME-PTR  POINTER.
          03 AZ-COMPARE-ITEM-NAME-LEN  PIC S9(9) COMP-5.
@@ -1145,7 +1142,7 @@
        PROCEDURE DIVISION USING AZ-TEST
            DFHEIBLK DFHCOMMAREA.
       * START
-           DISPLAY 'TEST_TEST3 STARTED...'
+           DISPLAY 'TEST_SQL-922 STARTED...'
            MOVE 0 TO AZ-TEST-NAME-LEN.
            INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR
            CHARACTERS BEFORE INITIAL SPACE.
@@ -1162,7 +1159,7 @@
       * EVALUATE OUTPUT VALUE
            MOVE 0 TO RETURN-CODE
       * END
-           DISPLAY 'TEST_TEST3 SUCCESSFUL.'
+           DISPLAY 'TEST_SQL-922 SUCCESSFUL.'
            GOBACK.
        INITIALIZE-PARM.
            EXIT.
@@ -1220,7 +1217,7 @@
            SUBTRACT 1 FROM TRACE-LEN OF BZ-TRACE
            CALL BZUTRACE USING BZ-TRACE
            EXIT.
-       END PROGRAM TEST_TEST3.
+       END PROGRAM TEST_SQL-922.
       *+---------------------------------------------------------------+
       *| BZU_TEST                                                      |
       *|     THIS PROGRAM IS CALLBACK DEFINITION FOR TEST              |
@@ -1342,7 +1339,7 @@
       * SET INPUT VALUE
            ENTRY "PGM_INPT_HCIPDB01" USING AZ-TEST AZ-INFO-BLOCK
            DFHEIBLK DFHCOMMAREA.
-           DISPLAY 'PGM_INPT_HCIPDB01 INPUT VALUES...'.
+           DISPLAY 'PGM_INPT_HCIPDB01 CHECK VALUES...'.
            MOVE 0 TO RETURN-CODE.
            INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR CHARACTERS
              BEFORE INITIAL SPACE.
@@ -1356,7 +1353,7 @@
       * EVALUATE OUTPUT VALUE
            ENTRY "PGM_OUTP_HCIPDB01" USING AZ-TEST AZ-INFO-BLOCK
            DFHEIBLK DFHCOMMAREA.
-           DISPLAY 'PGM_OUTP_HCIPDB01 CHECK VALUES...'.
+           DISPLAY 'PGM_OUTP_HCIPDB01 INPUT VALUES...'.
            MOVE 4 TO RETURN-CODE.
            INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR CHARACTERS
              BEFORE INITIAL SPACE.
@@ -1367,7 +1364,7 @@
              MOVE 0 TO RETURN-CODE
            WHEN 'TEST2'
              MOVE 0 TO RETURN-CODE
-           WHEN 'TEST3'
+           WHEN 'SQL-922'
              MOVE 0 TO RETURN-CODE
            WHEN OTHER
              CONTINUE
@@ -1678,7 +1675,6 @@
          03 AZ-LINE-NUM-RD  PIC 9(1) OCCURS 5.
        01 AZ-LINE-I         PIC S9(8) COMP.
        01 AZ-LINE-J         PIC S9(8) COMP.
-       01 AZ-RC-WORK        PIC S9(4) USAGE BINARY.
        LOCAL-STORAGE SECTION.
        LINKAGE SECTION.
        01 AZ-TEST                   PIC X(80).
@@ -1730,11 +1726,9 @@
            IF ARG0-1 = X'0E08'
              MOVE X'0000' TO AZ-OPT-MASK-DATA2
              MOVE 2 TO AZ-OPT-BYTECOUNT
-             MOVE RETURN-CODE TO AZ-RC-WORK
              CALL 'EVALOPT' USING AZ-OPT-MASK-DATA2
                AZ-OPT-COMMASK-DATA2(1) ARG0-2
                AZ-OPT-BYTECOUNT AZ-OPT-RC
-             MOVE AZ-RC-WORK TO RETURN-CODE
              IF AZ-OPT-RC = 0 THEN
                MOVE 3 TO AZ-LINE-BYTE
                PERFORM GETLINENUM
@@ -1742,11 +1736,9 @@
                 ' L=' AZ-LINE-NUM
                MOVE 2 TO AZ-GRP-INDEX
                MOVE 0 TO AZ-FLAG-IN
-               MOVE RETURN-CODE TO AZ-RC-WORK
                CALL 'GTMEMRC' USING TC-WORK-AREA OF AZ-INFO-BLOCK
                  AZ-GRP-INDEX AZ-FLAG-IN AZ-RECORD-PTR
                SET ADDRESS OF AZ-WK-RECORD-COUNT TO AZ-RECORD-PTR
-               MOVE AZ-RC-WORK TO RETURN-CODE
                ADD 1 TO AZ-WK-RECORD-COUNT
                MOVE AZ-WK-RECORD-COUNT TO AZ-RECORD-COUNT-OT(1)
                EVALUATE AZ-TEST(1:AZ-TEST-LEN)
@@ -1758,8 +1750,8 @@
                  WHEN 'TEST2'
                    PERFORM O0E080-TEST2
                    CONTINUE
-                 WHEN 'TEST3'
-                   PERFORM O0E080-TEST3
+                 WHEN 'SQL-922'
+                   PERFORM O0E080-SQL-922
                    CONTINUE
                  WHEN OTHER
                    CONTINUE
@@ -1783,11 +1775,9 @@
            IF ARG0-1 = X'0E08'
              MOVE X'0000' TO AZ-OPT-MASK-DATA2
              MOVE 2 TO AZ-OPT-BYTECOUNT
-             MOVE RETURN-CODE TO AZ-RC-WORK
              CALL 'EVALOPT' USING AZ-OPT-MASK-DATA2
                AZ-OPT-COMMASK-DATA2(1) ARG0-2
                AZ-OPT-BYTECOUNT AZ-OPT-RC
-             MOVE AZ-RC-WORK TO RETURN-CODE
              IF AZ-OPT-RC = 0 THEN
                MOVE 3 TO AZ-LINE-BYTE
                PERFORM GETLINENUM
@@ -1795,11 +1785,9 @@
                 ' L=' AZ-LINE-NUM
                MOVE 2 TO AZ-GRP-INDEX
                MOVE 1 TO AZ-FLAG-IN
-               MOVE RETURN-CODE TO AZ-RC-WORK
                CALL 'GTMEMRC' USING TC-WORK-AREA OF AZ-INFO-BLOCK
                  AZ-GRP-INDEX AZ-FLAG-IN AZ-RECORD-PTR
                SET ADDRESS OF AZ-WK-RECORD-COUNT TO AZ-RECORD-PTR
-               MOVE AZ-RC-WORK TO RETURN-CODE
                ADD 1 TO AZ-WK-RECORD-COUNT
                MOVE AZ-WK-RECORD-COUNT TO AZ-RECORD-COUNT-IN(1)
                EVALUATE AZ-TEST(1:AZ-TEST-LEN)
@@ -1809,7 +1797,7 @@
                    CONTINUE
                  WHEN 'TEST2'
                    CONTINUE
-                 WHEN 'TEST3'
+                 WHEN 'SQL-922'
                    CONTINUE
                  WHEN OTHER
                    CONTINUE
@@ -1829,7 +1817,7 @@
            ELSE
              CONTINUE
            END-IF.
-       O0E080-TEST3.
+       O0E080-SQL-922.
            MOVE 0 TO RETURN-CODE
            IF AZ-RECORD-COUNT-OT(1) = 0 THEN
              CONTINUE
@@ -1879,7 +1867,6 @@
        01 AZ-GRP-INDEX       PIC 9(8).
        01 AZ-FLAG-IN         PIC 9(1).
        01 AZ-RECORD-PTR      POINTER.
-       01 AZ-RC-WORK         PIC S9(4) USAGE BINARY.
        LOCAL-STORAGE SECTION.
        01 AZ-HOSTVAR-PTR     POINTER.
        01 AZ-HOSTVAR-PTR-ADDR
@@ -1987,17 +1974,15 @@
              TO AZ-HOSTVAR-PTR
              MOVE 6 TO AZ-GRP-INDEX
              MOVE 0 TO AZ-FLAG-IN
-             MOVE RETURN-CODE TO AZ-RC-WORK
              CALL 'GTMEMRC' USING TC-WORK-AREA OF AZ-INFO-BLOCK
                AZ-GRP-INDEX AZ-FLAG-IN AZ-RECORD-PTR
              SET ADDRESS OF AZ-WK-RECORD-COUNT TO AZ-RECORD-PTR
-             MOVE AZ-RC-WORK TO RETURN-CODE
              ADD 1 TO AZ-WK-RECORD-COUNT
              MOVE AZ-WK-RECORD-COUNT TO AZ-RECORD-COUNT-OT(1)
              EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                WHEN SPACE
                  CONTINUE
-               WHEN 'TEST3'
+               WHEN 'SQL-922'
                  CONTINUE
                WHEN OTHER
                  CONTINUE
@@ -2058,25 +2043,23 @@
              TO AZ-HOSTVAR-PTR
              MOVE 6 TO AZ-GRP-INDEX
              MOVE 1 TO AZ-FLAG-IN
-             MOVE RETURN-CODE TO AZ-RC-WORK
              CALL 'GTMEMRC' USING TC-WORK-AREA OF AZ-INFO-BLOCK
                AZ-GRP-INDEX AZ-FLAG-IN AZ-RECORD-PTR
              SET ADDRESS OF AZ-WK-RECORD-COUNT TO AZ-RECORD-PTR
-             MOVE AZ-RC-WORK TO RETURN-CODE
              ADD 1 TO AZ-WK-RECORD-COUNT
              MOVE AZ-WK-RECORD-COUNT TO AZ-RECORD-COUNT-IN(1)
              EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                WHEN SPACE
                  CONTINUE
-               WHEN 'TEST3'
-                 PERFORM I00E70-TEST3
+               WHEN 'SQL-922'
+                 PERFORM I00E70-SQL-922
                  CONTINUE
                WHEN OTHER
                  CONTINUE
              END-EVALUATE
            END-IF.
            PERFORM TEARDOWN.
-       I00E70-TEST3.
+       I00E70-SQL-922.
            IF AZ-RECORD-COUNT-IN(1) = 0 THEN
              CONTINUE
            ELSE IF AZ-RECORD-COUNT-IN(1) = 1
