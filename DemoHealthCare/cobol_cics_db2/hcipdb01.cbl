@@ -1,7 +1,7 @@
       *****************************************************************
       * Used on CICS trx HCAZ
       * invoked cc selecting option 2 - Inquire Patient
-      * hcipdb01 Changed August 06  2021 -   13:16
+      * hcipdb01 Changed August 06  2021 -   16:09
       *  Look for %bug to introduce bugs
       ******************************************************************
        IDENTIFICATION DIVISION.
