@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="9edfca9b-7e12-4789-ab30-e2c31f57923f">
+<runner:RunnerConfiguration xmlns:runner="http://www.ibm.com/zUnit/3.0.0.0/TestRunner" id="ea024a4f-b00b-496b-ba18-a85a79ff2d9c">
   <runner:options contOnTestCaseError="false" contOnTestCaseFail="true" contOnTestError="false" contOnTestFail="true"/>
   <runner:testCase moduleName="THCIPDB0">
     <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCIPDB01" commarea="32500" skipTest="true" resetFile="true" stubCall="true" dummy="true"/>
     <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCIPDB01" commarea="32500" skipTest="true" resetFile="false" stubCall="true" dummy="true"/>
     <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCIPDB01" commarea="32500" skipTest="true" resetFile="false" stubCall="true" dummy="true"/>
     <test name="TEST1" entry="TEST_TEST1" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="0" skipTest="false" resetFile="false" stubCall="true" dummy="false"/>
-    <test name="SQL-922" entry="TEST_SQL-922" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="0" skipTest="false" resetFile="false" stubCall="true" dummy="false"/>
+    <test name="SQL922" entry="TEST_SQL922" type="CICS" init="BZU_INIT" term="BZU_TERM" program="HCIPDB01" commarea="0" skipTest="false" resetFile="false" stubCall="true" dummy="false"/>
     <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCIPDB01" commarea="32500" skipTest="true" resetFile="true" stubCall="true" dummy="true"/>
     <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCIPDB01" commarea="32500" skipTest="true" resetFile="false" stubCall="true" dummy="true"/>
     <test name="dummy" entry="dummy" type="CICS" init="dummy" term="dummy" program="HCIPDB01" commarea="32500" skipTest="true" resetFile="false" stubCall="true" dummy="true"/>

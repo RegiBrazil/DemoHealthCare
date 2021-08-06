@@ -5,7 +5,7 @@
       *| COMPONENT: IBM Z/OS AUTOMATED UNIT TESTING FRAMEWORK (ZUNIT)  |
       *|   FOR ENTERPRISE COBOL AND PL/I                               |
       *| PROGRAM: ENTERPRISE COBOL ZUNIT TEST CASE FOR DYNAMIC RUNNER  |
-      *| DATE GENERATED: 08/05/2021 20:10                              |
+      *| DATE GENERATED: 08/05/2021 20:22                              |
       *| ID: ee5b957f-44bb-4a99-9fc3-0202cfcf7a1a                      |
       *+---------------------------------------------------------------+
       *+---------------------------------------------------------------+
@@ -1015,11 +1015,11 @@
            EXIT.
        END PROGRAM TEST_TEST2.
       *+---------------------------------------------------------------+
-      *| TEST_SQL-922                                                  |
-      *|     THIS PROGRAM IS FOR TEST SQL-922                          |
+      *| TEST_SQL922                                                   |
+      *|     THIS PROGRAM IS FOR TEST SQL922                           |
       *+---------------------------------------------------------------+
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. 'TEST_SQL-922'.
+       PROGRAM-ID. 'TEST_SQL922'.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 PROGRAM-NAME   PIC X(8)  VALUE 'HCIPDB01'.
@@ -1142,7 +1142,7 @@
        PROCEDURE DIVISION USING AZ-TEST
            DFHEIBLK DFHCOMMAREA.
       * START
-           DISPLAY 'TEST_SQL-922 STARTED...'
+           DISPLAY 'TEST_SQL922 STARTED...'
            MOVE 0 TO AZ-TEST-NAME-LEN.
            INSPECT AZ-TEST TALLYING AZ-TEST-NAME-LEN FOR
            CHARACTERS BEFORE INITIAL SPACE.
@@ -1159,7 +1159,7 @@
       * EVALUATE OUTPUT VALUE
            MOVE 0 TO RETURN-CODE
       * END
-           DISPLAY 'TEST_SQL-922 SUCCESSFUL.'
+           DISPLAY 'TEST_SQL922 SUCCESSFUL.'
            GOBACK.
        INITIALIZE-PARM.
            EXIT.
@@ -1217,7 +1217,7 @@
            SUBTRACT 1 FROM TRACE-LEN OF BZ-TRACE
            CALL BZUTRACE USING BZ-TRACE
            EXIT.
-       END PROGRAM TEST_SQL-922.
+       END PROGRAM TEST_SQL922.
       *+---------------------------------------------------------------+
       *| BZU_TEST                                                      |
       *|     THIS PROGRAM IS CALLBACK DEFINITION FOR TEST              |
@@ -1364,7 +1364,7 @@
              MOVE 0 TO RETURN-CODE
            WHEN 'TEST2'
              MOVE 0 TO RETURN-CODE
-           WHEN 'SQL-922'
+           WHEN 'SQL922'
              MOVE 0 TO RETURN-CODE
            WHEN OTHER
              CONTINUE
@@ -1750,8 +1750,8 @@
                  WHEN 'TEST2'
                    PERFORM O0E080-TEST2
                    CONTINUE
-                 WHEN 'SQL-922'
-                   PERFORM O0E080-SQL-922
+                 WHEN 'SQL922'
+                   PERFORM O0E080-SQL922
                    CONTINUE
                  WHEN OTHER
                    CONTINUE
@@ -1797,7 +1797,7 @@
                    CONTINUE
                  WHEN 'TEST2'
                    CONTINUE
-                 WHEN 'SQL-922'
+                 WHEN 'SQL922'
                    CONTINUE
                  WHEN OTHER
                    CONTINUE
@@ -1817,7 +1817,7 @@
            ELSE
              CONTINUE
            END-IF.
-       O0E080-SQL-922.
+       O0E080-SQL922.
            MOVE 0 TO RETURN-CODE
            IF AZ-RECORD-COUNT-OT(1) = 0 THEN
              CONTINUE
@@ -1982,7 +1982,7 @@
              EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                WHEN SPACE
                  CONTINUE
-               WHEN 'SQL-922'
+               WHEN 'SQL922'
                  CONTINUE
                WHEN OTHER
                  CONTINUE
@@ -2051,15 +2051,15 @@
              EVALUATE AZ-TEST(1:AZ-TEST-LEN)
                WHEN SPACE
                  CONTINUE
-               WHEN 'SQL-922'
-                 PERFORM I00E70-SQL-922
+               WHEN 'SQL922'
+                 PERFORM I00E70-SQL922
                  CONTINUE
                WHEN OTHER
                  CONTINUE
              END-EVALUATE
            END-IF.
            PERFORM TEARDOWN.
-       I00E70-SQL-922.
+       I00E70-SQL922.
            IF AZ-RECORD-COUNT-IN(1) = 0 THEN
              CONTINUE
            ELSE IF AZ-RECORD-COUNT-IN(1) = 1
