@@ -172,7 +172,7 @@
                 EXEC CICS RETURN
                      END-EXEC
            END-EVALUATE.
-      * %bug2 -- the line below will introduce a BUG
+      * %bug -- the line below will introduce a BUG
       *----------------------------------------------------------------*
       *         IF DB2-PATIENT-ID = 1
       *              MOVE "BAD NAME" to CA-FIRST-NAME

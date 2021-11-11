@@ -1,0 +1,18 @@
+//VTP#HCDB  JOB ,NOTIFY=&SYSUID,REGION=0M
+//*  Run VTP for HCAZ with Debug
+//*  BZU100.ZUNIT.PLAYBACK is your play back file (recording)
+//*  IBMUSER.GIT.ZMOBILE.LOAD are the Application load modules updated
+//*  BZU100.SBZULOAD where VTP is installed
+//RUNNER   EXEC PGM=BZUPLAY,PARM='TRACE=N,STOP=E'
+//STEPLIB  DD DISP=SHR,DSN=BZU100.SBZULOAD
+//         DD DISP=SHR,DSN=IBMUSER.GIT.ZMOBILE.LOAD
+//         DD DSN=IBMUSER.LOAD,DISP=SHR    * module for Delay Debug
+//         DD  DISP=SHR,DSN=EQAE10.SEQAMOD * Debug
+//BZUPLAY  DD DISP=SHR,DSN=BZU100.ZUNIT.PLAYBACK.BLOG
+//SYSOUT   DD SYSOUT=*
+//BZUMSG  DD SYSOUT=*
+//CEEOPTS DD *
+      TEST(ALL,,PROMPT,DBMDT:*)
+      ENVAR("EQA_STARTUP_KEY=CC,,testid=HCIPDB01")  > for Code Coverage
+/*
+//
