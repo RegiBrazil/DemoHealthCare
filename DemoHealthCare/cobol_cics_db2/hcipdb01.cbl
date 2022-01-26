@@ -1,7 +1,7 @@
       *****************************************************************
       * Used on CICS trx HCAZ
       * invoked cc selecting option 2 - Inquire Patient
-      * hcipdb01 Changed Dec 082021 -   10:00
+      * hcipdb01 Changed Dec 082021 -   xx10:00
       *  Look for %bug to introduce bugs
       ******************************************************************
        IDENTIFICATION DIVISION.
@@ -79,6 +79,7 @@
            INITIALIZE WS-HEADER.
       * set up general variable
            MOVE EIBTRNID TO WS-TRANSID.
+           MOVE CA-ADDRESS to xxx.
            MOVE EIBTRMID TO WS-TERMID.
            MOVE EIBTASKN TO WS-TASKNUM.
       *----------------------------------------------------------------*
