@@ -79,7 +79,6 @@
            INITIALIZE WS-HEADER.
       * set up general variable
            MOVE EIBTRNID TO WS-TRANSID.
-           MOVE CA-ADDRESS to xxx.
            MOVE EIBTRMID TO WS-TERMID.
            MOVE EIBTASKN TO WS-TASKNUM.
       *----------------------------------------------------------------*
